@@ -286,7 +286,7 @@ const CSS = `
 
 .msf-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;border-bottom:1px solid #e5e5e5;flex-shrink:0;
+  padding:22px 32px;border-bottom:none;flex-shrink:0;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -330,8 +330,8 @@ const CSS = `
   display:flex;
   flex-direction:column;
   padding:32px 28px;
-  border-right:1px solid #e5e5e5;
-  background:#fff;
+  border-right:none;
+  background:Transparent;
   overflow-y:auto;
 }
 .msf-sidebar-brand{
@@ -370,7 +370,7 @@ const CSS = `
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  background:linear-gradient(160deg,#f3eeff 0%,#fdf0f5 45%,#fafafa 100%);
+  background:transparent);
 }
 
 .msf-panel-header{
@@ -378,7 +378,7 @@ const CSS = `
   align-items:center;
   justify-content:space-between;
   padding:18px 32px;
-  border-bottom:1px solid #e5e5e5;
+  border-bottom:none;
   flex-shrink:0;
 }
 .msf-panel-counter{
@@ -426,6 +426,7 @@ const CSS = `
   background-size:cover;
   background-position:center top;
   background-color:#ece9f5;
+  display:none;
 }
 .msf-start-card-body{
   padding:22px 28px 26px;
