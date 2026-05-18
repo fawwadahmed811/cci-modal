@@ -2,16 +2,9 @@
 "use strict";
 
 const CONFIG = {
-
-
   brand: `<img src="https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/69f2817d3ad5de3dea2ee10a_logo.png" alt="Coachability Consultants" style="height:18px;object-fit:contain;width:auto;display:block;">`,
-
-
   brandShort: "CCI",
-
-
   submitUrl: "",
-
 
   intro: {
     heading: "Discover your coaching culture readiness",
@@ -21,14 +14,12 @@ const CONFIG = {
     ctaLabel: "Start assessment",
   },
 
-
   step1Card: {
     bgImage: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
     heading: "Check your readiness.",
     body: "Take 2 minutes to discover where coachability can fuel your team's performance. Get your personalized maturity snapshot and clear next steps.",
     cta: "Start my assessment",
   },
-
 
   sidebarSteps: [
     "Start",
@@ -42,7 +33,6 @@ const CONFIG = {
     "Timeline",
     "About you",
   ],
-
 
   questions: [
     {
@@ -170,7 +160,6 @@ const CONFIG = {
     },
   ],
 
-
   leadForm: {
     heading: "One last step before your results",
     subtitle: "Tell us a little about you so one of our consultants can get back to you with a tailored next step.",
@@ -185,7 +174,6 @@ const CONFIG = {
     termsText: 'I agree to the <a href="#" target="_blank" rel="noopener">Terms &amp; Conditions</a> and the <a href="#" target="_blank" rel="noopener">Privacy Policy</a>, and consent to being contacted by Coachability Consultants.',
     submitLabel: "Get my results",
   },
-
 
   tiers: [
     {
@@ -222,7 +210,6 @@ const CONFIG = {
     },
   ],
 
-
   pathways: [
     {
       id: "coachees",
@@ -258,12 +245,10 @@ const CONFIG = {
     },
   ],
 
-
   resultsCtas: {
     primary:   { label: "Schedule a conversation", url: "/your-coachability-quotient" },
     secondary: { label: "Learn more",              url: "/why-cci-method" },
   },
-
 
   pathwaysSection: {
     title: "Where to go from here",
@@ -271,6 +256,7 @@ const CONFIG = {
   },
 };
 
+/* ─────────────────────────── CSS ─────────────────────────── */
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 #msf-overlay{
@@ -279,14 +265,15 @@ const CSS = `
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   color:#0a0a0a;overflow:hidden;
   opacity:0;transform:translateY(18px);
-  transition:opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+  transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1);
 }
 #msf-overlay.msf-visible{opacity:1;transform:translateY(0)}
 #msf-overlay *{font-family:inherit}
 
+/* ── HEADER ── */
 .msf-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;border-bottom:none;flex-shrink:0;
+  padding:22px 32px;flex-shrink:0;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -296,188 +283,177 @@ const CSS = `
   cursor:pointer;transition:all .2s ease;flex-shrink:0;line-height:1;
 }
 .msf-close:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+
+/* ── PROGRESS ── */
 .msf-progress{height:3px;background:#f0f0f0;flex-shrink:0}
 .msf-progress-fill{height:100%;background:#0a0a0a;transition:width .4s cubic-bezier(.4,0,.2,1)}
 
+/* ── MAIN BODY ── */
 .msf-body{
-  flex:1;padding:52px 32px 36px;max-width:760px;width:100%;
-  margin:0 auto;overflow-y:auto;
-  transition:opacity .25s ease,transform .25s ease;
+  flex:1;overflow:hidden;
+  display:flex;
+  transition:opacity .22s ease,transform .22s ease;
 }
-.msf-body.fade-out-fwd{opacity:0;transform:translateX(28px)}
-.msf-body.fade-out-back{opacity:0;transform:translateX(-28px)}
+.msf-body.fade-out-fwd{opacity:0;transform:translateX(18px)}
+.msf-body.fade-out-back{opacity:0;transform:translateX(-18px)}
 .msf-body.fade-in{opacity:1;transform:translateX(0)}
 
-.msf-body.msf-intro-active{
-  max-width:100%;
-  padding:0;
-  display:flex;
+/* INTRO — full-bleed hero */
+.msf-body.msf-mode-intro{
   flex-direction:column;
+  overflow-y:auto;
 }
 
-.msf-body.msf-panel-active{
-  max-width:100%;
-  padding:0;
-  display:flex;
+/* START & PANEL modes — sidebar + right panel */
+.msf-body.msf-mode-start,
+.msf-body.msf-mode-panel{
   flex-direction:row;
   overflow:hidden;
 }
 
-#msf-overlay.msf-step-start{
-  background:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png') center/cover no-repeat #F9F9F9;
+/* RESULTS mode — single scrollable column (no sidebar) */
+.msf-body.msf-mode-results{
+  flex-direction:column;
+  overflow-y:auto;
+  padding:0;
 }
 
+/* ── INTRO ── */
+.msf-intro-hero{
+  flex:1;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;min-height:100%;
+}
+.msf-intro-bg{
+  position:absolute;inset:0;
+  background-image:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg');
+  background-size:cover;background-position:center;background-color:#f5f5f5;
+}
+.msf-intro-content{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:40px 32px;max-width:560px;width:100%;
+}
+.msf-intro-heading{
+  font-size:clamp(1.8rem,4.5vw,2.8rem);
+  font-family:DM Sans,system-ui,sans-serif;
+  font-weight:500;line-height:1.12;letter-spacing:-.03em;color:#0a0a0a;margin-bottom:16px;
+}
+.msf-intro-body{
+  font-size:1rem;font-family:DM Sans,system-ui,sans-serif;
+  line-height:1.65;color:#2E2E2E;margin-bottom:0;
+}
+.msf-intro-spacer{height:clamp(48px,8vh,96px)}
+.msf-intro-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;background:#0a0a0a;color:#fff;
+  font-size:.93rem;font-weight:600;border-radius:999px;border:none;
+  cursor:pointer;transition:background .18s ease,transform .18s ease;
+  letter-spacing:-.01em;white-space:nowrap;
+}
+.msf-intro-cta:hover{background:#333;transform:translateY(-1px)}
+.msf-intro-cta:active{transform:scale(.97)}
+
+/* ── SIDEBAR ── */
 .msf-sidebar{
-  width:220px;
-  min-width:180px;
-  flex-shrink:0;
-  display:flex;
-  flex-direction:column;
-  padding:32px 28px;
-  border-right:none;
-  background:Transparent;
-  overflow-y:auto;
+  width:220px;min-width:180px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  padding:32px 28px;background:transparent;overflow-y:auto;
 }
 .msf-sidebar-brand{
-  font-size:1.4rem;
-  font-weight:700;
-  letter-spacing:-.03em;
-  color:#0a0a0a;
-  margin-bottom:auto;
-  line-height:1;
+  font-size:1.4rem;font-weight:700;letter-spacing:-.03em;
+  color:#0a0a0a;margin-bottom:auto;line-height:1;
 }
 .msf-sidebar-steps{
-  margin-top:auto;
-  padding-top:32px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+  margin-top:auto;padding-top:32px;
+  display:flex;flex-direction:column;gap:6px;
 }
 .msf-sidebar-step{
-  font-size:.88rem;
-  font-weight:400;
-  color:#bbb;
-  padding:5px 0;
-  transition:color .18s ease;
-  line-height:1.3;
+  font-size:.88rem;font-weight:400;color:#bbb;
+  padding:5px 0;transition:color .18s ease;line-height:1.3;
 }
-.msf-sidebar-step.active{
-  color:#0a0a0a;
-  font-weight:600;
-}
-.msf-sidebar-step.done{
-  color:#888;
-}
+.msf-sidebar-step.active{color:#0a0a0a;font-weight:600}
+.msf-sidebar-step.done{color:#888}
 
+/* ── RIGHT PANEL ── */
 .msf-panel-right{
-  flex:1;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  background:transparent;
+  flex:1;display:flex;flex-direction:column;background:transparent;overflow:hidden;
 }
-
 .msf-panel-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 32px;
-  border-bottom:none;
-  flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 32px;flex-shrink:0;
 }
-.msf-panel-counter{
-  font-size:.82rem;
-  font-weight:600;
-  color:#9a9a9a;
-  letter-spacing:.04em;
+.msf-panel-counter{font-size:.82rem;font-weight:600;color:#9a9a9a;letter-spacing:.04em}
+.msf-panel-tagline{font-size:.82rem;font-weight:500;color:#9a9a9a;text-transform:uppercase;letter-spacing:.08em}
+.msf-panel-close{
+  width:36px;height:36px;border:1.5px solid #e5e5e5;background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:400;color:#0a0a0a;border-radius:50%;
+  cursor:pointer;transition:all .2s ease;flex-shrink:0;line-height:1;
 }
-.msf-panel-tagline{
-  font-size:.82rem;
-  font-weight:500;
-  color:#9a9a9a;
-  text-transform:uppercase;
-  letter-spacing:.08em;
+.msf-panel-close:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+
+/* ── PANEL CONTENT (the scrollable right area for all questions) ── */
+.msf-panel-content{
+  flex:1;overflow-y:auto;padding:40px 40px 32px;
+  position:relative;
+  /* smooth scroll-to-top between questions */
+  scroll-behavior:smooth;
 }
 
-.msf-panel-content{
-  flex:1;
-  overflow-y:auto;
-  padding:40px 40px 32px;
+/* Content fade animation inside the panel */
+.msf-panel-content-inner{
+  transition:opacity .2s ease,transform .2s ease;
+}
+.msf-panel-content-inner.fade-out{
+  opacity:0;transform:translateY(10px);
+}
+.msf-panel-content-inner.fade-in{
+  opacity:1;transform:translateY(0);
 }
 
 /* ── START CARD ── */
 .msf-start-card{
-  background:#fff;
-  border:1px solid #e5e5e5;
-  border-radius:16px;
-  overflow:hidden;
-  max-width:520px;
-  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  background:#fff;border:1px solid #e5e5e5;border-radius:16px;
+  overflow:hidden;max-width:520px;box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
-.msf-start-card-top{
-  padding:28px 28px 20px;
-}
+.msf-start-card-top{padding:28px 28px 20px}
 .msf-start-card-heading{
-  font-size:1.45rem;
-  font-weight:700;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:#0a0a0a;
+  font-size:1.45rem;font-weight:700;line-height:1.2;
+  letter-spacing:-.02em;color:#0a0a0a;
 }
 .msf-start-card-hero{
-  width:100%;
-  height:220px;
-  background-size:cover;
-  background-position:center top;
-  background-color:#ece9f5;
-  display:none;
+  width:100%;height:220px;background-size:cover;
+  background-position:center top;background-color:#ece9f5;
 }
-.msf-start-card-body{
-  padding:22px 28px 26px;
-}
-.msf-start-card-text{
-  font-size:.93rem;
-  line-height:1.65;
-  color:#555;
-  margin-bottom:22px;
-}
+.msf-start-card-body{padding:22px 28px 26px}
+.msf-start-card-text{font-size:.93rem;line-height:1.65;color:#555;margin-bottom:22px}
 .msf-start-card-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 22px;
-  background:#0a0a0a;
-  color:#fff;
-  font-size:.88rem;
-  font-weight:600;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  transition:background .18s ease, transform .15s ease;
-  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;background:#0a0a0a;color:#fff;
+  font-size:.88rem;font-weight:600;border-radius:999px;border:none;
+  cursor:pointer;transition:background .18s ease,transform .15s ease;letter-spacing:-.01em;
 }
 .msf-start-card-btn:hover{background:#333;transform:translateY(-1px)}
 .msf-start-card-btn:active{transform:scale(.97)}
-
-/* bottom-right watermark */
 .msf-panel-watermark{
-  position:absolute;
-  bottom:20px;
-  right:28px;
-  font-size:.68rem;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#bbb;
-  pointer-events:none;
+  position:absolute;bottom:20px;right:28px;
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#bbb;pointer-events:none;
 }
 
+/* ── QUESTION ── */
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
 .msf-heading{font-size:clamp(1.45rem,3.4vw,2.1rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#0a0a0a}
-.msf-step-indicator{font-size:.82rem;font-weight:500;color:#9a9a9a;white-space:nowrap;flex-shrink:0}
 .msf-subtitle{font-size:1rem;font-weight:400;color:#555;margin-bottom:34px;line-height:1.6;max-width:600px}
+.msf-options-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:0;
+}
 .msf-option{
-  display:block;width:100%;padding:17px 22px;margin-bottom:10px;
+  display:block;width:100%;padding:17px 22px;
   border:1.5px solid #e5e5e5;background:#fff;color:#0a0a0a;
   font-size:.95rem;font-weight:500;line-height:1.5;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
@@ -485,17 +461,24 @@ const CSS = `
 .msf-option:hover{border-color:#0a0a0a;background:#fafafa}
 .msf-option.selected{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
 .msf-option.selected:hover{background:#0a0a0a}
+/* multiple-choice checkmark */
 .msf-check{
   display:inline-flex;align-items:center;justify-content:center;
   width:18px;height:18px;border:1.5px solid currentColor;border-radius:4px;
   margin-right:13px;vertical-align:middle;position:relative;top:-1px;
   font-size:.7rem;font-weight:700;flex-shrink:0;
 }
-.msf-insight{margin-top:34px;border-left:3px solid #0a0a0a;padding-left:18px;animation:msfIn .3s ease}
+
+/* Insight block */
+.msf-insight{
+  margin-top:28px;border-left:3px solid #0a0a0a;padding-left:18px;
+  animation:msfIn .3s ease;
+}
 @keyframes msfIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
+/* ── FOOTER ── */
 .msf-footer{
   border-top:1px solid #e5e5e5;padding:18px 32px;
   display:flex;justify-content:space-between;align-items:center;
@@ -517,6 +500,7 @@ const CSS = `
 .msf-btn-continue:active:not(:disabled){transform:scale(.97)}
 .msf-btn-continue:disabled{background:#e5e5e5;border-color:#e5e5e5;color:#bbb;cursor:not-allowed}
 
+/* ── LEAD FORM ── */
 .msf-lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;margin-bottom:8px}
 .msf-field{display:flex;flex-direction:column;gap:7px}
 .msf-field-full{grid-column:1/-1}
@@ -551,6 +535,8 @@ const CSS = `
 .msf-terms-text a{color:#0a0a0a;text-decoration:underline;text-underline-offset:2px}
 .msf-terms.error .msf-terms-box{border-color:#c94f4f}
 
+/* ── RESULTS ── */
+.msf-results-wrap{max-width:760px;width:100%;margin:0 auto;padding:52px 32px 60px}
 .msf-result-box{
   border:1px solid #e5e5e5;border-radius:16px;padding:36px;margin-top:28px;
   background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.03),0 8px 24px rgba(0,0,0,.04);
@@ -608,90 +594,11 @@ const CSS = `
 .msf-pathway-card.best .msf-pathway-cta{background:#0a0a0a;color:#fff}
 .msf-pathway-card.best .msf-pathway-cta:hover{background:#333;border-color:#333}
 
-.msf-intro-hero{
-  flex:1;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-.msf-intro-bg{
-  position:absolute;
-  inset:0;
-  background-image: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg');
-  background-size:cover;
-  background-position:center;
-  background-color:#f5f5f5;
-}
-.msf-intro-content{
-  position:relative;
-  z-index:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  padding:40px 32px;
-  max-width:560px;
-  width:100%;
-}
-.msf-intro-heading{
-  font-size:clamp(1.8rem,4.5vw,2.8rem);
-  font-family: DM Sans;
-  font-weight:500;
-  line-height:1.12;
-  letter-spacing:-.03em;
-  color:#0a0a0a;
-  margin-bottom:16px;
-}
-.msf-intro-body{
-  font-size:1rem;
-  font-family: DM Sans;
-  line-height:1.65;
-  color:#2E2E2E;
-  margin-bottom:0;
-}
-.msf-intro-spacer{height:clamp(48px, 8vh, 96px)}
-.msf-intro-cta{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:14px 28px;
-  background:#0a0a0a;
-  color:#fff;
-  font-size:.93rem;
-  font-weight:600;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  transition:background .18s ease, transform .18s ease;
-  letter-spacing:-.01em;
-  white-space:nowrap;
-}
-.msf-intro-cta:hover{background:#333;transform:translateY(-1px)}
-.msf-intro-cta:active{transform:scale(.97)}
-
-.msf-panel-close{
-  width:36px;height:36px;border:1.5px solid #e5e5e5;background:transparent;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;font-weight:400;color:#0a0a0a;border-radius:50%;
-  cursor:pointer;transition:all .2s ease;flex-shrink:0;line-height:1;
-}
-.msf-panel-close:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
-
-/* panel-content wrapper needs relative for watermark */
-.msf-panel-content-wrap{
-  flex:1;
-  overflow-y:auto;
-  position:relative;
-  padding:40px 40px 32px;
-}
-
+/* ── RESPONSIVE ── */
 @media(max-width:640px){
   .msf-header{padding:16px 18px}
-  .msf-body{padding:32px 18px 24px}
   .msf-footer{padding:14px 18px}
-  .msf-cta-row{flex-direction:column}
+  .msf-options-grid{grid-template-columns:1fr}
   .msf-lead-grid{grid-template-columns:1fr;gap:16px}
   .msf-result-box{padding:22px 18px}
   .msf-pathways-grid{grid-template-columns:1fr}
@@ -701,11 +608,13 @@ const CSS = `
   .msf-intro-heading{font-size:1.6rem}
   .msf-intro-spacer{height:40px}
   .msf-sidebar{display:none}
-  .msf-panel-content-wrap{padding:28px 20px 24px}
   .msf-panel-content{padding:28px 20px 24px}
+  .msf-results-wrap{padding:32px 18px 48px}
+  .msf-cta-row{flex-direction:column}
 }
 `;
 
+/* ── inject CSS ── */
 (function injectCSS() {
   const old = document.getElementById('msf-style');
   if (old) old.remove();
@@ -715,20 +624,46 @@ const CSS = `
   document.head.appendChild(s);
 })();
 
+/* ── STEPS ──
+   0          = intro (white bg hero)
+   1          = start card
+   2…(2+N-1)  = questions (N = CONFIG.questions.length)
+   2+N        = lead form
+   2+N+1      = results
+*/
+const TOTAL      = CONFIG.questions.length;
+const STEP_START = 1;
+const STEP_Q0    = 2;                    // first question
+const STEP_LEAD  = STEP_Q0 + TOTAL;     // lead form
+const STEP_RES   = STEP_LEAD + 1;       // results
+
+let step = 0;
+let answers        = [];
+let selectedMulti  = new Set();
+let leadData       = {};
+
+function resetState() {
+  step          = 0;
+  answers       = Array(TOTAL).fill(null);
+  selectedMulti = new Set();
+  leadData      = { firstName:'', lastName:'', company:'', email:'', phone:'', message:'', terms:false };
+}
+
+/* ─── BUILD SHELL ─── */
 function buildModal() {
   const old = document.getElementById('msf-overlay');
   if (old) old.remove();
   const el = document.createElement('div');
   el.id = 'msf-overlay';
-  el.setAttribute('role', 'dialog');
-  el.setAttribute('aria-modal', 'true');
+  el.setAttribute('role','dialog');
+  el.setAttribute('aria-modal','true');
   el.style.display = 'none';
   el.innerHTML = `
-    <div class="msf-header">
+    <div class="msf-header" id="msf-header">
       <div class="msf-logo">${CONFIG.brand}</div>
       <button class="msf-close" id="msf-close" aria-label="Close">×</button>
     </div>
-    <div class="msf-progress"><div class="msf-progress-fill" id="msf-prog" style="width:0%"></div></div>
+    <div class="msf-progress" id="msf-progress"><div class="msf-progress-fill" id="msf-prog" style="width:0%"></div></div>
     <div class="msf-body fade-in" id="msf-body"></div>
     <div class="msf-footer" id="msf-footer">
       <button class="msf-btn-back" id="msf-back">Back</button>
@@ -738,25 +673,7 @@ function buildModal() {
   document.body.appendChild(el);
 }
 
-const TOTAL = CONFIG.questions.length;
-const STEP_START   = 1;
-const STEP_Q_FIRST = 2;
-const STEP_LEAD    = STEP_Q_FIRST + TOTAL;
-const STEP_RESULTS = STEP_LEAD + 1;
-const PROG_TOTAL   = TOTAL + 1;
-
-let step = 0;
-let answers = [];
-let selectedMultiple = new Set();
-let leadData = {};
-
-function resetState() {
-  step = 0;
-  answers = Array(TOTAL).fill(null);
-  selectedMultiple = new Set();
-  leadData = { firstName:'', lastName:'', company:'', email:'', phone:'', message:'', terms:false };
-}
-
+/* ─── OPEN / CLOSE ─── */
 function openModal() {
   buildModal();
   resetState();
@@ -765,14 +682,13 @@ function openModal() {
   requestAnimationFrame(() => ov.classList.add('msf-visible'));
   document.body.style.overflow = 'hidden';
   bindModalEvents();
-  renderStep(0, 'none');
+  renderStep(0);
 }
-
 function closeModal() {
   const ov = document.getElementById('msf-overlay');
   if (!ov) return;
   ov.classList.remove('msf-visible');
-  setTimeout(() => { ov.style.display = 'none'; }, 350);
+  setTimeout(() => { ov.style.display='none'; }, 350);
   document.body.style.overflow = '';
 }
 
@@ -780,219 +696,355 @@ function bindModalEvents() {
   const close = document.getElementById('msf-close');
   const back  = document.getElementById('msf-back');
   const cont  = document.getElementById('msf-continue');
-  if (close && !close._msfBound) { close.addEventListener('click', closeModal); close._msfBound = true; }
-  if (back  && !back._msfBound)  { back.addEventListener('click', goBack);      back._msfBound = true; }
-  if (cont  && !cont._msfBound)  { cont.addEventListener('click', goForward);   cont._msfBound = true; }
+  if (close && !close._b) { close.addEventListener('click', closeModal); close._b=true; }
+  if (back  && !back._b)  { back.addEventListener('click',  goBack);     back._b=true; }
+  if (cont  && !cont._b)  { cont.addEventListener('click',  goForward);  cont._b=true; }
 }
 
-function transition(newStep, dir) {
-  const body = document.getElementById('msf-body');
-  const cls  = dir === 'forward' ? 'fade-out-fwd' : 'fade-out-back';
-  body.classList.remove('fade-in');
-  body.classList.add(cls);
-  setTimeout(() => {
-    step = newStep;
-    body.classList.remove(cls);
-    renderStep(step, dir);
-    setTimeout(() => body.classList.add('fade-in'), 20);
-  }, 240);
-}
-
+/* ─── RENDER STEP ─── */
 function renderStep(s) {
-  const prog   = document.getElementById('msf-prog');
-  const body   = document.getElementById('msf-body');
-  const footer = document.getElementById('msf-footer');
-  const back   = document.getElementById('msf-back');
-  const cont   = document.getElementById('msf-continue');
+  step = s;
+  const header   = document.getElementById('msf-header');
+  const progress = document.getElementById('msf-progress');
+  const prog     = document.getElementById('msf-prog');
+  const body     = document.getElementById('msf-body');
+  const footer   = document.getElementById('msf-footer');
+  const back     = document.getElementById('msf-back');
+  const cont     = document.getElementById('msf-continue');
 
   const isIntro   = s === 0;
   const isStart   = s === STEP_START;
-  const isQ       = s >= STEP_Q_FIRST && s < STEP_LEAD;
+  const isQ       = s >= STEP_Q0 && s < STEP_LEAD;
   const isLead    = s === STEP_LEAD;
-  const isResults = s === STEP_RESULTS;
+  const isResults = s === STEP_RES;
 
-  const header  = document.querySelector('.msf-header');
-  const progBar = document.querySelector('.msf-progress');
-
+  /* header / progress visibility */
   if (isIntro || isStart) {
-    if (header)  header.style.display = 'none';
-    if (progBar) progBar.style.display = 'none';
+    header.style.display  = 'none';
+    progress.style.display = 'none';
     prog.style.width = '0%';
   } else {
-    if (header)  header.style.display = '';
-    if (progBar) progBar.style.display = '';
+    header.style.display  = '';
+    progress.style.display = '';
     if (isResults || isLead) prog.style.width = '100%';
     else {
-      const qIdx = s - STEP_Q_FIRST + 1;
-      prog.style.width = `${(qIdx / PROG_TOTAL) * 100}%`;
+      const qIdx = s - STEP_Q0 + 1;
+      prog.style.width = `${(qIdx / (TOTAL + 1)) * 100}%`;
     }
   }
 
-  body.classList.remove('msf-intro-active','msf-panel-active');
-  if (isIntro) body.classList.add('msf-intro-active');
-  if (isStart) body.classList.add('msf-panel-active');
+  /* body mode class */
+  body.classList.remove('msf-mode-intro','msf-mode-start','msf-mode-panel','msf-mode-results');
+  if (isIntro)        body.classList.add('msf-mode-intro');
+  else if (isStart)   body.classList.add('msf-mode-start');
+  else if (isResults) body.classList.add('msf-mode-results');
+  else                body.classList.add('msf-mode-panel');   // questions + lead
 
-  if (isResults || isIntro || isStart) {
+  /* footer */
+  if (isIntro || isStart || isResults) {
     footer.style.display = 'none';
   } else if (isLead) {
     footer.style.display = 'flex';
-    back.className = 'msf-btn-back active';
-    back.disabled = false;
+    back.className  = 'msf-btn-back active';
+    back.disabled   = false;
     cont.textContent = CONFIG.leadForm.submitLabel;
     updateContBtn();
   } else {
     footer.style.display = 'flex';
-    back.className = s > STEP_Q_FIRST ? 'msf-btn-back active' : 'msf-btn-back';
-    back.disabled = s <= STEP_Q_FIRST;
+    const isFirstQ = s === STEP_Q0;
+    back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
+    back.disabled  = isFirstQ;
     cont.textContent = 'Continue';
     updateContBtn();
   }
 
-  if (isIntro)        { body.innerHTML = renderIntro();        attachIntroListeners(); }
-  else if (isStart)   { body.innerHTML = renderStartPanel();   attachStartPanelListeners(); }
-  else if (isLead)    { body.innerHTML = renderLeadInPanel();  attachLeadListeners(); }
-  else if (isResults) { body.innerHTML = renderResults();      animateBar(); }
-  else if (isQ)       { body.innerHTML = renderQuestionInPanel(s); attachOptionListeners(s); }
+  /* render content */
+  if (isIntro)        { body.innerHTML = renderIntro();      attachIntroListeners(); }
+  else if (isStart)   { body.innerHTML = renderStart();      attachStartListeners(); }
+  else if (isQ)       { renderQuestionInPanel(s);  }
+  else if (isLead)    { renderLeadInPanel();        }
+  else if (isResults) { body.innerHTML = renderResults(); animateBar(); }
 }
 
+/* ── INTRO ── */
 function renderIntro() {
   return `
     <div class="msf-intro-hero">
       <div class="msf-intro-bg"></div>
       <div class="msf-intro-content">
-        <h1 class="msf-intro-heading">I am a title that will be modified by Iñaki.</h1>
-        <p class="msf-intro-body">I am a subtitle that will be modified by Iñaki.</p>
+        <h1 class="msf-intro-heading">${esc(CONFIG.intro.heading)}</h1>
+        <p class="msf-intro-body">${esc(CONFIG.intro.body)}</p>
         <div class="msf-intro-spacer"></div>
-        <button class="msf-intro-cta" id="msf-intro-cta-btn">
-          Launch assessment
-          <span aria-hidden="true">→</span>
+        <button class="msf-intro-cta" id="msf-intro-btn">
+          ${esc(CONFIG.intro.ctaLabel)} <span aria-hidden="true">→</span>
         </button>
       </div>
     </div>`;
 }
 function attachIntroListeners() {
-  const btn = document.getElementById('msf-intro-cta-btn');
+  const btn = document.getElementById('msf-intro-btn');
   if (btn) btn.addEventListener('click', goForward);
 }
 
-function renderStartPanel() {
-  const c   = CONFIG.step1Card;
-  const ss  = CONFIG.sidebarSteps;
-  const bgStyle = c.bgImage && c.bgImage !== 'YOUR_WEBFLOW_CDN_IMAGE_URL_HERE'
-    ? `background-image:url('${c.bgImage}');`
-    : '';
-
-  const stepsHtml = ss.map((label, i) =>
-    `<div class="msf-sidebar-step${i === 0 ? ' active' : ''}">${esc(label)}</div>`
+/* ── START CARD ── */
+function renderStart() {
+  const c  = CONFIG.step1Card;
+  const ss = CONFIG.sidebarSteps;
+  const bgStyle = c.bgImage ? `background-image:url('${c.bgImage}');display:block;` : '';
+  const stepsHtml = ss.map((l,i) =>
+    `<div class="msf-sidebar-step${i===0?' active':''}">${esc(l)}</div>`
   ).join('');
-
   return `
     <div class="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
       <div class="msf-sidebar-steps">${stepsHtml}</div>
     </div>
-
     <div class="msf-panel-right">
       <div class="msf-panel-header">
         <span class="msf-panel-counter">00 / 0${TOTAL}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
-        <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
+        <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
-
-      <div class="msf-panel-content" style="position:relative;">
-        <div class="msf-start-card">
-          <div class="msf-start-card-top">
-            <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
+      <div class="msf-panel-content" id="msf-panel-content" style="position:relative;">
+        <div class="msf-panel-content-inner fade-in" id="msf-panel-inner">
+          <div class="msf-start-card">
+            <div class="msf-start-card-top">
+              <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
+            </div>
+            <div class="msf-start-card-hero" style="${bgStyle}"></div>
+            <div class="msf-start-card-body">
+              <p class="msf-start-card-text">${esc(c.body)}</p>
+              <button class="msf-start-card-btn" id="msf-start-btn">
+                ${esc(c.cta)} <span aria-hidden="true">→</span>
+              </button>
+            </div>
           </div>
-          <div class="msf-start-card-hero" style="${bgStyle}"></div>
-          <div class="msf-start-card-body">
-            <p class="msf-start-card-text">${esc(c.body)}</p>
-            <button class="msf-start-card-btn" id="msf-start-card-btn">
-              ${esc(c.cta)} <span aria-hidden="true">→</span>
-            </button>
-          </div>
+          <div class="msf-panel-watermark">Power up performance.</div>
         </div>
-        <div class="msf-panel-watermark">Power up performance.</div>
       </div>
     </div>`;
 }
-function attachStartPanelListeners() {
-  const closeBtn = document.getElementById('msf-panel-close-btn');
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  const startBtn = document.getElementById('msf-start-card-btn');
-  if (startBtn) startBtn.addEventListener('click', goForward);
+function attachStartListeners() {
+  const pc = document.getElementById('msf-panel-close');
+  const sb = document.getElementById('msf-start-btn');
+  if (pc) pc.addEventListener('click', closeModal);
+  if (sb) sb.addEventListener('click', goForward);
 }
 
+/* ── QUESTION (renders inside existing panel shell if possible) ──
+   On first Q we set up the sidebar+panel scaffold; subsequent Qs
+   only swap the inner content (with a fade) and scroll to top.    */
 function renderQuestionInPanel(s) {
-  const qIdx  = s - STEP_Q_FIRST;
-  const q     = CONFIG.questions[qIdx];
-  const ans   = answers[qIdx];
-  const qNum  = qIdx + 1;
-  const ss    = CONFIG.sidebarSteps;
+  const body = document.getElementById('msf-body');
+  const existingPanel = document.getElementById('msf-panel-content');
 
-  const showInsight = q.type === 'multiple' ? selectedMultiple.size > 0 : ans !== null;
+  if (!existingPanel) {
+    /* first time entering panel mode — build the full scaffold */
+    body.innerHTML = buildPanelScaffold(s);
+    attachPanelClose();
+    attachOptionListeners(s);
+  } else {
+    /* panel already exists — just swap inner content with fade */
+    swapPanelInner(s);
+  }
+}
 
-  const opts = q.answers.map((a, i) => {
-    const sel = q.type === 'single' ? ans === a.weight : selectedMultiple.has(i);
-    const chk = q.type === 'multiple'
-      ? `<span class="msf-check">${sel ? '✓' : ''}</span>` : '';
-    return `<button class="msf-option${sel ? ' selected' : ''}" data-idx="${i}" data-weight="${a.weight}">${chk}${esc(a.text)}</button>`;
-  }).join('');
+function buildPanelScaffold(s) {
+  const qIdx = s - STEP_Q0;
+  const ss   = CONFIG.sidebarSteps;
+  const qNum = qIdx + 1;
 
-  const insight = showInsight ? `
-    <div class="msf-insight">
-      <div class="msf-insight-label">${q.insight.label}</div>
-      <div class="msf-insight-text">${q.insight.text}</div>
-    </div>` : '';
-
-  const stepsHtml = ss.map((label, i) => {
+  const stepsHtml = ss.map((l,i) => {
     let cls = 'msf-sidebar-step';
-    if (i === qNum)    cls += ' active';
-    else if (i < qNum) cls += ' done';
-    return `<div class="${cls}">${esc(label)}</div>`;
+    if (i === qNum)     cls += ' active';
+    else if (i < qNum)  cls += ' done';
+    return `<div class="${cls}">${esc(l)}</div>`;
   }).join('');
 
   const padNum   = String(qNum).padStart(2,'0');
   const padTotal = String(TOTAL).padStart(2,'0');
 
   return `
-    <div class="msf-sidebar">
+    <div class="msf-sidebar" id="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
-      <div class="msf-sidebar-steps">${stepsHtml}</div>
+      <div class="msf-sidebar-steps" id="msf-sidebar-steps">${stepsHtml}</div>
     </div>
     <div class="msf-panel-right">
-      <div class="msf-panel-header">
-        <span class="msf-panel-counter">${padNum} / ${padTotal}</span>
+      <div class="msf-panel-header" id="msf-panel-header">
+        <span class="msf-panel-counter" id="msf-panel-counter">${padNum} / ${padTotal}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
-        <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
+        <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
-      <div class="msf-panel-content" style="flex:1;overflow-y:auto;padding:40px 40px 32px;">
-        <div class="msf-step-row">
-          <div class="msf-heading">${q.heading}</div>
+      <div class="msf-panel-content" id="msf-panel-content">
+        <div class="msf-panel-content-inner fade-in" id="msf-panel-inner">
+          ${questionHTML(s)}
         </div>
-        <div class="msf-subtitle">${q.subtitle}</div>
-        <div id="msf-options">${opts}</div>
-        <div id="msf-insight">${insight}</div>
       </div>
     </div>`;
 }
 
-function renderLeadInPanel() {
-  const f  = CONFIG.leadForm;
-  const v  = leadData;
-  const ss = CONFIG.sidebarSteps;
+/* Swap just the inner content — fade out → scroll top → swap → fade in */
+function swapPanelInner(s) {
+  const inner   = document.getElementById('msf-panel-inner');
+  const panel   = document.getElementById('msf-panel-content');
+  const counter = document.getElementById('msf-panel-counter');
+  const sidebar = document.getElementById('msf-sidebar-steps');
 
-  const stepsHtml = ss.map((label, i) => {
-    const cls = 'msf-sidebar-step' + (i < ss.length - 1 ? ' done' : ' active');
-    return `<div class="${cls}">${esc(label)}</div>`;
+  const qIdx = s - STEP_Q0;
+  const qNum = qIdx + 1;
+  const isLead = s === STEP_LEAD;
+
+  /* update counter */
+  if (counter) {
+    if (isLead) counter.textContent = 'Almost there';
+    else counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL).padStart(2,'0')}`;
+  }
+
+  /* update sidebar steps */
+  if (sidebar) {
+    const ss = CONFIG.sidebarSteps;
+    sidebar.innerHTML = ss.map((l,i) => {
+      let cls = 'msf-sidebar-step';
+      if (isLead) {
+        cls += i < ss.length - 1 ? ' done' : ' active';
+      } else {
+        if (i === qNum)    cls += ' active';
+        else if (i < qNum) cls += ' done';
+      }
+      return `<div class="${cls}">${esc(l)}</div>`;
+    }).join('');
+  }
+
+  if (!inner) {
+    /* fallback — rebuild */
+    if (s === STEP_LEAD) renderLeadFull();
+    else { const b = document.getElementById('msf-body'); b.innerHTML = buildPanelScaffold(s); attachPanelClose(); attachOptionListeners(s); }
+    return;
+  }
+
+  /* fade out */
+  inner.classList.remove('fade-in');
+  inner.classList.add('fade-out');
+
+  setTimeout(() => {
+    /* scroll panel to top */
+    if (panel) panel.scrollTop = 0;
+
+    /* swap HTML */
+    inner.innerHTML = isLead ? leadFormHTML() : questionHTML(s);
+
+    /* fade in */
+    inner.classList.remove('fade-out');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => inner.classList.add('fade-in'));
+    });
+
+    /* attach listeners */
+    if (isLead) attachLeadInputListeners();
+    else        attachOptionListeners(s);
+  }, 200);
+}
+
+function attachPanelClose() {
+  const pc = document.getElementById('msf-panel-close');
+  if (pc && !pc._b) { pc.addEventListener('click', closeModal); pc._b = true; }
+}
+
+/* ── QUESTION HTML ── */
+function questionHTML(s) {
+  const qIdx = s - STEP_Q0;
+  const q    = CONFIG.questions[qIdx];
+  const ans  = answers[qIdx];
+
+  const showInsight = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
+
+  const opts = q.answers.map((a,i) => {
+    const sel = q.type === 'single' ? ans === a.weight : selectedMulti.has(i);
+    const chk = q.type === 'multiple'
+      ? `<span class="msf-check">${sel?'✓':''}</span>` : '';
+    return `<button class="msf-option${sel?' selected':''}" data-idx="${i}" data-weight="${a.weight}">${chk}${esc(a.text)}</button>`;
   }).join('');
+
+  const insightHTML = showInsight ? `
+    <div class="msf-insight">
+      <div class="msf-insight-label">${q.insight.label}</div>
+      <div class="msf-insight-text">${q.insight.text}</div>
+    </div>` : `<div id="msf-insight"></div>`;
+
+  return `
+    <div class="msf-step-row">
+      <div class="msf-heading">${q.heading}</div>
+    </div>
+    <div class="msf-subtitle">${q.subtitle}</div>
+    <div class="msf-options-grid" id="msf-options">${opts}</div>
+    <div id="msf-insight">${showInsight ? `
+      <div class="msf-insight">
+        <div class="msf-insight-label">${q.insight.label}</div>
+        <div class="msf-insight-text">${q.insight.text}</div>
+      </div>` : ''}</div>`;
+}
+
+function attachOptionListeners(s) {
+  attachPanelClose();
+  const qIdx = s - STEP_Q0;
+  const q    = CONFIG.questions[qIdx];
+
+  document.querySelectorAll('.msf-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      const w   = parseInt(btn.dataset.weight);
+
+      if (q.type === 'single') {
+        answers[qIdx] = w;
+        document.querySelectorAll('.msf-option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      } else {
+        if (selectedMulti.has(idx)) {
+          selectedMulti.delete(idx);
+          btn.classList.remove('selected');
+          const chk = btn.querySelector('.msf-check');
+          if (chk) chk.textContent = '';
+        } else {
+          selectedMulti.add(idx);
+          btn.classList.add('selected');
+          const chk = btn.querySelector('.msf-check');
+          if (chk) chk.textContent = '✓';
+        }
+        let raw = 0;
+        selectedMulti.forEach(i => { raw += q.answers[i].weight; });
+        answers[qIdx] = raw;
+      }
+
+      updateContBtn();
+      revealInsight(s);
+    });
+  });
+}
+
+function revealInsight(s) {
+  const qIdx = s - STEP_Q0;
+  const q    = CONFIG.questions[qIdx];
+  const show = q.type === 'multiple' ? selectedMulti.size > 0 : answers[qIdx] !== null;
+  const c    = document.getElementById('msf-insight');
+  if (!c || !show || c.querySelector('.msf-insight')) return;
+  c.innerHTML = `
+    <div class="msf-insight">
+      <div class="msf-insight-label">${q.insight.label}</div>
+      <div class="msf-insight-text">${q.insight.text}</div>
+    </div>`;
+}
+
+/* ── LEAD FORM ── */
+function leadFormHTML() {
+  const f = CONFIG.leadForm;
+  const v = leadData;
 
   function field(name, type, span) {
     const fd  = f.fields[name];
     const tag = name === 'message';
     const inp = tag
-      ? `<textarea class="msf-textarea" id="lf-${name}" name="${name}" rows="4" placeholder="${fd.placeholder}" required>${escText(v[name])}</textarea>`
-      : `<input class="msf-input" id="lf-${name}" name="${name}" type="${type||'text'}" placeholder="${fd.placeholder}" value="${escAttr(v[name])}" autocomplete="${autoC(name)}" required>`;
+      ? `<textarea class="msf-textarea" id="lf-${name}" name="${name}" rows="4" placeholder="${fd.placeholder}">${escText(v[name])}</textarea>`
+      : `<input class="msf-input" id="lf-${name}" name="${name}" type="${type||'text'}" placeholder="${fd.placeholder}" value="${escAttr(v[name])}" autocomplete="${autoC(name)}">`;
     return `<div class="msf-field${span?' msf-field-full':''}">
       <label class="msf-label" for="lf-${name}">${fd.label}<span class="msf-req">*</span></label>
       ${inp}
@@ -1001,183 +1053,67 @@ function renderLeadInPanel() {
   }
 
   return `
-    <div class="msf-sidebar">
+    <div class="msf-step-row">
+      <div class="msf-heading">${f.heading}</div>
+    </div>
+    <div class="msf-subtitle">${f.subtitle}</div>
+    <div class="msf-lead-grid">
+      ${field('firstName')}${field('lastName')}
+      ${field('company','text',true)}
+      ${field('email','email')}${field('phone','tel')}
+      ${field('message','',true)}
+    </div>
+    <label class="msf-terms" for="lf-terms">
+      <input id="lf-terms" name="terms" type="checkbox" ${v.terms?'checked':''}>
+      <span class="msf-terms-box" aria-hidden="true"></span>
+      <span class="msf-terms-text">${f.termsText}</span>
+    </label>
+    <div class="msf-error-msg" data-err="terms" style="margin-top:8px">You must accept the terms to continue.</div>`;
+}
+
+function renderLeadInPanel() {
+  /* If panel scaffold already exists (coming from questions), swap inner */
+  const existingPanel = document.getElementById('msf-panel-content');
+  if (existingPanel) {
+    swapPanelInner(STEP_LEAD);
+  } else {
+    /* build scaffold fresh */
+    const body = document.getElementById('msf-body');
+    body.innerHTML = buildLeadScaffold();
+    attachPanelClose();
+    attachLeadInputListeners();
+  }
+}
+
+function buildLeadScaffold() {
+  const ss = CONFIG.sidebarSteps;
+  const stepsHtml = ss.map((l,i) => {
+    const cls = 'msf-sidebar-step' + (i < ss.length-1 ? ' done' : ' active');
+    return `<div class="${cls}">${esc(l)}</div>`;
+  }).join('');
+  return `
+    <div class="msf-sidebar" id="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
-      <div class="msf-sidebar-steps">${stepsHtml}</div>
+      <div class="msf-sidebar-steps" id="msf-sidebar-steps">${stepsHtml}</div>
     </div>
     <div class="msf-panel-right">
-      <div class="msf-panel-header">
-        <span class="msf-panel-counter">Almost there</span>
+      <div class="msf-panel-header" id="msf-panel-header">
+        <span class="msf-panel-counter" id="msf-panel-counter">Almost there</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
-        <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
+        <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
-      <div class="msf-panel-content" style="flex:1;overflow-y:auto;padding:40px 40px 32px;">
-        <div class="msf-step-row">
-          <div class="msf-heading">${f.heading}</div>
+      <div class="msf-panel-content" id="msf-panel-content">
+        <div class="msf-panel-content-inner fade-in" id="msf-panel-inner">
+          ${leadFormHTML()}
         </div>
-        <div class="msf-subtitle">${f.subtitle}</div>
-        <div class="msf-lead-grid">
-          ${field('firstName')}${field('lastName')}
-          ${field('company','text',true)}
-          ${field('email','email')}${field('phone','tel')}
-          ${field('message','',true)}
-        </div>
-        <label class="msf-terms" for="lf-terms">
-          <input id="lf-terms" name="terms" type="checkbox" ${v.terms?'checked':''} required>
-          <span class="msf-terms-box" aria-hidden="true"></span>
-          <span class="msf-terms-text">${f.termsText}</span>
-        </label>
-        <div class="msf-error-msg" data-err="terms" style="margin-top:8px">You must accept the terms to continue.</div>
       </div>
     </div>`;
 }
 
-function renderResults() {
-  const score = calcScore();
-  const tier  = getTier(score);
-  const pct   = Math.round(((score - 8) / 24) * 100);
-  const opp   = 100 - pct;
-  const fillW = Math.max(pct, 15);
-  const rec   = getRecommendedPathway(tier.type);
-
-  const pathCards = CONFIG.pathways.map(p => {
-    const best = p.id === rec;
-    return `
-      <article class="msf-pathway-card${best?' best':''}">
-        ${best?`<span class="msf-pathway-badge">★ Best fit for you</span>`:''}
-        <div class="msf-pathway-eyebrow">${p.eyebrow}</div>
-        <h3 class="msf-pathway-headline">${p.headline}</h3>
-        <p class="msf-pathway-desc">${p.desc}</p>
-        <a class="msf-pathway-cta" href="${p.url}">${best?'Explore this pathway':p.cta}</a>
-      </article>`;
-  }).join('');
-
-  const ctaC = CONFIG.resultsCtas;
-  const ps   = CONFIG.pathwaysSection;
-
-  return `
-    <div class="msf-heading">Here is our initial conclusion</div>
-    <div class="msf-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</div>
-    <div class="msf-result-box">
-      <div class="msf-result-label">Your coachability profile</div>
-      <div class="msf-result-type">
-        <span class="msf-result-type-letter">${tier.type}</span>
-        <span class="msf-result-type-name">${tier.label}</span>
-      </div>
-      <div class="msf-bar-wrap">
-        <div class="msf-bar-fill" id="msf-bar" style="width:0%" data-target="${fillW}%">${pct}%</div>
-        <div class="msf-bar-rest">${opp}%</div>
-      </div>
-      <div class="msf-bar-labels"><span>Current maturity</span><span>Coachability opportunity</span></div>
-      <div class="msf-divider"></div>
-      <div class="msf-result-response">${tier.response}</div>
-      <div class="msf-result-detail">${tier.detail}</div>
-      <div class="msf-result-cta">${tier.cta}</div>
-      <div class="msf-result-rec">→ Recommended: ${tier.recommendation}</div>
-      <div class="msf-divider" style="margin:22px 0 16px"></div>
-      <div class="msf-result-note">Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at ${CONFIG.brand} will be in touch shortly.</div>
-    </div>
-    <div class="msf-pathways">
-      <h2 class="msf-pathways-title">${ps.title}</h2>
-      <p class="msf-pathways-subtitle">${ps.subtitle}</p>
-      <div class="msf-pathways-grid">${pathCards}</div>
-    </div>
-    <div class="msf-cta-row">
-      <a class="msf-cta-btn primary" href="${ctaC.primary.url}">${ctaC.primary.label}</a>
-      <a class="msf-cta-btn secondary" href="${ctaC.secondary.url}">${ctaC.secondary.label}</a>
-    </div>`;
-}
-
-function animateBar() {
-  setTimeout(() => {
-    const bar = document.getElementById('msf-bar');
-    if (bar) bar.style.width = bar.dataset.target;
-  }, 80);
-}
-
-function normalizeQ5(raw) {
-  if (raw === 0) return 1;
-  if (raw <= 2)  return 2;
-  if (raw <= 4)  return 3;
-  return 4;
-}
-function calcScore() {
-  let t = 0;
-  CONFIG.questions.forEach((q, i) => {
-    const a = answers[i];
-    if (a == null) return;
-    t += q.type === 'multiple' ? normalizeQ5(a) : a;
-  });
-  return t;
-}
-function getTier(score) {
-  return CONFIG.tiers.find(t => score >= t.scoreMin && score <= t.scoreMax) || CONFIG.tiers[0];
-}
-function getRecommendedPathway(tierType) {
-  if (tierType === 'D') return 'peer';
-  const q4 = answers[3];
-  const q6 = answers[5];
-  const q7 = answers[6];
-  if (q4 === 3) return 'coachees';
-  if (q4 === 1 || q4 === 2) return 'coaches';
-  if (q4 === 4) {
-    if (tierType === 'C' && (q6 === 1 || q7 === 1)) return 'elite';
-    if (tierType === 'A') return 'coachees';
-    if (tierType === 'B') return 'coaches';
-  }
-  return 'coachees';
-}
-
-function attachOptionListeners(s) {
-  const qIdx = s - STEP_Q_FIRST;
-  const q    = CONFIG.questions[qIdx];
-
-  const closeBtn = document.getElementById('msf-panel-close-btn');
-  if (closeBtn && !closeBtn._msfBound) { closeBtn.addEventListener('click', closeModal); closeBtn._msfBound = true; }
-
-  document.querySelectorAll('.msf-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.idx);
-      const w   = parseInt(btn.dataset.weight);
-      if (q.type === 'single') {
-        answers[qIdx] = w;
-        document.querySelectorAll('.msf-option').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      } else {
-        if (selectedMultiple.has(idx)) {
-          selectedMultiple.delete(idx);
-          btn.classList.remove('selected');
-          btn.querySelector('.msf-check').textContent = '';
-        } else {
-          selectedMultiple.add(idx);
-          btn.classList.add('selected');
-          btn.querySelector('.msf-check').textContent = '✓';
-        }
-        let raw = 0;
-        selectedMultiple.forEach(i => { raw += q.answers[i].weight; });
-        answers[qIdx] = raw;
-      }
-      updateContBtn();
-      showInsight(s);
-    });
-  });
-}
-
-function showInsight(s) {
-  const qIdx = s - STEP_Q_FIRST;
-  const q    = CONFIG.questions[qIdx];
-  const show = q.type === 'multiple' ? selectedMultiple.size > 0 : answers[qIdx] !== null;
-  const c    = document.getElementById('msf-insight');
-  if (!c || !show || c.querySelector('.msf-insight')) return;
-  c.innerHTML = `<div class="msf-insight"><div class="msf-insight-label">${q.insight.label}</div><div class="msf-insight-text">${q.insight.text}</div></div>`;
-}
-
-function attachLeadListeners() {
-  const closeBtn = document.getElementById('msf-panel-close-btn');
-  if (closeBtn && !closeBtn._msfBound) { closeBtn.addEventListener('click', closeModal); closeBtn._msfBound = true; }
-
+function attachLeadInputListeners() {
+  attachPanelClose();
   ['firstName','lastName','company','email','phone','message'].forEach(name => {
-    const el = document.querySelector(`[name="${name}"]`);
+    const el = document.getElementById(`lf-${name}`);
     if (!el) return;
     el.addEventListener('input', () => {
       leadData[name] = el.value;
@@ -1190,7 +1126,7 @@ function attachLeadListeners() {
       if (!validField(name, el.value)) markErr(name, true);
     });
   });
-  const terms = document.querySelector('[name="terms"]');
+  const terms = document.getElementById('lf-terms');
   if (terms) {
     terms.addEventListener('change', () => {
       leadData.terms = terms.checked;
@@ -1205,9 +1141,210 @@ function attachLeadListeners() {
   }
 }
 
+/* ── RESULTS ── */
+function renderResults() {
+  const score = calcScore();
+  const tier  = getTier(score);
+  const pct   = Math.round(((score - 8) / 24) * 100);
+  const opp   = 100 - pct;
+  const fillW = Math.max(pct, 15);
+  const rec   = getRecommendedPathway(tier.type);
+  const ctaC  = CONFIG.resultsCtas;
+  const ps    = CONFIG.pathwaysSection;
+
+  const pathCards = CONFIG.pathways.map(p => {
+    const best = p.id === rec;
+    return `
+      <article class="msf-pathway-card${best?' best':''}">
+        ${best?`<span class="msf-pathway-badge">★ Best fit for you</span>`:''}
+        <div class="msf-pathway-eyebrow">${p.eyebrow}</div>
+        <h3 class="msf-pathway-headline">${p.headline}</h3>
+        <p class="msf-pathway-desc">${p.desc}</p>
+        <a class="msf-pathway-cta" href="${p.url}">${best?'Explore this pathway':p.cta}</a>
+      </article>`;
+  }).join('');
+
+  return `
+    <div class="msf-results-wrap">
+      <div class="msf-heading">Here is our initial conclusion</div>
+      <div class="msf-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</div>
+      <div class="msf-result-box">
+        <div class="msf-result-label">Your coachability profile</div>
+        <div class="msf-result-type">
+          <span class="msf-result-type-letter">${tier.type}</span>
+          <span class="msf-result-type-name">${tier.label}</span>
+        </div>
+        <div class="msf-bar-wrap">
+          <div class="msf-bar-fill" id="msf-bar" style="width:0%" data-target="${fillW}%">${pct}%</div>
+          <div class="msf-bar-rest">${opp}%</div>
+        </div>
+        <div class="msf-bar-labels"><span>Current maturity</span><span>Coachability opportunity</span></div>
+        <div class="msf-divider"></div>
+        <div class="msf-result-response">${tier.response}</div>
+        <div class="msf-result-detail">${tier.detail}</div>
+        <div class="msf-result-cta">${tier.cta}</div>
+        <div class="msf-result-rec">→ Recommended: ${tier.recommendation}</div>
+        <div class="msf-divider" style="margin:22px 0 16px"></div>
+        <div class="msf-result-note">Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.</div>
+      </div>
+      <div class="msf-pathways">
+        <h2 class="msf-pathways-title">${ps.title}</h2>
+        <p class="msf-pathways-subtitle">${ps.subtitle}</p>
+        <div class="msf-pathways-grid">${pathCards}</div>
+      </div>
+      <div class="msf-cta-row">
+        <a class="msf-cta-btn primary" href="${ctaC.primary.url}">${ctaC.primary.label}</a>
+        <a class="msf-cta-btn secondary" href="${ctaC.secondary.url}">${ctaC.secondary.label}</a>
+      </div>
+    </div>`;
+}
+
+function animateBar() {
+  setTimeout(() => {
+    const bar = document.getElementById('msf-bar');
+    if (bar) bar.style.width = bar.dataset.target;
+  }, 80);
+}
+
+/* ── SCORING ── */
+function normalizeQ5(raw) {
+  if (raw === 0) return 1;
+  if (raw <= 2)  return 2;
+  if (raw <= 4)  return 3;
+  return 4;
+}
+function calcScore() {
+  let t = 0;
+  CONFIG.questions.forEach((q,i) => {
+    const a = answers[i];
+    if (a == null) return;
+    t += q.type === 'multiple' ? normalizeQ5(a) : a;
+  });
+  return t;
+}
+function getTier(score) {
+  return CONFIG.tiers.find(t => score >= t.scoreMin && score <= t.scoreMax) || CONFIG.tiers[0];
+}
+function getRecommendedPathway(tierType) {
+  if (tierType === 'D') return 'peer';
+  const q4 = answers[3], q6 = answers[5], q7 = answers[6];
+  if (q4 === 3) return 'coachees';
+  if (q4 === 1 || q4 === 2) return 'coaches';
+  if (q4 === 4) {
+    if (tierType === 'C' && (q6 === 1 || q7 === 1)) return 'elite';
+    if (tierType === 'A') return 'coachees';
+    if (tierType === 'B') return 'coaches';
+  }
+  return 'coachees';
+}
+
+/* ── NAVIGATION ── */
+function goForward() {
+  const cont = document.getElementById('msf-continue');
+  if (step > STEP_START && step < STEP_RES && cont && cont.disabled) return;
+
+  if (step === 0)          { doTransition(STEP_START); return; }
+  if (step === STEP_START) { doTransition(STEP_Q0);    return; }
+
+  if (step === STEP_LEAD) {
+    if (!validateLead()) return;
+    submitLead();
+    /* results is a full body swap — use overlay transition */
+    doOverlayTransition(STEP_RES, 'forward');
+    return;
+  }
+
+  if (step >= STEP_Q0 && step < STEP_LEAD) {
+    const nextStep = step + 1;
+    selectedMulti = new Set();
+    if (nextStep === STEP_LEAD) {
+      /* entering lead form: swap panel inner */
+      step = nextStep;
+      updateFooterForLead();
+      swapPanelInner(STEP_LEAD);
+    } else {
+      step = nextStep;
+      updateFooterForQ(nextStep);
+      swapPanelInner(nextStep);
+    }
+    return;
+  }
+}
+
+function goBack() {
+  const back = document.getElementById('msf-back');
+  if (back && back.disabled) return;
+
+  if (step === STEP_LEAD) {
+    const prevStep = STEP_Q0 + TOTAL - 1;
+    selectedMulti = new Set();
+    step = prevStep;
+    updateFooterForQ(prevStep);
+    swapPanelInner(prevStep);
+    return;
+  }
+  if (step > STEP_Q0 && step < STEP_LEAD) {
+    const prevStep = step - 1;
+    selectedMulti = new Set();
+    step = prevStep;
+    updateFooterForQ(prevStep);
+    swapPanelInner(prevStep);
+    return;
+  }
+}
+
+function updateFooterForQ(s) {
+  const back = document.getElementById('msf-back');
+  const cont = document.getElementById('msf-continue');
+  if (!back || !cont) return;
+  const isFirstQ = s === STEP_Q0;
+  back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
+  back.disabled  = isFirstQ;
+  cont.textContent = 'Continue';
+  updateContBtn();
+}
+
+function updateFooterForLead() {
+  const back = document.getElementById('msf-back');
+  const cont = document.getElementById('msf-continue');
+  if (!back || !cont) return;
+  back.className   = 'msf-btn-back active';
+  back.disabled    = false;
+  cont.textContent = CONFIG.leadForm.submitLabel;
+  updateContBtn();
+}
+
+/* Full overlay fade transition (for intro→start, start→Q1, lead→results) */
+function doTransition(newStep) {
+  const body = document.getElementById('msf-body');
+  body.classList.remove('fade-in');
+  body.classList.add('fade-out-fwd');
+  setTimeout(() => {
+    body.classList.remove('fade-out-fwd');
+    renderStep(newStep);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => body.classList.add('fade-in'));
+    });
+  }, 220);
+}
+
+function doOverlayTransition(newStep) {
+  const body = document.getElementById('msf-body');
+  body.classList.remove('fade-in');
+  body.classList.add('fade-out-fwd');
+  setTimeout(() => {
+    body.classList.remove('fade-out-fwd');
+    renderStep(newStep);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => body.classList.add('fade-in'));
+    });
+  }, 220);
+}
+
+/* ── VALIDATION ── */
 function validField(n, v) {
-  if (n === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
-  return v.trim().length > 0;
+  if (n === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim());
+  return (v||'').trim().length > 0;
 }
 function markErr(n, on) {
   const el  = document.querySelector(`[name="${n}"]`);
@@ -1235,52 +1372,15 @@ function validateLead() {
   return ok;
 }
 
-function autoC(n){return{firstName:'given-name',lastName:'family-name',company:'organization',email:'email',phone:'tel',message:'off'}[n]||'off'}
-function errMsg(n){return{firstName:'Please enter your first name.',lastName:'Please enter your last name.',company:'Please enter your company name.',email:'Please enter a valid email.',phone:'Please enter your phone number.',message:'Please share a short message.'}[n]||''}
-
 function updateContBtn() {
   const cont = document.getElementById('msf-continue');
   if (!cont) return;
   if (step === 0 || step === STEP_START) { cont.disabled = false; return; }
   if (step === STEP_LEAD)                { cont.disabled = !isLeadValid(); return; }
-  if (step >= STEP_RESULTS)              { cont.disabled = true; return; }
-
-  const qIdx = step - STEP_Q_FIRST;
+  if (step >= STEP_RES)                 { cont.disabled = true; return; }
+  const qIdx = step - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
-  cont.disabled = q.type === 'multiple'
-    ? selectedMultiple.size === 0
-    : answers[qIdx] === null;
-}
-
-function goForward() {
-  const cont = document.getElementById('msf-continue');
-  if (step !== 0 && step !== STEP_START && cont && cont.disabled) return;
-  if (step === 0)          { transition(STEP_START, 'forward'); return; }
-  if (step === STEP_START) { transition(STEP_Q_FIRST, 'forward'); return; }
-  if (step === STEP_LEAD) {
-    if (!validateLead()) return;
-    submitLead();
-    transition(STEP_RESULTS, 'forward');
-    return;
-  }
-  if (step === STEP_Q_FIRST + TOTAL - 1) {
-    selectedMultiple = new Set();
-    transition(STEP_LEAD, 'forward');
-    return;
-  }
-  if (step >= STEP_Q_FIRST && step < STEP_LEAD) {
-    selectedMultiple = new Set();
-    transition(step + 1, 'forward');
-  }
-}
-
-function goBack() {
-  const back = document.getElementById('msf-back');
-  if (back && back.disabled) return;
-  if (step === STEP_LEAD)    { selectedMultiple = new Set(); transition(STEP_Q_FIRST + TOTAL - 1, 'back'); return; }
-  if (step <= STEP_Q_FIRST)  { return; }
-  selectedMultiple = new Set();
-  transition(step - 1, 'back');
+  cont.disabled = q.type === 'multiple' ? selectedMulti.size === 0 : answers[qIdx] === null;
 }
 
 function submitLead() {
@@ -1292,10 +1392,14 @@ function submitLead() {
   }).catch(() => {});
 }
 
+/* ── UTILS ── */
 function esc(s)     { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 function escAttr(s) { return esc(s).replace(/"/g,'&quot;') }
 function escText(s) { return esc(s) }
+function autoC(n)   { return {firstName:'given-name',lastName:'family-name',company:'organization',email:'email',phone:'tel',message:'off'}[n]||'off' }
+function errMsg(n)  { return {firstName:'Please enter your first name.',lastName:'Please enter your last name.',company:'Please enter your company name.',email:'Please enter a valid email.',phone:'Please enter your phone number.',message:'Please share a short message.'}[n]||'' }
 
+/* ── KEYBOARD ── */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     const ov = document.getElementById('msf-overlay');
@@ -1303,18 +1407,16 @@ document.addEventListener('keydown', e => {
   }
 });
 
+/* ── TRIGGERS ── */
 function bindTriggers() {
   document.querySelectorAll('[data-msf-open]').forEach(el => {
     if (!el._msfTrigger) { el.addEventListener('click', openModal); el._msfTrigger = true; }
   });
 }
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bindTriggers);
-} else {
-  bindTriggers();
-}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindTriggers);
+else bindTriggers();
 const _obs = new MutationObserver(bindTriggers);
-_obs.observe(document.body, { childList: true, subtree: true });
+_obs.observe(document.body, { childList:true, subtree:true });
 
 window.msfOpen  = openModal;
 window.msfClose = closeModal;
