@@ -272,9 +272,9 @@ const CSS = `
 
 /* ── HEADER ── */
 .msf-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;flex-shrink:0;
-  display: none;
+  /*display:flex;justify-content:space-between;align-items:center;
+  padding:22px 32px;flex-shrink:0;*/
+  display: none !important;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -327,7 +327,6 @@ const CSS = `
 }
 .msf-intro-bg{
   position:absolute;inset:0;
-  background-image:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg');
   background-size:cover;background-position:center;background-color:#f5f5f5;
 }
 .msf-intro-content{
@@ -357,7 +356,7 @@ const CSS = `
 
 /* ── SIDEBAR ── */
 .msf-sidebar{
-  width:220px;min-width:180px;flex-shrink:0;
+  width:300px;min-width:180px;flex-shrink:0;
   display:flex;flex-direction:column;
   padding:32px 28px;background:transparent;overflow-y:auto;
 }
@@ -503,9 +502,11 @@ const CSS = `
 
 /* ── FOOTER ── */
 .msf-footer{
-  border-top:1px solid #e5e5e5;padding:18px 32px;
+ /* border-top:1px solid #e5e5e5;padding:18px 32px;
   display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;gap:12px;
+  // flex-shrink:0;gap:12px;
+  */
+  display: none !important; 
 }
 .msf-btn-back{
   padding:13px 26px;border:1.5px solid #e5e5e5;background:transparent;
