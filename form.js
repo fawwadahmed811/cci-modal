@@ -274,6 +274,7 @@ const CSS = `
 .msf-header{
   display:flex;justify-content:space-between;align-items:center;
   padding:22px 32px;flex-shrink:0;
+  display: none;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
