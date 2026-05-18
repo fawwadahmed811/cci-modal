@@ -24,7 +24,7 @@ const CONFIG = {
 
   step1Card: {
 
-    bgImage: "YOUR_WEBFLOW_CDN_IMAGE_URL_HERE",
+    bgImage: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
     heading: "Check your readiness.",
     body: "Take 2 minutes to discover where coachability can fuel your team's performance. Get your personalized maturity snapshot and clear next steps.",
     cta: "Start my assessment",
