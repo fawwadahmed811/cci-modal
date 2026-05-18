@@ -23,7 +23,6 @@ const CONFIG = {
 
 
   step1Card: {
-
     bgImage: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
     heading: "Check your readiness.",
     body: "Take 2 minutes to discover where coachability can fuel your team's performance. Get your personalized maturity snapshot and clear next steps.",
@@ -371,7 +370,7 @@ const CSS = `
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  background:linear-gradient(160deg,#f8f4ff 0%,#fff5f5 50%,#fff 100%);
+  background:linear-gradient(160deg,#f3eeff 0%,#fdf0f5 45%,#fafafa 100%);
 }
 
 .msf-panel-header{
@@ -386,7 +385,7 @@ const CSS = `
   font-size:.82rem;
   font-weight:600;
   color:#9a9a9a;
-  letter-spacing:.02em;
+  letter-spacing:.04em;
 }
 .msf-panel-tagline{
   font-size:.82rem;
@@ -402,22 +401,17 @@ const CSS = `
   padding:40px 40px 32px;
 }
 
+/* ── START CARD ── */
 .msf-start-card{
   background:#fff;
   border:1px solid #e5e5e5;
   border-radius:16px;
   overflow:hidden;
-  max-width:560px;
+  max-width:520px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
-.msf-start-card-hero{
-  width:100%;
-  height:220px;
-  background-size:cover;
-  background-position:center;
-  background-color:#ece9f5;
-}
-.msf-start-card-body{
-  padding:28px 28px 24px;
+.msf-start-card-top{
+  padding:28px 28px 20px;
 }
 .msf-start-card-heading{
   font-size:1.45rem;
@@ -425,7 +419,16 @@ const CSS = `
   line-height:1.2;
   letter-spacing:-.02em;
   color:#0a0a0a;
-  margin-bottom:12px;
+}
+.msf-start-card-hero{
+  width:100%;
+  height:220px;
+  background-size:cover;
+  background-position:center top;
+  background-color:#ece9f5;
+}
+.msf-start-card-body{
+  padding:22px 28px 26px;
 }
 .msf-start-card-text{
   font-size:.93rem;
@@ -450,6 +453,19 @@ const CSS = `
 }
 .msf-start-card-btn:hover{background:#333;transform:translateY(-1px)}
 .msf-start-card-btn:active{transform:scale(.97)}
+
+/* bottom-right watermark */
+.msf-panel-watermark{
+  position:absolute;
+  bottom:20px;
+  right:28px;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#bbb;
+  pointer-events:none;
+}
 
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
 .msf-heading{font-size:clamp(1.45rem,3.4vw,2.1rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#0a0a0a}
@@ -658,6 +674,14 @@ const CSS = `
 }
 .msf-panel-close:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
 
+/* panel-content wrapper needs relative for watermark */
+.msf-panel-content-wrap{
+  flex:1;
+  overflow-y:auto;
+  position:relative;
+  padding:40px 40px 32px;
+}
+
 @media(max-width:640px){
   .msf-header{padding:16px 18px}
   .msf-body{padding:32px 18px 24px}
@@ -672,6 +696,7 @@ const CSS = `
   .msf-intro-heading{font-size:1.6rem}
   .msf-intro-spacer{height:40px}
   .msf-sidebar{display:none}
+  .msf-panel-content-wrap{padding:28px 20px 24px}
   .msf-panel-content{padding:28px 20px 24px}
 }
 `;
@@ -779,7 +804,6 @@ function renderStep(s) {
   const isLead    = s === STEP_LEAD;
   const isResults = s === STEP_RESULTS;
 
-
   const header  = document.querySelector('.msf-header');
   const progBar = document.querySelector('.msf-progress');
 
@@ -797,11 +821,9 @@ function renderStep(s) {
     }
   }
 
-
   body.classList.remove('msf-intro-active','msf-panel-active');
   if (isIntro) body.classList.add('msf-intro-active');
   if (isStart) body.classList.add('msf-panel-active');
-
 
   if (isResults || isIntro || isStart) {
     footer.style.display = 'none';
@@ -819,7 +841,6 @@ function renderStep(s) {
     updateContBtn();
   }
 
-
   if (isIntro)        { body.innerHTML = renderIntro();        attachIntroListeners(); }
   else if (isStart)   { body.innerHTML = renderStartPanel();   attachStartPanelListeners(); }
   else if (isLead)    { body.innerHTML = renderLeadInPanel();  attachLeadListeners(); }
@@ -828,7 +849,6 @@ function renderStep(s) {
 }
 
 function renderIntro() {
-  const c = CONFIG.intro;
   return `
     <div class="msf-intro-hero">
       <div class="msf-intro-bg"></div>
@@ -860,34 +880,34 @@ function renderStartPanel() {
   ).join('');
 
   return `
-
     <div class="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
       <div class="msf-sidebar-steps">${stepsHtml}</div>
     </div>
 
-
     <div class="msf-panel-right">
-
       <div class="msf-panel-header">
         <span class="msf-panel-counter">00 / 0${TOTAL}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
       </div>
 
-
-      <div class="msf-panel-content">
-      <div class="msf-start-card">
-
+      <div class="msf-panel-content" style="position:relative;">
+        <div class="msf-start-card">
+          <div class="msf-start-card-top">
+            <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
+          </div>
           <div class="msf-start-card-hero" style="${bgStyle}"></div>
           <div class="msf-start-card-body">
-            <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
             <p class="msf-start-card-text">${esc(c.body)}</p>
             <button class="msf-start-card-btn" id="msf-start-card-btn">
               ${esc(c.cta)} <span aria-hidden="true">→</span>
             </button>
           </div>
-        </div></div>`;
+        </div>
+        <div class="msf-panel-watermark">Power up performance.</div>
+      </div>
+    </div>`;
 }
 function attachStartPanelListeners() {
   const closeBtn = document.getElementById('msf-panel-close-btn');
@@ -918,7 +938,6 @@ function renderQuestionInPanel(s) {
       <div class="msf-insight-text">${q.insight.text}</div>
     </div>` : '';
 
-
   const stepsHtml = ss.map((label, i) => {
     let cls = 'msf-sidebar-step';
     if (i === qNum)    cls += ' active';
@@ -926,7 +945,7 @@ function renderQuestionInPanel(s) {
     return `<div class="${cls}">${esc(label)}</div>`;
   }).join('');
 
-  const padNum = String(qNum).padStart(2,'0');
+  const padNum   = String(qNum).padStart(2,'0');
   const padTotal = String(TOTAL).padStart(2,'0');
 
   return `
@@ -940,7 +959,7 @@ function renderQuestionInPanel(s) {
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
       </div>
-      <div class="msf-panel-content">
+      <div class="msf-panel-content" style="flex:1;overflow-y:auto;padding:40px 40px 32px;">
         <div class="msf-step-row">
           <div class="msf-heading">${q.heading}</div>
         </div>
@@ -962,7 +981,7 @@ function renderLeadInPanel() {
   }).join('');
 
   function field(name, type, span) {
-    const fd = f.fields[name];
+    const fd  = f.fields[name];
     const tag = name === 'message';
     const inp = tag
       ? `<textarea class="msf-textarea" id="lf-${name}" name="${name}" rows="4" placeholder="${fd.placeholder}" required>${escText(v[name])}</textarea>`
@@ -985,7 +1004,7 @@ function renderLeadInPanel() {
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close-btn" aria-label="Close">×</button>
       </div>
-      <div class="msf-panel-content">
+      <div class="msf-panel-content" style="flex:1;overflow-y:auto;padding:40px 40px 32px;">
         <div class="msf-step-row">
           <div class="msf-heading">${f.heading}</div>
         </div>
@@ -1105,7 +1124,6 @@ function getRecommendedPathway(tierType) {
 function attachOptionListeners(s) {
   const qIdx = s - STEP_Q_FIRST;
   const q    = CONFIG.questions[qIdx];
-
 
   const closeBtn = document.getElementById('msf-panel-close-btn');
   if (closeBtn && !closeBtn._msfBound) { closeBtn.addEventListener('click', closeModal); closeBtn._msfBound = true; }
@@ -1229,27 +1247,20 @@ function updateContBtn() {
 
 function goForward() {
   const cont = document.getElementById('msf-continue');
-
   if (step !== 0 && step !== STEP_START && cont && cont.disabled) return;
-
   if (step === 0)          { transition(STEP_START, 'forward'); return; }
   if (step === STEP_START) { transition(STEP_Q_FIRST, 'forward'); return; }
-
   if (step === STEP_LEAD) {
     if (!validateLead()) return;
     submitLead();
     transition(STEP_RESULTS, 'forward');
     return;
   }
-
-
   if (step === STEP_Q_FIRST + TOTAL - 1) {
     selectedMultiple = new Set();
     transition(STEP_LEAD, 'forward');
     return;
   }
-
-
   if (step >= STEP_Q_FIRST && step < STEP_LEAD) {
     selectedMultiple = new Set();
     transition(step + 1, 'forward');
