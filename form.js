@@ -370,7 +370,7 @@ const CSS = `
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  background:transparent);
+  background:transparent;
 }
 
 .msf-panel-header{
