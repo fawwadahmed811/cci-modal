@@ -323,6 +323,10 @@ const CSS = `
   overflow:hidden;
 }
 
+#msf-overlay.msf-step-start{
+  background:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png') center/cover no-repeat #F9F9F9;
+}
+
 .msf-sidebar{
   width:220px;
   min-width:180px;
