@@ -703,7 +703,8 @@ const CSS = `
 `;
 
 (function injectCSS() {
-  if (document.getElementById('msf-style')) return;
+  const old = document.getElementById('msf-style');
+  if (old) old.remove();
   const s = document.createElement('style');
   s.id = 'msf-style';
   s.textContent = CSS;
@@ -711,7 +712,8 @@ const CSS = `
 })();
 
 function buildModal() {
-  if (document.getElementById('msf-overlay')) return;
+  const old = document.getElementById('msf-overlay');
+  if (old) old.remove();
   const el = document.createElement('div');
   el.id = 'msf-overlay';
   el.setAttribute('role', 'dialog');
