@@ -286,7 +286,7 @@ const CSS = `
 
 .msf-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;border-bottom:none;flex-shrink:0;
+  padding:22px 32px;border-bottom:1px solid #e5e5e5;flex-shrink:0;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -323,10 +323,6 @@ const CSS = `
   overflow:hidden;
 }
 
-#msf-overlay.msf-step-start{
-  background:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png') center/cover no-repeat #F9F9F9;
-}
-
 .msf-sidebar{
   width:220px;
   min-width:180px;
@@ -334,8 +330,8 @@ const CSS = `
   display:flex;
   flex-direction:column;
   padding:32px 28px;
-  border-right:none;
-  background:Transparent;
+  border-right:1px solid #e5e5e5;
+  background:#fff;
   overflow-y:auto;
 }
 .msf-sidebar-brand{
@@ -374,7 +370,7 @@ const CSS = `
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  background:transparent;
+  background:linear-gradient(160deg,#f3eeff 0%,#fdf0f5 45%,#fafafa 100%);
 }
 
 .msf-panel-header{
@@ -382,7 +378,7 @@ const CSS = `
   align-items:center;
   justify-content:space-between;
   padding:18px 32px;
-  border-bottom:none;
+  border-bottom:1px solid #e5e5e5;
   flex-shrink:0;
 }
 .msf-panel-counter{
@@ -430,7 +426,6 @@ const CSS = `
   background-size:cover;
   background-position:center top;
   background-color:#ece9f5;
-  display:none;
 }
 .msf-start-card-body{
   padding:22px 28px 26px;
@@ -707,8 +702,7 @@ const CSS = `
 `;
 
 (function injectCSS() {
-  const old = document.getElementById('msf-style');
-  if (old) old.remove();
+  if (document.getElementById('msf-style')) return;
   const s = document.createElement('style');
   s.id = 'msf-style';
   s.textContent = CSS;
@@ -716,8 +710,7 @@ const CSS = `
 })();
 
 function buildModal() {
-  const old = document.getElementById('msf-overlay');
-  if (old) old.remove();
+  if (document.getElementById('msf-overlay')) return;
   const el = document.createElement('div');
   el.id = 'msf-overlay';
   el.setAttribute('role', 'dialog');
