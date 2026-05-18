@@ -395,22 +395,35 @@ const CSS = `
 
 /* ── PANEL CONTENT (the scrollable right area for all questions) ── */
 .msf-panel-content{
-  flex:1;overflow-y:auto;padding:40px 40px 32px;
+  flex:1;overflow-y:auto;padding:32px 40px 32px;
   position:relative;
-  /* smooth scroll-to-top between questions */
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
   scroll-behavior:smooth;
 }
 
 /* Content fade animation inside the panel */
 .msf-panel-content-inner{
   transition:opacity .2s ease,transform .2s ease;
+  width:100%;
 }
-.msf-panel-content-inner.fade-out{
-  opacity:0;transform:translateY(10px);
+.msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px)}
+.msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0)}
+
+/* ── QUESTION IN-CARD CONTINUE ── */
+.msf-q-continue-row{
+  display:flex;justify-content:flex-end;margin-top:20px;
 }
-.msf-panel-content-inner.fade-in{
-  opacity:1;transform:translateY(0);
+.msf-q-continue-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;background:#0a0a0a;color:#fff;
+  font-size:.9rem;font-weight:600;border-radius:999px;border:none;
+  cursor:pointer;transition:background .18s ease,transform .15s ease;
 }
+.msf-q-continue-btn:hover:not(:disabled){background:#333}
+.msf-q-continue-btn:active:not(:disabled){transform:scale(.97)}
+.msf-q-continue-btn:disabled{background:#e5e5e5;color:#bbb;cursor:not-allowed}
 
 /* ── START CARD ── */
 .msf-start-card{
@@ -443,22 +456,31 @@ const CSS = `
 }
 
 /* ── QUESTION ── */
+.msf-q-card{
+  background:#fff;
+  border:1px solid #e8e8e8;
+  border-radius:16px;
+  padding:32px 32px 28px;
+  max-width:540px;
+  width:100%;
+  box-shadow:0 2px 16px rgba(0,0,0,.06);
+}
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
-.msf-heading{font-size:clamp(1.45rem,3.4vw,2.1rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#0a0a0a}
-.msf-subtitle{font-size:1rem;font-weight:400;color:#555;margin-bottom:34px;line-height:1.6;max-width:600px}
+.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#0a0a0a}
+.msf-subtitle{font-size:.93rem;font-weight:400;color:#555;margin-bottom:22px;line-height:1.6;max-width:600px}
 .msf-options-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;padding:17px 22px;
-  border:1.5px solid #e5e5e5;background:#fff;color:#0a0a0a;
-  font-size:.95rem;font-weight:500;line-height:1.5;text-align:left;
+  display:block;width:100%;padding:14px 16px;
+  border:1.5px solid #e5e5e5;background:#fafafa;color:#0a0a0a;
+  font-size:.88rem;font-weight:500;line-height:1.45;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
 }
-.msf-option:hover{border-color:#0a0a0a;background:#fafafa}
+.msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
 .msf-option.selected{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
 .msf-option.selected:hover{background:#0a0a0a}
 /* multiple-choice checkmark */
@@ -743,10 +765,12 @@ function renderStep(s) {
   /* footer */
   if (isIntro || isStart || isResults) {
     footer.style.display = 'none';
+    if (cont) cont.style.display = '';
   } else if (isLead) {
     footer.style.display = 'flex';
     back.className  = 'msf-btn-back active';
     back.disabled   = false;
+    cont.style.display = '';
     cont.textContent = CONFIG.leadForm.submitLabel;
     updateContBtn();
   } else {
@@ -754,8 +778,7 @@ function renderStep(s) {
     const isFirstQ = s === STEP_Q0;
     back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
     back.disabled  = isFirstQ;
-    cont.textContent = 'Continue';
-    updateContBtn();
+    cont.style.display = 'none'; // Continue is inside the card for questions
   }
 
   /* render content */
@@ -794,6 +817,7 @@ function renderStart() {
   const stepsHtml = ss.map((l,i) =>
     `<div class="msf-sidebar-step${i===0?' active':''}">${esc(l)}</div>`
   ).join('');
+  const totalSteps = String(TOTAL + 1).padStart(2,'0'); // "09"
   return `
     <div class="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
@@ -801,7 +825,7 @@ function renderStart() {
     </div>
     <div class="msf-panel-right">
       <div class="msf-panel-header">
-        <span class="msf-panel-counter">00 / 0${TOTAL}</span>
+        <span class="msf-panel-counter">00 / ${totalSteps}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
@@ -862,7 +886,7 @@ function buildPanelScaffold(s) {
   }).join('');
 
   const padNum   = String(qNum).padStart(2,'0');
-  const padTotal = String(TOTAL).padStart(2,'0');
+  const padTotal = String(TOTAL + 1).padStart(2,'0'); // +1 for lead form step
 
   return `
     <div class="msf-sidebar" id="msf-sidebar">
@@ -896,8 +920,8 @@ function swapPanelInner(s) {
 
   /* update counter */
   if (counter) {
-    if (isLead) counter.textContent = 'Almost there';
-    else counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL).padStart(2,'0')}`;
+    if (isLead) counter.textContent = `${String(TOTAL + 1).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
+    else counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
   }
 
   /* update sidebar steps */
@@ -957,6 +981,7 @@ function questionHTML(s) {
   const ans  = answers[qIdx];
 
   const showInsight = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
+  const canContinue = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
 
   const opts = q.answers.map((a,i) => {
     const sel = q.type === 'single' ? ans === a.weight : selectedMulti.has(i);
@@ -966,28 +991,36 @@ function questionHTML(s) {
   }).join('');
 
   const insightHTML = showInsight ? `
-    <div class="msf-insight">
+    <div class="msf-insight" style="margin-top:20px;">
       <div class="msf-insight-label">${q.insight.label}</div>
       <div class="msf-insight-text">${q.insight.text}</div>
-    </div>` : `<div id="msf-insight"></div>`;
+    </div>` : '';
 
   return `
-    <div class="msf-step-row">
+    <div class="msf-q-card">
       <div class="msf-heading">${q.heading}</div>
-    </div>
-    <div class="msf-subtitle">${q.subtitle}</div>
-    <div class="msf-options-grid" id="msf-options">${opts}</div>
-    <div id="msf-insight">${showInsight ? `
-      <div class="msf-insight">
-        <div class="msf-insight-label">${q.insight.label}</div>
-        <div class="msf-insight-text">${q.insight.text}</div>
-      </div>` : ''}</div>`;
+      <div class="msf-subtitle">${q.subtitle}</div>
+      <div class="msf-options-grid" id="msf-options">${opts}</div>
+      <div id="msf-insight">${insightHTML}</div>
+      <div class="msf-q-continue-row">
+        <button class="msf-q-continue-btn" id="msf-q-cont-btn" ${canContinue?'':'disabled'}>
+          Continue <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>`;
 }
 
 function attachOptionListeners(s) {
   attachPanelClose();
   const qIdx = s - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
+
+  // wire inline continue button
+  const inlineBtn = document.getElementById('msf-q-cont-btn');
+  if (inlineBtn && !inlineBtn._b) {
+    inlineBtn.addEventListener('click', () => { if (!inlineBtn.disabled) goForward(); });
+    inlineBtn._b = true;
+  }
 
   document.querySelectorAll('.msf-option').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1015,6 +1048,10 @@ function attachOptionListeners(s) {
         answers[qIdx] = raw;
       }
 
+      // enable inline continue btn
+      const cb = document.getElementById('msf-q-cont-btn');
+      if (cb) cb.disabled = false;
+
       updateContBtn();
       revealInsight(s);
     });
@@ -1028,7 +1065,7 @@ function revealInsight(s) {
   const c    = document.getElementById('msf-insight');
   if (!c || !show || c.querySelector('.msf-insight')) return;
   c.innerHTML = `
-    <div class="msf-insight">
+    <div class="msf-insight" style="margin-top:20px;">
       <div class="msf-insight-label">${q.insight.label}</div>
       <div class="msf-insight-text">${q.insight.text}</div>
     </div>`;
@@ -1098,7 +1135,7 @@ function buildLeadScaffold() {
     </div>
     <div class="msf-panel-right">
       <div class="msf-panel-header" id="msf-panel-header">
-        <span class="msf-panel-counter" id="msf-panel-counter">Almost there</span>
+        <span class="msf-panel-counter" id="msf-panel-counter">${String(TOTAL + 1).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
@@ -1300,8 +1337,7 @@ function updateFooterForQ(s) {
   const isFirstQ = s === STEP_Q0;
   back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
   back.disabled  = isFirstQ;
-  cont.textContent = 'Continue';
-  updateContBtn();
+  cont.style.display = 'none'; // Continue lives inside the card
 }
 
 function updateFooterForLead() {
@@ -1310,6 +1346,7 @@ function updateFooterForLead() {
   if (!back || !cont) return;
   back.className   = 'msf-btn-back active';
   back.disabled    = false;
+  cont.style.display = '';
   cont.textContent = CONFIG.leadForm.submitLabel;
   updateContBtn();
 }
