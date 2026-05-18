@@ -371,6 +371,7 @@ const CSS = `
   overflow-y:auto;
   display:flex;
   flex-direction:column;
+  background:linear-gradient(160deg,#f8f4ff 0%,#fff5f5 50%,#fff 100%);
 }
 
 .msf-panel-header{
@@ -406,15 +407,14 @@ const CSS = `
   border:1px solid #e5e5e5;
   border-radius:16px;
   overflow:hidden;
-  max-width:520px;
+  max-width:560px;
 }
 .msf-start-card-hero{
   width:100%;
-  height:200px;
-
+  height:220px;
   background-size:cover;
   background-position:center;
-  background-color:#f0eef8;
+  background-color:#ece9f5;
 }
 .msf-start-card-body{
   padding:28px 28px 24px;
@@ -877,19 +877,19 @@ function renderStartPanel() {
 
 
       <div class="msf-panel-content">
-        <div class="msf-start-card">
-
-          <div class="msf-start-card-hero" style="${bgStyle}"></div>
-          <div class="msf-start-card-body">
-            <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
-            <p class="msf-start-card-text">${esc(c.body)}</p>
-            <button class="msf-start-card-btn" id="msf-start-card-btn">
-              ${esc(c.cta)} <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>`;
+       <div class="msf-start-card">
+  <div class="msf-start-card-body" style="padding:28px 28px 20px">
+    <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
+  </div>
+  <div class="msf-start-card-hero" style="${bgStyle}"></div>
+  <div class="msf-start-card-body">
+    <p class="msf-start-card-text">${esc(c.body)}</p>
+    <button class="msf-start-card-btn" id="msf-start-card-btn">
+      ${esc(c.cta)} <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</div>
+</div>`;
 }
 function attachStartPanelListeners() {
   const closeBtn = document.getElementById('msf-panel-close-btn');
