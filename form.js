@@ -336,19 +336,19 @@ const CSS = `
   padding:40px 32px;max-width:560px;width:100%;
 }
 .msf-intro-heading{
-  font-size:clamp(1.8rem,4.5vw,2.8rem);
-  font-family:DM Sans,system-ui,sans-serif;
-  font-weight:500;line-height:1.12;letter-spacing:-.03em;color:#0a0a0a;margin-bottom:16px;
+  font-size: 48px;
+  font-family:DM Sans,system-ui,sans-serif !important;
+  font-weight:500;line-height:1.12;letter-spacing:-.03em;color:#1E1E1E;margin-bottom:16px;
 }
 .msf-intro-body{
-  font-size:1rem;font-family:DM Sans,system-ui,sans-serif;
+  font-size:1rem;font-family:DM Sans,system-ui,sans-serif !important;
   line-height:1.65;color:#2E2E2E;margin-bottom:0;
 }
-.msf-intro-spacer{height:clamp(48px,8vh,96px)}
+.msf-intro-spacer{height:clamp(78px,8vh,96px)}
 .msf-intro-cta{
   display:inline-flex;align-items:center;gap:10px;
-  padding:14px 28px;background:#0a0a0a;color:#fff;
-  font-size:.93rem;font-weight:600;border-radius:999px;border:none;
+  padding:8px 16px;background:#0a0a0a;color:#fff;
+  font-size:.13px;font-weight:400;border-radius:999px;border:none;
   cursor:pointer;transition:background .18s ease,transform .18s ease;
   letter-spacing:-.01em;white-space:nowrap;
 }
@@ -396,7 +396,8 @@ const CSS = `
 
 /* ── PANEL CONTENT (the scrollable right area for all questions) ── */
 .msf-panel-content{
-  flex:1;overflow-y:auto;padding:32px 40px 32px;
+  flex:1;overflow-y:auto;padding:32px 40px;
+  padding-left: 32px !important;
   position:relative;
   display:flex;
   flex-direction:column;
@@ -508,7 +509,7 @@ const CSS = `
 .msf-option.selected:hover{background: rgba(21, 21, 21, 0.02)}
 /* multiple-choice checkmark */
 .msf-check{
-  display:inline-flex;align-items:center;justify-content:center;
+  display:none;align-items:center;justify-content:center;
   width:18px;height:18px;border:1.5px solid currentColor;border-radius:4px;
   margin-right:13px;vertical-align:middle;position:relative;top:-1px;
   font-size:.7rem;font-weight:700;flex-shrink:0;
