@@ -409,7 +409,7 @@ const CSS = `
   transition:opacity .2s ease,transform .2s ease;
   width:100%;
 }
-.msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px); height: 100%; max-height:90%;}
+.msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px); height: 100%; min-height:90%;}
 .msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0); max-height: 100%;}
 
 /* ── QUESTION IN-CARD CONTINUE ── */
@@ -491,20 +491,19 @@ const CSS = `
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;max-height:100%;padding:24px 16px;
+  display:block;width:100%;min-height:120px;padding:24px 16px;
   border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#484848;
   font-size:13px;font-weight:400;font-family: "DM Sans", sans-serif !important;line-height:1.45;text-align:left;
-  border-radius:10px;transition:all .18s ease;cursor:pointer;
+  border-radius:24px;transition:all .18s ease;cursor:pointer;
 }
-.msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
+.msf-option:hover{border-color:transparent;background: rgba(21, 21, 21, 0.02)}
 .msf-option.selected {
   background: rgba(21, 21, 21, 0.02);
   color: #1E1E1E;
   font-weight: 600;
   
   /* Linear Gradient Border Setup */
-  border: 1.5px solid transparent; /* Sets the width and acts as a fallback */
-  border-image: linear-gradient(180deg, #3E0E61 0%, #A24AE1 100%) 1;
+  border: 1.5px solid #8217cf; /* Sets the width and acts as a fallback */
 }
 .msf-option.selected:hover{background:#0a0a0a}
 /* multiple-choice checkmark */
