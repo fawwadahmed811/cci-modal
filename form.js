@@ -480,13 +480,20 @@ const CSS = `
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;padding:14px 16px;
-  border:1.5px solid #e5e5e5;background: linear-gradient(180deg, rgba(255, 255, 255, 0.54) 0%, rgba(255, 255, 255, 0.35) 100%);color:#0a0a0a;
+  display:block;width:100%;padding:24px 16px;
+  border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.2);color:#0a0a0a;
   font-size:13px;font-weight:400;line-height:1.45;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
 }
 .msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
-.msf-option.selected{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+.msf-option.selected {
+  background: rgba(21, 21, 21, 0.2);
+  color: #fff;
+  
+  /* Linear Gradient Border Setup */
+  border: 1.5px solid transparent; /* Sets the width and acts as a fallback */
+  border-image: linear-gradient(180deg, #3E0E61 0%, #A24AE1 100%) 1;
+}
 .msf-option.selected:hover{background:#0a0a0a}
 /* multiple-choice checkmark */
 .msf-check{
