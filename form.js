@@ -261,8 +261,8 @@ const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 #msf-overlay{
   position:fixed;inset:0;background: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png');z-index:99999;
-  background-size: cover;      /* Acts like object-fit: cover */
-  background-position: center;  /* Keeps the image centered so it crops evenly */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   display:flex;flex-direction:column;
   font-family:'Inter',system-ui,-apple-system,sans-serif;
@@ -275,8 +275,6 @@ const CSS = `
 
 /* ── HEADER ── */
 .msf-header{
- /* display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;flex-shrink:0; */
   display: none !important;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
@@ -445,14 +443,12 @@ const CSS = `
 .msf-start-card-heading {
   font-size: 1.45rem;
   font-weight: 600;
-  font-family: 'DM Sans', sans-serif !important; /* Added a clean fallback */
+  font-family: 'DM Sans', sans-serif !important;
   line-height: 1.2;
-  letter-spacing: -0.02em; /* Optional: converted to a clean, relative tracking value */
+  letter-spacing: -0.02em;
   color: #1E1E1E;
 }
 .msf-start-card-hero{
-  /* width:100%;height:220px;background-size:cover;
-  background-position:center top;background-color:#ece9f5; */
   display: none !important;
 }
 .msf-start-card-body{padding:22px 28px 26px}
@@ -473,16 +469,16 @@ const CSS = `
 
 /* ── QUESTION ── */
 .msf-q-card {
-  display: flex; 
-  flex-direction: column; 
-  row-gap: 14px; /* Fixed double semicolon */
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #transparent;
+  border: 1px solid transparent;
   border-radius: 12px;
   padding: 32px 32px;
-  max-width: 70%; /* Changed to a fixed max-width for better responsive scaling */
+  max-width: 70%;
   width: 100%;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, .06); /* Added missing semicolon */
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
   min-height: 90%;
 }
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
@@ -505,9 +501,7 @@ const CSS = `
   background: rgba(21, 21, 21, 0.02);
   color: #1E1E1E;
   font-weight: 600;
-  
-  /* Linear Gradient Border Setup */
-  border: 1.5px solid #8217cf; /* Sets the width and acts as a fallback */
+  border: 1.5px solid #8217cf;
 }
 .msf-option.selected:hover{background: rgba(21, 21, 21, 0.02)}
 /* multiple-choice checkmark */
@@ -520,25 +514,52 @@ const CSS = `
 
 /* Insight block */
 .msf-insight{
- /* margin-top:20px;border-left:3px solid #0a0a0a;padding-left:18px;  */
- display: none ! important;
+  display: none !important;
 }
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
+/* ── LEAD FORM CARD — same visual treatment as msf-q-card ── */
 .lead-form-main-cont {
-  padding: 32px;
-  background: rgba(255, 255, 255, 0.8); /* Beautiful 80% opacity white */
-  border: 1px solid transparent;        /* Fixed the "#" bug */
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid transparent;
   border-radius: 12px;
-  width: 100%;                          /* Fixed missing semicolon */
-  max-width: 550px;                     /* Swapped to pixels so it fits beautifully on both desktop and mobile */
+  padding: 32px 32px;
+  max-width: 70%;
+  width: 100%;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
+  min-height: 90%;
 }
+
+/* ── LEAD FORM SUBMIT BUTTON ── */
+.msf-lead-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1E1E1E;
+  color: #fff;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif !important;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background .18s ease, transform .15s ease;
+  letter-spacing: -.01em;
+  align-self: flex-end;
+  margin-top: 8px;
+}
+.msf-lead-submit-btn:hover:not(:disabled) { background: #333; transform: translateY(-1px); }
+.msf-lead-submit-btn:active:not(:disabled) { transform: scale(.97); }
+.msf-lead-submit-btn:disabled { background: #e5e5e5; color: #bbb; cursor: not-allowed; }
+
 /* ── FOOTER ── */
 .msf-footer{
-/*  border-top:1px solid #e5e5e5;padding:18px 32px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;gap:12px; */
   display:none !important;
 }
 .msf-btn-back{
@@ -557,7 +578,7 @@ const CSS = `
 .msf-btn-continue:active:not(:disabled){transform:scale(.97)}
 .msf-btn-continue:disabled{background:#e5e5e5;border-color:#e5e5e5;color:#bbb;cursor:not-allowed}
 
-/* ── LEAD FORM ── */
+/* ── LEAD FORM FIELDS ── */
 .msf-lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;margin-bottom:8px}
 .msf-field{display:flex;flex-direction:column;gap:7px}
 .msf-field-full{grid-column:1/-1}
@@ -652,11 +673,20 @@ const CSS = `
 .msf-pathway-card.best .msf-pathway-cta:hover{background:#333;border-color:#333}
 
 /* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .msf-sidebar{display:none}
+  .msf-q-card{max-width:100%;min-height:auto;padding:24px 20px}
+  .lead-form-main-cont{max-width:100%;min-height:auto;padding:24px 20px}
+  .msf-options-grid{grid-template-columns:1fr}
+  .msf-lead-grid{grid-template-columns:1fr;gap:16px}
+  .msf-panel-content{padding:20px !important}
+  .msf-panel-header{padding:14px 20px}
+  .msf-start-card{max-width:100%}
+  .msf-start-card-text{max-width:100%}
+}
 @media(max-width:640px){
   .msf-header{padding:16px 18px}
   .msf-footer{padding:14px 18px}
-  .msf-options-grid{grid-template-columns:1fr}
-  .msf-lead-grid{grid-template-columns:1fr;gap:16px}
   .msf-result-box{padding:22px 18px}
   .msf-pathways-grid{grid-template-columns:1fr}
   .msf-pathway-card{padding:20px}
@@ -664,10 +694,9 @@ const CSS = `
   .msf-intro-content{padding:28px 20px}
   .msf-intro-heading{font-size:1.6rem}
   .msf-intro-spacer{height:40px}
-  .msf-sidebar{display:none}
-  .msf-panel-content{padding: 28px 32px 24px;}
   .msf-results-wrap{padding:32px 18px 48px}
   .msf-cta-row{flex-direction:column}
+  .msf-lead-submit-btn{align-self:stretch;justify-content:center}
 }
 `;
 
@@ -758,6 +787,23 @@ function bindModalEvents() {
   if (cont  && !cont._b)  { cont.addEventListener('click',  goForward);  cont._b=true; }
 }
 
+/* ─── PROGRESS BAR CALCULATION ─── */
+/*
+  Steps:   0=intro, 1=start, 2...(2+N-1)=questions, 2+N=lead, 2+N+1=results
+  Progress bar shows:
+    - intro & start: hidden (0%)
+    - question qIdx (0-based): (qIdx+1) / (TOTAL+1) * 100
+      e.g. Q1 = 1/9 = 11%, Q8 = 8/9 = 89%
+    - lead form: 100%
+    - results:   100%
+*/
+function calcProgress(s) {
+  if (s <= STEP_START) return 0;
+  if (s >= STEP_LEAD)  return 100;
+  const qIdx = s - STEP_Q0; // 0-based question index
+  return Math.round(((qIdx + 1) / (TOTAL + 1)) * 100);
+}
+
 /* ─── RENDER STEP ─── */
 function renderStep(s) {
   step = s;
@@ -777,17 +823,13 @@ function renderStep(s) {
 
   /* header / progress visibility */
   if (isIntro || isStart) {
-    header.style.display  = 'none';
+    header.style.display   = 'none';
     progress.style.display = 'none';
-    prog.style.width = '0%';
+    prog.style.width       = '0%';
   } else {
-    header.style.display  = '';
+    header.style.display   = '';
     progress.style.display = '';
-    if (isResults || isLead) prog.style.width = '100%';
-    else {
-      const qIdx = s - STEP_Q0 + 1;
-      prog.style.width = `${(qIdx / (TOTAL + 1)) * 100}%`;
-    }
+    prog.style.width       = calcProgress(s) + '%';
   }
 
   /* body mode class */
@@ -795,26 +837,10 @@ function renderStep(s) {
   if (isIntro)        body.classList.add('msf-mode-intro');
   else if (isStart)   body.classList.add('msf-mode-start');
   else if (isResults) body.classList.add('msf-mode-results');
-  else                body.classList.add('msf-mode-panel');   // questions + lead
+  else                body.classList.add('msf-mode-panel');
 
-  /* footer */
-  if (isIntro || isStart || isResults) {
-    footer.style.display = 'none';
-    if (cont) cont.style.display = '';
-  } else if (isLead) {
-    footer.style.display = 'flex';
-    back.className  = 'msf-btn-back active';
-    back.disabled   = false;
-    cont.style.display = '';
-    cont.textContent = CONFIG.leadForm.submitLabel;
-    updateContBtn();
-  } else {
-    footer.style.display = 'flex';
-    const isFirstQ = s === STEP_Q0;
-    back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
-    back.disabled  = isFirstQ;
-    cont.style.display = 'none'; // Continue is inside the card for questions
-  }
+  /* footer — always hidden (buttons are inline) */
+  if (footer) footer.style.display = 'none';
 
   /* render content */
   if (isIntro)        { body.innerHTML = renderIntro();      attachIntroListeners(); }
@@ -848,11 +874,10 @@ function attachIntroListeners() {
 function renderStart() {
   const c  = CONFIG.step1Card;
   const ss = CONFIG.sidebarSteps;
-  const bgStyle = c.bgImage ? `background-image:url('${c.bgImage}');display:block;` : '';
   const stepsHtml = ss.map((l,i) =>
     `<div class="msf-sidebar-step${i===0?' active':''}">${esc(l)}</div>`
   ).join('');
-  const totalSteps = String(TOTAL + 1).padStart(2,'0'); // "09"
+  const totalSteps = String(TOTAL + 1).padStart(2,'0');
   return `
     <div class="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
@@ -870,7 +895,6 @@ function renderStart() {
             <div class="msf-start-card-top">
               <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
             </div>
-           
             <div class="msf-start-card-body">
               <p class="msf-start-card-text">${esc(c.body)}</p>
               <button class="msf-start-card-btn" id="msf-start-btn">
@@ -890,20 +914,16 @@ function attachStartListeners() {
   if (sb) sb.addEventListener('click', goForward);
 }
 
-/* ── QUESTION (renders inside existing panel shell if possible) ──
-   On first Q we set up the sidebar+panel scaffold; subsequent Qs
-   only swap the inner content (with a fade) and scroll to top.    */
+/* ── QUESTION (renders inside existing panel shell if possible) ── */
 function renderQuestionInPanel(s) {
   const body = document.getElementById('msf-body');
   const existingPanel = document.getElementById('msf-panel-content');
 
   if (!existingPanel) {
-    /* first time entering panel mode — build the full scaffold */
     body.innerHTML = buildPanelScaffold(s);
     attachPanelClose();
     attachOptionListeners(s);
   } else {
-    /* panel already exists — just swap inner content with fade */
     swapPanelInner(s);
   }
 }
@@ -921,7 +941,7 @@ function buildPanelScaffold(s) {
   }).join('');
 
   const padNum   = String(qNum).padStart(2,'0');
-  const padTotal = String(TOTAL + 1).padStart(2,'0'); // +1 for lead form step
+  const padTotal = String(TOTAL + 1).padStart(2,'0');
 
   return `
     <div class="msf-sidebar" id="msf-sidebar">
@@ -942,21 +962,25 @@ function buildPanelScaffold(s) {
     </div>`;
 }
 
-/* Swap just the inner content — fade out → scroll top → swap → fade in */
+/* Swap just the inner content */
 function swapPanelInner(s) {
   const inner   = document.getElementById('msf-panel-inner');
   const panel   = document.getElementById('msf-panel-content');
   const counter = document.getElementById('msf-panel-counter');
   const sidebar = document.getElementById('msf-sidebar-steps');
+  const prog    = document.getElementById('msf-prog');
 
-  const qIdx = s - STEP_Q0;
-  const qNum = qIdx + 1;
+  const qIdx  = s - STEP_Q0;
+  const qNum  = qIdx + 1;
   const isLead = s === STEP_LEAD;
+
+  /* update top progress bar */
+  if (prog) prog.style.width = calcProgress(s) + '%';
 
   /* update counter */
   if (counter) {
     if (isLead) counter.textContent = `${String(TOTAL + 1).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
-    else counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
+    else        counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
   }
 
   /* update sidebar steps */
@@ -975,7 +999,6 @@ function swapPanelInner(s) {
   }
 
   if (!inner) {
-    /* fallback — rebuild */
     if (s === STEP_LEAD) renderLeadFull();
     else { const b = document.getElementById('msf-body'); b.innerHTML = buildPanelScaffold(s); attachPanelClose(); attachOptionListeners(s); }
     return;
@@ -986,19 +1009,19 @@ function swapPanelInner(s) {
   inner.classList.add('fade-out');
 
   setTimeout(() => {
-    /* scroll panel to top */
     if (panel) panel.scrollTop = 0;
 
-    /* swap HTML */
-    inner.innerHTML = isLead ? leadFormHTML() : questionHTML(s);
+    if (isLead) {
+      inner.innerHTML = `<div class="lead-form-main-cont">${leadFormHTML()}</div>`;
+    } else {
+      inner.innerHTML = questionHTML(s);
+    }
 
-    /* fade in */
     inner.classList.remove('fade-out');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => inner.classList.add('fade-in'));
     });
 
-    /* attach listeners */
     if (isLead) attachLeadInputListeners();
     else        attachOptionListeners(s);
   }, 200);
@@ -1015,7 +1038,6 @@ function questionHTML(s) {
   const q    = CONFIG.questions[qIdx];
   const ans  = answers[qIdx];
 
-  const showInsight = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
   const canContinue = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
 
   const opts = q.answers.map((a,i) => {
@@ -1025,18 +1047,12 @@ function questionHTML(s) {
     return `<button class="msf-option${sel?' selected':''}" data-idx="${i}" data-weight="${a.weight}">${chk}${esc(a.text)}</button>`;
   }).join('');
 
-  const insightHTML = showInsight ? `
-    <div class="msf-insight">
-      <div class="msf-insight-label">${q.insight.label}</div>
-      <div class="msf-insight-text">${q.insight.text}</div>
-    </div>` : '';
-
   return `
     <div class="msf-q-card">
       <div class="msf-heading">${q.heading}</div>
       <div class="msf-subtitle">${q.subtitle}</div>
       <div class="msf-options-grid" id="msf-options">${opts}</div>
-      <div id="msf-insight">${insightHTML}</div>
+      <div id="msf-insight"></div>
       <div class="msf-q-continue-row">
         <button class="msf-q-continue-btn" id="msf-q-cont-btn" ${canContinue?'':'disabled'}>
           Continue <span aria-hidden="true">→</span>
@@ -1050,7 +1066,6 @@ function attachOptionListeners(s) {
   const qIdx = s - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
 
-  // wire inline continue button
   const inlineBtn = document.getElementById('msf-q-cont-btn');
   if (inlineBtn && !inlineBtn._b) {
     inlineBtn.addEventListener('click', () => { if (!inlineBtn.disabled) goForward(); });
@@ -1083,7 +1098,6 @@ function attachOptionListeners(s) {
         answers[qIdx] = raw;
       }
 
-      // enable inline continue btn
       const cb = document.getElementById('msf-q-cont-btn');
       if (cb) cb.disabled = false;
 
@@ -1106,7 +1120,7 @@ function revealInsight(s) {
     </div>`;
 }
 
-/* ── LEAD FORM ── */
+/* ── LEAD FORM HTML ── */
 function leadFormHTML() {
   const f = CONFIG.leadForm;
   const v = leadData;
@@ -1124,10 +1138,10 @@ function leadFormHTML() {
     </div>`;
   }
 
+  const isValid = isLeadValid();
+
   return `
-    <div class="msf-step-row">
-      <div class="msf-heading">${f.heading}</div>
-    </div>
+    <div class="msf-heading">${f.heading}</div>
     <div class="msf-subtitle">${f.subtitle}</div>
     <div class="msf-lead-grid">
       ${field('firstName')}${field('lastName')}
@@ -1140,16 +1154,17 @@ function leadFormHTML() {
       <span class="msf-terms-box" aria-hidden="true"></span>
       <span class="msf-terms-text">${f.termsText}</span>
     </label>
-    <div class="msf-error-msg" data-err="terms" style="margin-top:8px">You must accept the terms to continue.</div>`;
+    <div class="msf-error-msg" data-err="terms" style="margin-top:8px">You must accept the terms to continue.</div>
+    <button class="msf-lead-submit-btn" id="msf-lead-submit" ${isValid?'':'disabled'}>
+      ${esc(f.submitLabel)} <span aria-hidden="true">→</span>
+    </button>`;
 }
 
 function renderLeadInPanel() {
-  /* If panel scaffold already exists (coming from questions), swap inner */
   const existingPanel = document.getElementById('msf-panel-content');
   if (existingPanel) {
     swapPanelInner(STEP_LEAD);
   } else {
-    /* build scaffold fresh */
     const body = document.getElementById('msf-body');
     body.innerHTML = buildLeadScaffold();
     attachPanelClose();
@@ -1176,7 +1191,7 @@ function buildLeadScaffold() {
       </div>
       <div class="msf-panel-content" id="msf-panel-content">
         <div class="msf-panel-content-inner fade-in" id="msf-panel-inner">
-         <div class="lead-form-main-cont"> ${leadFormHTML()} </div>
+          <div class="lead-form-main-cont">${leadFormHTML()}</div>
         </div>
       </div>
     </div>`;
@@ -1184,6 +1199,7 @@ function buildLeadScaffold() {
 
 function attachLeadInputListeners() {
   attachPanelClose();
+
   ['firstName','lastName','company','email','phone','message'].forEach(name => {
     const el = document.getElementById(`lf-${name}`);
     if (!el) return;
@@ -1192,12 +1208,13 @@ function attachLeadInputListeners() {
       el.classList.remove('error');
       const err = document.querySelector(`[data-err="${name}"]`);
       if (err) err.classList.remove('show');
-      updateContBtn();
+      updateLeadSubmitBtn();
     });
     el.addEventListener('blur', () => {
       if (!validField(name, el.value)) markErr(name, true);
     });
   });
+
   const terms = document.getElementById('lf-terms');
   if (terms) {
     terms.addEventListener('change', () => {
@@ -1208,9 +1225,26 @@ function attachLeadInputListeners() {
         if (err) err.classList.remove('show');
         if (wrap) wrap.classList.remove('error');
       }
-      updateContBtn();
+      updateLeadSubmitBtn();
     });
   }
+
+  /* inline submit button inside the lead form card */
+  const submitBtn = document.getElementById('msf-lead-submit');
+  if (submitBtn && !submitBtn._b) {
+    submitBtn.addEventListener('click', () => {
+      if (submitBtn.disabled) return;
+      if (!validateLead()) return;
+      submitLead();
+      doOverlayTransition(STEP_RES, 'forward');
+    });
+    submitBtn._b = true;
+  }
+}
+
+function updateLeadSubmitBtn() {
+  const btn = document.getElementById('msf-lead-submit');
+  if (btn) btn.disabled = !isLeadValid();
 }
 
 /* ── RESULTS ── */
@@ -1312,30 +1346,16 @@ function getRecommendedPathway(tierType) {
 
 /* ── NAVIGATION ── */
 function goForward() {
-  const cont = document.getElementById('msf-continue');
-  if (step > STEP_START && step < STEP_RES && cont && cont.disabled) return;
-
   if (step === 0)          { doTransition(STEP_START); return; }
   if (step === STEP_START) { doTransition(STEP_Q0);    return; }
-
-  if (step === STEP_LEAD) {
-    if (!validateLead()) return;
-    submitLead();
-    /* results is a full body swap — use overlay transition */
-    doOverlayTransition(STEP_RES, 'forward');
-    return;
-  }
 
   if (step >= STEP_Q0 && step < STEP_LEAD) {
     const nextStep = step + 1;
     selectedMulti = new Set();
+    step = nextStep;
     if (nextStep === STEP_LEAD) {
-      /* entering lead form: swap panel inner */
-      step = nextStep;
-      updateFooterForLead();
       swapPanelInner(STEP_LEAD);
     } else {
-      step = nextStep;
       updateFooterForQ(nextStep);
       swapPanelInner(nextStep);
     }
@@ -1344,9 +1364,6 @@ function goForward() {
 }
 
 function goBack() {
-  const back = document.getElementById('msf-back');
-  if (back && back.disabled) return;
-
   if (step === STEP_LEAD) {
     const prevStep = STEP_Q0 + TOTAL - 1;
     selectedMulti = new Set();
@@ -1372,21 +1389,10 @@ function updateFooterForQ(s) {
   const isFirstQ = s === STEP_Q0;
   back.className = isFirstQ ? 'msf-btn-back' : 'msf-btn-back active';
   back.disabled  = isFirstQ;
-  cont.style.display = 'none'; // Continue lives inside the card
+  cont.style.display = 'none';
 }
 
-function updateFooterForLead() {
-  const back = document.getElementById('msf-back');
-  const cont = document.getElementById('msf-continue');
-  if (!back || !cont) return;
-  back.className   = 'msf-btn-back active';
-  back.disabled    = false;
-  cont.style.display = '';
-  cont.textContent = CONFIG.leadForm.submitLabel;
-  updateContBtn();
-}
-
-/* Full overlay fade transition (for intro→start, start→Q1, lead→results) */
+/* Full overlay fade transition */
 function doTransition(newStep) {
   const body = document.getElementById('msf-body');
   body.classList.remove('fade-in');
@@ -1448,11 +1454,10 @@ function updateContBtn() {
   const cont = document.getElementById('msf-continue');
   if (!cont) return;
   if (step === 0 || step === STEP_START) { cont.disabled = false; return; }
-  if (step === STEP_LEAD)                { cont.disabled = !isLeadValid(); return; }
   if (step >= STEP_RES)                 { cont.disabled = true; return; }
   const qIdx = step - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
-  cont.disabled = q.type === 'multiple' ? selectedMulti.size === 0 : answers[qIdx] === null;
+  if (q) cont.disabled = q.type === 'multiple' ? selectedMulti.size === 0 : answers[qIdx] === null;
 }
 
 function submitLead() {
