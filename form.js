@@ -430,11 +430,12 @@ const CSS = `
 .msf-start-card{
   background:#fff;border:1px solid #e5e5e5;border-radius:16px;
   overflow:hidden;max-width:70%;box-shadow:0 2px 12px rgba(0,0,0,.06);
+  min-height: 70%;
 }
 .msf-start-card-top{padding:28px 28px 20px}
 .msf-start-card-heading{
-  font-size:1.45rem;font-weight:700;line-height:1.2;
-  letter-spacing:-.02em;color:#0a0a0a;
+  font-size:1.45rem;font-weight:600;font-family: 'DM Sans';line-height:1.2;
+  letter-spacing:-0.5px;color:#1E1E1E;
 }
 .msf-start-card-hero{
   /* width:100%;height:220px;background-size:cover;
@@ -442,11 +443,11 @@ const CSS = `
   display: none !important;
 }
 .msf-start-card-body{padding:22px 28px 26px}
-.msf-start-card-text{font-size:.93rem;line-height:1.65;color:#555;margin-bottom:22px}
+.msf-start-card-text{font-size:14px;font-family: 'DM Sans';line-height:18px;color:#484848;margin-bottom:18px;max-width: 380px;width: 100%;}
 .msf-start-card-btn{
   display:inline-flex;align-items:center;gap:8px;
-  padding:12px 22px;background:#0a0a0a;color:#fff;
-  font-size:.88rem;font-weight:600;border-radius:999px;border:none;
+  padding:8px 16px;background:#1E1E1E;color:#fff;
+  font-size:13px;font-weight:400;border-radius:999px;border:none;
   cursor:pointer;transition:background .18s ease,transform .15s ease;letter-spacing:-.01em;
 }
 .msf-start-card-btn:hover{background:#333;transform:translateY(-1px)}
@@ -458,17 +459,18 @@ const CSS = `
 }
 
 /* ── QUESTION ── */
-.msf-q-card{
-  background:#fff;
-  border:1px solid #e8e8e8;
-  border-radius:16px;
-  padding:32px 32px 28px;
-  max-width:70%;
-  width:100%;
-  box-shadow:0 2px 16px rgba(0,0,0,.06)
+.msf-q-card {
   display: flex; 
   flex-direction: column; 
-  row-gap: 14px;;
+  row-gap: 14px; /* Fixed double semicolon */
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  padding: 32px 32px 28px;
+  max-width: 70%; /* Changed to a fixed max-width for better responsive scaling */
+  width: 100%;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .06); /* Added missing semicolon */
+  min-height: 70%;
 }
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
 .msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif; font-weight:600;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
@@ -480,15 +482,16 @@ const CSS = `
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;padding:24px 16px;
-  border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.2);color:#0a0a0a;
+  display:block;width:100%;max-height:100%;padding:24px 16px;
+  border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#0a0a0a;
   font-size:13px;font-weight:400;line-height:1.45;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
 }
 .msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
 .msf-option.selected {
-  background: rgba(21, 21, 21, 0.2);
-  color: #fff;
+  background: rgba(21, 21, 21, 0.02);
+  color: #1E1E1E;
+  font-weight: 600;
   
   /* Linear Gradient Border Setup */
   border: 1.5px solid transparent; /* Sets the width and acts as a fallback */
@@ -847,7 +850,7 @@ function renderStart() {
             <div class="msf-start-card-top">
               <h2 class="msf-start-card-heading">${esc(c.heading)}</h2>
             </div>
-            <div class="msf-start-card-hero" style="${bgStyle}"></div>
+           
             <div class="msf-start-card-body">
               <p class="msf-start-card-text">${esc(c.body)}</p>
               <button class="msf-start-card-btn" id="msf-start-btn">
