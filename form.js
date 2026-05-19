@@ -216,6 +216,7 @@ const CONFIG = {
       eyebrow: "A Pathway for <strong>Coachees</strong>",
       headline: "Everyone can be more coachable.",
       desc: "Preparing your people to receive coaching well — the foundation that makes every other coaching investment pay off. Most companies start here.",
+      image: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
       url: "/pathway-for-coachees",
       cta: "Check it out",
     },
@@ -224,6 +225,7 @@ const CONFIG = {
       eyebrow: "A Pathway for <strong>Coaches</strong>",
       headline: "Better results with better coaching.",
       desc: "Hands-on training that gives your leaders the tools, language and frameworks to coach their teams consistently and well.",
+      image: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
       url: "/a-pathway-for-coaches",
       cta: "Check it out",
     },
@@ -232,6 +234,7 @@ const CONFIG = {
       eyebrow: "A Pathway for <strong>Elite Performers</strong>",
       headline: "Specific training to be even better.",
       desc: "A focused program for top performers who already deliver — and want sharper feedback loops to keep raising the bar.",
+      image: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
       url: "/a-pathway-for-elite-performers",
       cta: "Check it out",
     },
@@ -240,6 +243,7 @@ const CONFIG = {
       eyebrow: "A Pathway for <strong>Peer Leaders</strong>",
       headline: "The delicate art of leading peers.",
       desc: "The most advanced pathway — for organizations ready to embed coachability into how peers grow each other.",
+      image: "https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png",
       url: "/a-pathway-for-peer-leaders",
       cta: "Check it out",
     },
@@ -313,11 +317,12 @@ const CSS = `
   overflow:hidden;
 }
 
-/* RESULTS mode — single scrollable column (no sidebar) */
+/* RESULTS mode — full page two-section layout */
 .msf-body.msf-mode-results{
   flex-direction:column;
   overflow-y:auto;
   padding:0;
+  background:#fff;
 }
 
 /* ── INTRO ── */
@@ -613,66 +618,309 @@ const CSS = `
 .msf-terms-text a{color:#0a0a0a;text-decoration:underline;text-underline-offset:2px}
 .msf-terms.error .msf-terms-box{border-color:#c94f4f}
 
-/* ── RESULTS ── */
-.msf-results-wrap{max-width:760px;width:100%;margin:0 auto;padding:52px 32px 60px}
-.msf-result-box{
-  border:1px solid #e5e5e5;border-radius:16px;padding:36px;margin-top:28px;
-  background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.03),0 8px 24px rgba(0,0,0,.04);
-}
-.msf-result-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a;text-align:center;margin-bottom:22px}
-.msf-result-type{text-align:center;margin-bottom:26px}
-.msf-result-type-letter{font-size:2.3rem;font-weight:700;letter-spacing:-.02em;color:#0a0a0a}
-.msf-result-type-name{font-size:1.05rem;font-weight:500;color:#9a9a9a;margin-left:10px}
-.msf-bar-wrap{width:100%;height:54px;border:1.5px solid #0a0a0a;border-radius:10px;display:flex;overflow:hidden;margin-bottom:10px}
-.msf-bar-fill{height:100%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.97rem;font-weight:700;transition:width 1s cubic-bezier(.4,0,.2,1);white-space:nowrap;padding:0 13px}
-.msf-bar-rest{flex:1;display:flex;align-items:center;justify-content:center;font-size:.97rem;font-weight:700;color:#0a0a0a}
-.msf-bar-labels{display:flex;justify-content:space-between;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9a9a9a;margin-bottom:26px}
-.msf-divider{width:100%;height:1px;background:#e5e5e5;margin:22px 0}
-.msf-result-response{font-size:.97rem;font-weight:500;line-height:1.65;color:#0a0a0a;margin-bottom:13px}
-.msf-result-detail{font-size:.93rem;line-height:1.7;color:#555;margin-bottom:20px}
-.msf-result-cta{font-size:.97rem;font-weight:600;color:#0a0a0a;margin-bottom:5px}
-.msf-result-rec{font-size:.93rem;color:#555;font-style:italic}
-.msf-result-note{font-size:.86rem;color:#555;line-height:1.65}
-.msf-cta-row{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
-.msf-cta-btn{
-  flex:1;min-width:180px;padding:15px 28px;border:1.5px solid #0a0a0a;
-  font-size:.93rem;font-weight:600;text-align:center;border-radius:999px;
-  cursor:pointer;transition:all .18s ease;text-decoration:none;display:inline-block;
-}
-.msf-cta-btn.primary{background:#0a0a0a;color:#fff}
-.msf-cta-btn.primary:hover{background:#333;border-color:#333}
-.msf-cta-btn.secondary{background:#fff;color:#0a0a0a}
-.msf-cta-btn.secondary:hover{background:#fafafa}
+/* ══════════════════════════════════════════
+   RESULTS — NEW DESIGN
+   ══════════════════════════════════════════ */
 
-.msf-pathways{margin-top:52px}
-.msf-pathways-title{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:700;line-height:1.2;letter-spacing:-.01em;color:#0a0a0a;margin-bottom:7px}
-.msf-pathways-subtitle{font-size:.93rem;color:#555;margin-bottom:26px;line-height:1.6}
-.msf-pathways-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.msf-pathway-card{
-  display:flex;flex-direction:column;padding:26px;
-  border:1.5px solid #e5e5e5;border-radius:14px;background:#fff;transition:border-color .18s ease;
+/* Full results page wrapper */
+.msf-res-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: #fff;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
 }
-.msf-pathway-card:hover{border-color:#9a9a9a}
-.msf-pathway-card.best{border:2px solid #0a0a0a;background:linear-gradient(180deg,#f4eefc 0%,#fff 80%);box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06)}
-.msf-pathway-badge{
-  display:inline-flex;align-items:center;gap:5px;font-size:.66rem;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#0a0a0a;
-  padding:5px 11px;border-radius:999px;margin-bottom:16px;align-self:flex-start;
-}
-.msf-pathway-eyebrow{font-size:.86rem;font-weight:500;color:#555;margin-bottom:9px}
-.msf-pathway-eyebrow strong{color:#0a0a0a;font-weight:700}
-.msf-pathway-headline{font-size:1.18rem;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:#0a0a0a;margin-bottom:12px}
-.msf-pathway-desc{font-size:.9rem;line-height:1.55;color:#555;margin-bottom:20px;flex:1}
-.msf-pathway-cta{
-  align-self:flex-start;padding:10px 20px;border:1.5px solid #0a0a0a;
-  background:#fff;color:#0a0a0a;font-size:.86rem;font-weight:600;
-  border-radius:999px;text-decoration:none;cursor:pointer;transition:all .18s ease;display:inline-block;
-}
-.msf-pathway-cta:hover{background:#0a0a0a;color:#fff}
-.msf-pathway-card.best .msf-pathway-cta{background:#0a0a0a;color:#fff}
-.msf-pathway-card.best .msf-pathway-cta:hover{background:#333;border-color:#333}
 
-/* ── RESPONSIVE ── */
+/* Results top bar */
+.msf-res-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: #F1F1F1;
+  flex-shrink: 0;
+}
+.msf-res-topbar-logo {}
+.msf-res-topbar-close {
+  width: 36px; height: 36px;
+  border: 1.5px solid #d0d0d0;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 400; color: #0a0a0a;
+  border-radius: 50%; cursor: pointer;
+  transition: all .2s ease; line-height: 1;
+}
+.msf-res-topbar-close:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+
+/* Section 1 — bg image section */
+.msf-res-section1 {
+  position: relative;
+  padding: 52px 64px 60px;
+  background-image: url(''); /* placeholder — add bg url here */
+  background-size: cover;
+  background-position: center;
+  background-color: #f5f0fc;
+}
+
+/* Centered title + subtitle */
+.msf-res-title-block {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.msf-res-title {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #1E1E1E;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.msf-res-subtitle {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-size: 15px;
+  font-weight: 400;
+  color: #484848;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Main result card */
+.msf-res-card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  padding: 36px 40px;
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.msf-res-profile-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.msf-res-type-row {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.msf-res-type-letter {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+}
+.msf-res-type-name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9a9a9a;
+  margin-left: 10px;
+}
+.msf-res-bar-wrap {
+  width: 100%; height: 52px;
+  border: 1.5px solid #0a0a0a;
+  border-radius: 10px;
+  display: flex; overflow: hidden;
+  margin-bottom: 8px;
+}
+.msf-res-bar-fill {
+  height: 100%;
+  background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .95rem; font-weight: 700;
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap; padding: 0 13px;
+}
+.msf-res-bar-rest {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem; font-weight: 700; color: #0a0a0a;
+}
+.msf-res-bar-labels {
+  display: flex; justify-content: space-between;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: #9a9a9a; margin-bottom: 24px;
+}
+.msf-res-divider {
+  width: 100%; height: 1px;
+  background: #e5e5e5; margin: 20px 0;
+}
+.msf-res-response {
+  font-size: .97rem; font-weight: 500;
+  line-height: 1.65; color: #0a0a0a; margin-bottom: 12px;
+}
+.msf-res-detail {
+  font-size: .93rem; line-height: 1.7;
+  color: #555; margin-bottom: 18px;
+}
+.msf-res-cta {
+  font-size: .97rem; font-weight: 600;
+  color: #0a0a0a; margin-bottom: 4px;
+}
+.msf-res-rec {
+  font-size: .9rem; color: #555; font-style: italic;
+}
+.msf-res-note {
+  font-size: .85rem; color: #555; line-height: 1.65;
+}
+
+/* Section 2 — white bg, pathways */
+.msf-res-section2 {
+  padding: 52px 64px 60px;
+  background: rgba(255,255,255,0.80);
+}
+
+/* Pathways header row */
+.msf-res-pw-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 28px;
+}
+.msf-res-pw-title {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1E1E1E;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.msf-res-pw-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  color: #484848;
+  line-height: 1.65;
+  max-width: 340px;
+  text-align: right;
+}
+
+/* Pathway cards grid */
+.msf-res-pw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.msf-res-pw-card {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.msf-res-pw-card:hover {
+  border-color: #9a9a9a;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+.msf-res-pw-card.best {
+  border: 2px solid #0a0a0a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.08);
+}
+.msf-res-pw-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  background: #f0f0f0;
+}
+.msf-res-pw-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.msf-res-pw-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #fff; background: #0a0a0a;
+  padding: 5px 11px; border-radius: 999px;
+  margin-bottom: 12px; align-self: flex-start;
+}
+.msf-res-pw-eyebrow {
+  font-size: 13px; font-weight: 400;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  color: #555; margin-bottom: 6px;
+}
+.msf-res-pw-eyebrow strong { color: #0a0a0a; font-weight: 700; }
+.msf-res-pw-headline {
+  font-size: 1.05rem; font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.01em;
+  color: #0a0a0a; margin-bottom: 10px;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+.msf-res-pw-desc {
+  font-size: 13px; line-height: 1.55;
+  color: #555; margin-bottom: 18px; flex: 1;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+.msf-res-pw-cta {
+  align-self: flex-start;
+  padding: 8px 18px;
+  border: 1.5px solid #0a0a0a;
+  background: #fff; color: #0a0a0a;
+  font-size: 13px; font-weight: 600;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  border-radius: 999px; text-decoration: none;
+  cursor: pointer; transition: all .18s ease;
+  display: inline-block;
+}
+.msf-res-pw-cta:hover { background: #0a0a0a; color: #fff; }
+.msf-res-pw-card.best .msf-res-pw-cta { background: #0a0a0a; color: #fff; }
+.msf-res-pw-card.best .msf-res-pw-cta:hover { background: #333; border-color: #333; }
+
+/* Bottom CTAs — right-aligned */
+.msf-res-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.msf-res-cta-btn {
+  padding: 13px 26px;
+  border: 1.5px solid #0a0a0a;
+  font-size: 13px; font-weight: 500;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  text-align: center; border-radius: 999px;
+  cursor: pointer; transition: all .18s ease;
+  text-decoration: none; display: inline-block;
+}
+.msf-res-cta-btn.primary { background: #0a0a0a; color: #fff; }
+.msf-res-cta-btn.primary:hover { background: #333; border-color: #333; }
+.msf-res-cta-btn.secondary { background: #fff; color: #0a0a0a; }
+.msf-res-cta-btn.secondary:hover { background: #f5f5f5; }
+
+/* ── RESPONSIVE — RESULTS ── */
+@media(max-width:768px){
+  .msf-res-section1, .msf-res-section2 { padding: 32px 24px 36px; }
+  .msf-res-pw-grid { grid-template-columns: 1fr; }
+  .msf-res-pw-header { flex-direction: column; gap: 10px; }
+  .msf-res-pw-subtitle { text-align: left; max-width: 100%; }
+  .msf-res-cta-row { justify-content: stretch; flex-direction: column; }
+  .msf-res-cta-btn { text-align: center; }
+  .msf-res-card { padding: 24px 20px; }
+  .msf-res-topbar { padding: 12px 20px; }
+}
+@media(max-width:640px){
+  .msf-res-title { font-size: 1.5rem; }
+  .msf-res-pw-img { height: 110px; }
+}
+
+/* ── RESPONSIVE — other steps ── */
 @media(max-width:768px){
   .msf-sidebar{display:none}
   .msf-q-card{max-width:100%;min-height:auto;padding:24px 20px}
@@ -687,15 +935,10 @@ const CSS = `
 @media(max-width:640px){
   .msf-header{padding:16px 18px}
   .msf-footer{padding:14px 18px}
-  .msf-result-box{padding:22px 18px}
-  .msf-pathways-grid{grid-template-columns:1fr}
-  .msf-pathway-card{padding:20px}
   .msf-heading{font-size:1.35rem}
   .msf-intro-content{padding:28px 20px}
   .msf-intro-heading{font-size:1.6rem}
   .msf-intro-spacer{height:40px}
-  .msf-results-wrap{padding:32px 18px 48px}
-  .msf-cta-row{flex-direction:column}
   .msf-lead-submit-btn{align-self:stretch;justify-content:center}
 }
 `;
@@ -788,19 +1031,10 @@ function bindModalEvents() {
 }
 
 /* ─── PROGRESS BAR CALCULATION ─── */
-/*
-  Steps:   0=intro, 1=start, 2...(2+N-1)=questions, 2+N=lead, 2+N+1=results
-  Progress bar shows:
-    - intro & start: hidden (0%)
-    - question qIdx (0-based): (qIdx+1) / (TOTAL+1) * 100
-      e.g. Q1 = 1/9 = 11%, Q8 = 8/9 = 89%
-    - lead form: 100%
-    - results:   100%
-*/
 function calcProgress(s) {
   if (s <= STEP_START) return 0;
   if (s >= STEP_LEAD)  return 100;
-  const qIdx = s - STEP_Q0; // 0-based question index
+  const qIdx = s - STEP_Q0;
   return Math.round(((qIdx + 1) / (TOTAL + 1)) * 100);
 }
 
@@ -822,7 +1056,7 @@ function renderStep(s) {
   const isResults = s === STEP_RES;
 
   /* header / progress visibility */
-  if (isIntro || isStart) {
+  if (isIntro || isStart || isResults) {
     header.style.display   = 'none';
     progress.style.display = 'none';
     prog.style.width       = '0%';
@@ -847,7 +1081,7 @@ function renderStep(s) {
   else if (isStart)   { body.innerHTML = renderStart();      attachStartListeners(); }
   else if (isQ)       { renderQuestionInPanel(s);  }
   else if (isLead)    { renderLeadInPanel();        }
-  else if (isResults) { body.innerHTML = renderResults(); animateBar(); }
+  else if (isResults) { body.innerHTML = renderResults(); attachResultsListeners(); animateBar(); }
 }
 
 /* ── INTRO ── */
@@ -1247,7 +1481,7 @@ function updateLeadSubmitBtn() {
   if (btn) btn.disabled = !isLeadValid();
 }
 
-/* ── RESULTS ── */
+/* ── RESULTS — NEW DESIGN ── */
 function renderResults() {
   const score = calcScore();
   const tier  = getTier(score);
@@ -1261,48 +1495,77 @@ function renderResults() {
   const pathCards = CONFIG.pathways.map(p => {
     const best = p.id === rec;
     return `
-      <article class="msf-pathway-card${best?' best':''}">
-        ${best?`<span class="msf-pathway-badge">★ Best fit for you</span>`:''}
-        <div class="msf-pathway-eyebrow">${p.eyebrow}</div>
-        <h3 class="msf-pathway-headline">${p.headline}</h3>
-        <p class="msf-pathway-desc">${p.desc}</p>
-        <a class="msf-pathway-cta" href="${p.url}">${best?'Explore this pathway':p.cta}</a>
+      <article class="msf-res-pw-card${best?' best':''}">
+        <img class="msf-res-pw-img" src="${p.image||''}" alt="${esc(p.headline)}" loading="lazy">
+        <div class="msf-res-pw-body">
+          ${best ? `<span class="msf-res-pw-badge">★ Best fit for you</span>` : ''}
+          <div class="msf-res-pw-eyebrow">${p.eyebrow}</div>
+          <h3 class="msf-res-pw-headline">${esc(p.headline)}</h3>
+          <p class="msf-res-pw-desc">${esc(p.desc)}</p>
+          <a class="msf-res-pw-cta" href="${p.url}">${best ? 'Explore this pathway' : esc(p.cta)}</a>
+        </div>
       </article>`;
   }).join('');
 
   return `
-    <div class="msf-results-wrap">
-      <div class="msf-heading">Here is our initial conclusion</div>
-      <div class="msf-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</div>
-      <div class="msf-result-box">
-        <div class="msf-result-label">Your coachability profile</div>
-        <div class="msf-result-type">
-          <span class="msf-result-type-letter">${tier.type}</span>
-          <span class="msf-result-type-name">${tier.label}</span>
+    <div class="msf-res-page">
+
+      <!-- Top bar -->
+      <div class="msf-res-topbar">
+        <div class="msf-res-topbar-logo">${CONFIG.brand}</div>
+        <button class="msf-res-topbar-close" id="msf-res-close" aria-label="Close">×</button>
+      </div>
+
+      <!-- Section 1: bg image + result card -->
+      <div class="msf-res-section1">
+        <div class="msf-res-title-block">
+          <h1 class="msf-res-title">Here is our initial conclusion</h1>
+          <p class="msf-res-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</p>
         </div>
-        <div class="msf-bar-wrap">
-          <div class="msf-bar-fill" id="msf-bar" style="width:0%" data-target="${fillW}%">${pct}%</div>
-          <div class="msf-bar-rest">${opp}%</div>
+
+        <div class="msf-res-card">
+          <div class="msf-res-profile-label">Your coachability profile</div>
+          <div class="msf-res-type-row">
+            <span class="msf-res-type-letter">${tier.type}</span>
+            <span class="msf-res-type-name">${tier.label}</span>
+          </div>
+          <div class="msf-res-bar-wrap">
+            <div class="msf-res-bar-fill" id="msf-bar" style="width:0%" data-target="${fillW}%">${pct}%</div>
+            <div class="msf-res-bar-rest">${opp}%</div>
+          </div>
+          <div class="msf-res-bar-labels">
+            <span>Current maturity</span>
+            <span>Coachability opportunity</span>
+          </div>
+          <div class="msf-res-divider"></div>
+          <div class="msf-res-response">${tier.response}</div>
+          <div class="msf-res-detail">${tier.detail}</div>
+          <div class="msf-res-cta">${tier.cta}</div>
+          <div class="msf-res-rec">→ Recommended: ${tier.recommendation}</div>
+          <div class="msf-res-divider" style="margin:20px 0 14px"></div>
+          <div class="msf-res-note">Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.</div>
         </div>
-        <div class="msf-bar-labels"><span>Current maturity</span><span>Coachability opportunity</span></div>
-        <div class="msf-divider"></div>
-        <div class="msf-result-response">${tier.response}</div>
-        <div class="msf-result-detail">${tier.detail}</div>
-        <div class="msf-result-cta">${tier.cta}</div>
-        <div class="msf-result-rec">→ Recommended: ${tier.recommendation}</div>
-        <div class="msf-divider" style="margin:22px 0 16px"></div>
-        <div class="msf-result-note">Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.</div>
       </div>
-      <div class="msf-pathways">
-        <h2 class="msf-pathways-title">${ps.title}</h2>
-        <p class="msf-pathways-subtitle">${ps.subtitle}</p>
-        <div class="msf-pathways-grid">${pathCards}</div>
+
+      <!-- Section 2: white bg, pathways -->
+      <div class="msf-res-section2">
+        <div class="msf-res-pw-header">
+          <h2 class="msf-res-pw-title">${esc(ps.title)}</h2>
+          <p class="msf-res-pw-subtitle">${esc(ps.subtitle)}</p>
+        </div>
+        <div class="msf-res-pw-grid">${pathCards}</div>
+        <div class="msf-res-cta-row">
+          <a class="msf-res-cta-btn secondary" href="${ctaC.secondary.url}">${esc(ctaC.secondary.label)}</a>
+          <a class="msf-res-cta-btn primary" href="${ctaC.primary.url}">${esc(ctaC.primary.label)}</a>
+        </div>
       </div>
-      <div class="msf-cta-row">
-        <a class="msf-cta-btn primary" href="${ctaC.primary.url}">${ctaC.primary.label}</a>
-        <a class="msf-cta-btn secondary" href="${ctaC.secondary.url}">${ctaC.secondary.label}</a>
-      </div>
+
     </div>`;
+}
+
+function attachResultsListeners() {
+  const closeBtn = document.getElementById('msf-res-close');
+  if (closeBtn && !closeBtn._b) { closeBtn.addEventListener('click', closeModal); closeBtn._b = true; }
 }
 
 function animateBar() {
