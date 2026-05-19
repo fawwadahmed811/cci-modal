@@ -945,7 +945,7 @@ const CSS = `
   text-decoration: none; display: inline-block;
 }
 .msf-res-cta-btn.primary { background: #1E1E1E; color: #fff; }
-.msf-res-cta-btn.primary:hover { background: transparent; border-color: #1E1E1E; }
+.msf-res-cta-btn.primary:hover { background: transparent; border-color: #1E1E1E;color: #1E1E1E; }
 .msf-res-cta-btn.secondary { background: transparent; color: #1E1E1E; }
 .msf-res-cta-btn.secondary:hover { background: #1E1E1E; color: #fff; }
 
