@@ -480,8 +480,8 @@ const CSS = `
 }
 .msf-option{
   display:block;width:100%;padding:14px 16px;
-  border:1.5px solid #e5e5e5;background:#fafafa;color:#0a0a0a;
-  font-size:.88rem;font-weight:500;line-height:1.45;text-align:left;
+  border:1.5px solid #e5e5e5;background: linear-gradient(180deg, rgba(255, 255, 255, 0.54) 0%, rgba(255, 255, 255, 0.35) 100%);color:#0a0a0a;
+  font-size:13px;font-weight:400;line-height:1.45;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
 }
 .msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
