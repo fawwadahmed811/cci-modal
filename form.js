@@ -901,16 +901,33 @@ const CSS = `
   align-self: flex-start;
   padding: 8px 16px;
   border: 1.5px solid #1E1E1E;
-  background: #fff; color: #1E1E1E;
+  background: transparent; color: #1E1E1E;
   font-size: 13px; font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   border-radius: 999px; text-decoration: none;
   cursor: pointer; transition: all .18s ease;
   display: inline-block;
 }
-.msf-res-pw-cta:hover { background: #8217CF; color: #fff; }
-.msf-res-pw-card.best .msf-res-pw-cta { background: #8217CF; color: #fff; }
-.msf-res-pw-card.best .msf-res-pw-cta:hover { background: #transparent; border-color: #1E1E1E; color: #1E1E1E; }
+/* Standard CTA Hover State */
+.msf-res-pw-cta:hover { 
+  background: #8217CF; 
+  color: #fff; 
+  border-color: #8217CF; 
+}
+
+/* "Best" Card CTA Default State (Inverted Colors) */
+.msf-res-pw-card.best .msf-res-pw-cta { 
+  background: #8217CF; 
+  color: #fff; 
+  border-color: #8217CF;
+}
+
+/* "Best" Card CTA Hover State (Fixing #transparent) */
+.msf-res-pw-card.best .msf-res-pw-cta:hover { 
+  background: transparent; 
+  border-color: #1E1E1E; 
+  color: #1E1E1E; /* Keep an eye on readability here */
+}
 
 /* Bottom CTAs — right-aligned */
 .msf-res-cta-row {
