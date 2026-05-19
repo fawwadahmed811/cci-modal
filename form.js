@@ -523,6 +523,14 @@ const CSS = `
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
+.lead-form-main-cont {
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.8); /* Beautiful 80% opacity white */
+  border: 1px solid transparent;        /* Fixed the "#" bug */
+  border-radius: 12px;
+  width: 100%;                          /* Fixed missing semicolon */
+  max-width: 550px;                     /* Swapped to pixels so it fits beautifully on both desktop and mobile */
+}
 /* ── FOOTER ── */
 .msf-footer{
 /*  border-top:1px solid #e5e5e5;padding:18px 32px;
@@ -1165,7 +1173,7 @@ function buildLeadScaffold() {
       </div>
       <div class="msf-panel-content" id="msf-panel-content">
         <div class="msf-panel-content-inner fade-in" id="msf-panel-inner">
-          ${leadFormHTML()}
+         <div class="lead-form-main-cont"> ${leadFormHTML()} </div>
         </div>
       </div>
     </div>`;
