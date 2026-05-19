@@ -524,7 +524,7 @@ const CSS = `
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
-/* ── LEAD FORM CARD — same visual treatment as msf-q-card ── */
+/* ── LEAD FORM CARD ── */
 .lead-form-main-cont {
   display: flex;
   flex-direction: column;
@@ -619,10 +619,9 @@ const CSS = `
 .msf-terms.error .msf-terms-box{border-color:#c94f4f}
 
 /* ══════════════════════════════════════════
-   RESULTS — NEW DESIGN
+   RESULTS — 3-COLUMN REDESIGN
    ══════════════════════════════════════════ */
 
-/* Full results page wrapper */
 .msf-res-page {
   display: flex;
   flex-direction: column;
@@ -632,49 +631,56 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 
-/* Results top bar */
-.msf-res-topbar {
+/* ── SECTION 1: gradient / bg image ── */
+.msf-res-section1 {
+  position: relative;
+  padding: 0 0 72px;
+  background-image: var(--res-bg-image, none);
+  background-size: cover;
+  background-position: center;
+  /* warm gradient fallback — replace with bg-image url via --res-bg-image CSS var or inline style */
+  background: linear-gradient(135deg, #d4622a 0%, #c45a3a 25%, #a04060 55%, #7030a0 100%);
+}
+
+/* Topbar lives inside section1 to sit on the gradient */
+.msf-res-section1-topbar-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 40px;
-  background: transparent;
-  flex-shrink: 0;
+  padding: 18px 64px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
 }
 .msf-res-topbar-logo {}
 .msf-res-topbar-close {
   width: 36px; height: 36px;
-  border: 1.5px solid #d0d0d0;
+  border: 1.5px solid rgba(255,255,255,0.35);
   background: transparent;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; font-weight: 400; color: #0a0a0a;
+  font-size: 1.2rem; font-weight: 400; color: #fff;
   border-radius: 50%; cursor: pointer;
   transition: all .2s ease; line-height: 1;
 }
-.msf-res-topbar-close:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
-
-/* Section 1 — bg image section */
-.msf-res-section1 {
-  position: relative;
-  padding: 52px 64px 60px;
-  background-image: url(''); /* placeholder — add bg url here */
-  background-size: cover;
-  background-position: center;
-  background-color: #F1F1F1;
-  border-radius: 0px;
+.msf-res-topbar-close:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.6);
 }
 
 /* Centered title + subtitle */
 .msf-res-title-block {
   text-align: center;
-  margin-bottom: 40px;
+  padding: 40px 64px 44px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
 }
 .msf-res-title {
-  font-family: 'Bitter', system-ui, sans-serif !important;
+  font-family: 'Bitter', Georgia, serif !important;
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   font-weight: 400;
   letter-spacing: -0.03em;
-  color: #1E1E1E;
+  color: #fff;
   line-height: 1.15;
   margin-bottom: 10px;
 }
@@ -682,115 +688,190 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
   font-size: 16px;
   font-weight: 400;
-  color: #484848;
+  color: rgba(255,255,255,0.72);
   line-height: 1.6;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
-/* Main result card */
-.msf-res-card {
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 16px;
-  padding-top: 120px;
-  padding-right: 32px;
-  padding-left: 32px;
-  padding-bottom: 120px;
-  max-width: 100%;
+/* ── 3-COLUMN GRID ── */
+.msf-res-3col {
+  display: grid;
+  grid-template-columns: 1fr 380px 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1440px;
   margin: 0 auto;
+  padding: 0 64px;
   width: 100%;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Left column */
+.msf-res-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.msf-res-col-left-response {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.88);
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+
+/* ── CENTER GLASS CARD ── */
+.msf-res-center-card {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.30);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.20),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+.msf-res-profile-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 16px;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+
+.msf-res-type-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.msf-res-type-letter {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  line-height: 1;
+}
+.msf-res-type-name {
+  font-size: .9rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.62);
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+
+/* Two score boxes side-by-side */
+.msf-res-score-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.msf-res-score-box {
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  padding: 16px 14px 14px;
+}
+.msf-res-score-val {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+.msf-res-score-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.16);
+  border-radius: 99px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.msf-res-score-bar-fill {
+  height: 100%;
+  background: rgba(255,255,255,0.75);
+  border-radius: 99px;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.msf-res-score-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  line-height: 1.4;
+}
+
+/* Right column */
+.msf-res-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.msf-res-col-right-detail {
+  font-size: .93rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.75);
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+.msf-res-col-right-cta {
+  font-size: .97rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  line-height: 1.45;
+}
+.msf-res-col-right-rec {
+  font-size: .83rem;
+  color: rgba(255,255,255,0.58);
+  font-style: italic;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}
+.msf-res-col-right-note {
+  font-size: .82rem;
+  color: rgba(255,255,255,0.5);
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  line-height: 1.55;
+}
+.msf-res-start-btn {
+  align-self: flex-start;
+  padding: 9px 20px;
+  background: #1E1E1E;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .18s ease, transform .15s ease;
+  text-decoration: none;
+  display: inline-block;
+  letter-spacing: -.01em;
+}
+.msf-res-start-btn:hover { background: #383838; transform: translateY(-1px); }
+.msf-res-start-btn:active { transform: scale(.97); }
+
+/* ── SECTION 2: pathways ── */
+.msf-res-section2 {
+  padding: 52px 64px 60px;
+  background: #F1F1F1;
 }
 
 .card-inner-results-top {
-    padding-top: 120px;
-    background-color: white;
-    padding-bottom: 120px;
-    padding-left: 32px;
-    padding-right: 32px;
-    border-radius: 12px;
-}
-.msf-res-profile-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9a9a9a;
-  text-align: center;
-  margin-bottom: 18px;
-}
-.msf-res-type-row {
-  text-align: center;
-  margin-bottom: 24px;
-}
-.msf-res-type-letter {
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #0a0a0a;
-}
-.msf-res-type-name {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #9a9a9a;
-  margin-left: 10px;
-}
-.msf-res-bar-wrap {
-  width: 100%; height: 52px;
-  border: 1.5px solid #0a0a0a;
-  border-radius: 10px;
-  display: flex; overflow: hidden;
-  margin-bottom: 8px;
-}
-.msf-res-bar-fill {
-  height: 100%;
-  background: #0a0a0a;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: .95rem; font-weight: 700;
-  transition: width 1s cubic-bezier(.4,0,.2,1);
-  white-space: nowrap; padding: 0 13px;
-}
-.msf-res-bar-rest {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .95rem; font-weight: 700; color: #0a0a0a;
-}
-.msf-res-bar-labels {
-  display: flex; justify-content: space-between;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: .06em; text-transform: uppercase;
-  color: #9a9a9a; margin-bottom: 24px;
-}
-.msf-res-divider {
-  width: 100%; height: 1px;
-  background: #e5e5e5; margin: 20px 0;
-}
-.msf-res-response {
-  font-size: .97rem; font-weight: 500;
-  line-height: 1.65; color: #0a0a0a; margin-bottom: 12px;
-}
-.msf-res-detail {
-  font-size: .93rem; line-height: 1.7;
-  color: #555; margin-bottom: 18px;
-}
-.msf-res-cta {
-  font-size: .97rem; font-weight: 600;
-  color: #0a0a0a; margin-bottom: 4px;
-}
-.msf-res-rec {
-  font-size: .9rem; color: #555; font-style: italic;
-}
-.msf-res-note {
-  font-size: .85rem; color: #555; line-height: 1.65;
-}
-
-/* Section 2 — white bg, pathways */
-.msf-res-section2 {
-  padding: 52px 64px 60px;
-  background: #f1f1f1;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 60px 48px;
+  border-radius: 16px;
 }
 
 /* Pathways header row */
@@ -880,7 +961,7 @@ const CSS = `
 .msf-res-pw-eyebrow {
   font-size: 13px; font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  color: #555; margin-bottom: 6px;
+  color: #555;
   padding: 4px 8px;
   border: 1px solid #8080802b;
   border-radius: 5px;
@@ -889,12 +970,12 @@ const CSS = `
 .msf-res-pw-headline {
   font-size: 13px; font-weight: 600;
   line-height: 1.25; letter-spacing: -0.01em;
-  color: #0a0a0a; margin-bottom: 10px;
+  color: #0a0a0a;
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-pw-desc {
   font-size: 13px; line-height: 1.55;
-  color: #484848; margin-bottom: 18px; flex: 1;
+  color: #484848; flex: 1;
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-pw-cta {
@@ -908,28 +989,11 @@ const CSS = `
   cursor: pointer; transition: all .18s ease;
   display: inline-block;
 }
-/* Standard CTA Hover State */
-.msf-res-pw-cta:hover { 
-  background: #8217CF; 
-  color: #fff; 
-  border-color: #8217CF; 
-}
+.msf-res-pw-cta:hover { background: #8217CF; color: #fff; border-color: #8217CF; }
+.msf-res-pw-card.best .msf-res-pw-cta { background: #8217CF; color: #fff; border-color: #8217CF; }
+.msf-res-pw-card.best .msf-res-pw-cta:hover { background: transparent; border-color: #1E1E1E; color: #1E1E1E; }
 
-/* "Best" Card CTA Default State (Inverted Colors) */
-.msf-res-pw-card.best .msf-res-pw-cta { 
-  background: #8217CF; 
-  color: #fff; 
-  border-color: #8217CF;
-}
-
-/* "Best" Card CTA Hover State (Fixing #transparent) */
-.msf-res-pw-card.best .msf-res-pw-cta:hover { 
-  background: transparent; 
-  border-color: #1E1E1E; 
-  color: #1E1E1E; /* Keep an eye on readability here */
-}
-
-/* Bottom CTAs — right-aligned */
+/* Bottom CTAs */
 .msf-res-cta-row {
   display: flex;
   gap: 12px;
@@ -945,24 +1009,45 @@ const CSS = `
   text-decoration: none; display: inline-block;
 }
 .msf-res-cta-btn.primary { background: #1E1E1E; color: #fff; }
-.msf-res-cta-btn.primary:hover { background: transparent; border-color: #1E1E1E;color: #1E1E1E; }
+.msf-res-cta-btn.primary:hover { background: transparent; border-color: #1E1E1E; color: #1E1E1E; }
 .msf-res-cta-btn.secondary { background: transparent; color: #1E1E1E; }
 .msf-res-cta-btn.secondary:hover { background: #1E1E1E; color: #fff; }
 
 /* ── RESPONSIVE — RESULTS ── */
-@media(max-width:768px){
-  .msf-res-section1, .msf-res-section2 { padding: 32px 24px 36px; }
+@media(max-width:1100px){
+  .msf-res-3col {
+    grid-template-columns: 1fr 340px 1fr;
+    gap: 28px;
+    padding: 0 40px;
+  }
+}
+@media(max-width:900px){
+  .msf-res-3col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 32px;
+  }
+  .msf-res-center-card { max-width: 440px; }
+  .msf-res-section1 { padding: 0 0 48px; }
+  .msf-res-title-block { padding: 32px 32px 32px; }
+  .msf-res-section1-topbar-wrap { padding: 14px 32px; }
+  .msf-res-pw-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:640px){
+  .msf-res-3col { padding: 0 20px; gap: 20px; }
+  .msf-res-section1-topbar-wrap { padding: 12px 20px; }
+  .msf-res-title-block { padding: 24px 20px 24px; }
+  .msf-res-section1 { padding: 0 0 36px; }
+  .msf-res-section2 { padding: 24px 16px 32px; }
+  .card-inner-results-top { padding: 28px 20px; }
+  .msf-res-title { font-size: 1.5rem; }
+  .msf-res-score-val { font-size: 1.5rem; }
   .msf-res-pw-grid { grid-template-columns: 1fr; }
-  .msf-res-pw-header { flex-direction: column; gap: 10px; }
+  .msf-res-pw-header { flex-direction: column; gap: 8px; }
   .msf-res-pw-subtitle { text-align: left; max-width: 100%; }
   .msf-res-cta-row { justify-content: stretch; flex-direction: column; }
   .msf-res-cta-btn { text-align: center; }
-  .msf-res-card { padding: 24px 20px; }
-  .msf-res-topbar { padding: 12px 20px; }
-}
-@media(max-width:640px){
-  .msf-res-title { font-size: 1.5rem; }
-  .msf-res-pw-img { height: 110px; }
+  .msf-res-center-card { max-width: 100%; }
 }
 
 /* ── RESPONSIVE — other steps ── */
@@ -1007,9 +1092,9 @@ const CSS = `
 */
 const TOTAL      = CONFIG.questions.length;
 const STEP_START = 1;
-const STEP_Q0    = 2;                    // first question
-const STEP_LEAD  = STEP_Q0 + TOTAL;     // lead form
-const STEP_RES   = STEP_LEAD + 1;       // results
+const STEP_Q0    = 2;
+const STEP_LEAD  = STEP_Q0 + TOTAL;
+const STEP_RES   = STEP_LEAD + 1;
 
 let step = 0;
 let answers        = [];
@@ -1100,7 +1185,6 @@ function renderStep(s) {
   const isLead    = s === STEP_LEAD;
   const isResults = s === STEP_RES;
 
-  /* header / progress visibility */
   if (isIntro || isStart || isResults) {
     header.style.display   = 'none';
     progress.style.display = 'none';
@@ -1111,17 +1195,14 @@ function renderStep(s) {
     prog.style.width       = calcProgress(s) + '%';
   }
 
-  /* body mode class */
   body.classList.remove('msf-mode-intro','msf-mode-start','msf-mode-panel','msf-mode-results');
   if (isIntro)        body.classList.add('msf-mode-intro');
   else if (isStart)   body.classList.add('msf-mode-start');
   else if (isResults) body.classList.add('msf-mode-results');
   else                body.classList.add('msf-mode-panel');
 
-  /* footer — always hidden (buttons are inline) */
   if (footer) footer.style.display = 'none';
 
-  /* render content */
   if (isIntro)        { body.innerHTML = renderIntro();      attachIntroListeners(); }
   else if (isStart)   { body.innerHTML = renderStart();      attachStartListeners(); }
   else if (isQ)       { renderQuestionInPanel(s);  }
@@ -1253,16 +1334,13 @@ function swapPanelInner(s) {
   const qNum  = qIdx + 1;
   const isLead = s === STEP_LEAD;
 
-  /* update top progress bar */
   if (prog) prog.style.width = calcProgress(s) + '%';
 
-  /* update counter */
   if (counter) {
     if (isLead) counter.textContent = `${String(TOTAL + 1).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
     else        counter.textContent = `${String(qNum).padStart(2,'0')} / ${String(TOTAL + 1).padStart(2,'0')}`;
   }
 
-  /* update sidebar steps */
   if (sidebar) {
     const ss = CONFIG.sidebarSteps;
     sidebar.innerHTML = ss.map((l,i) => {
@@ -1283,7 +1361,6 @@ function swapPanelInner(s) {
     return;
   }
 
-  /* fade out */
   inner.classList.remove('fade-in');
   inner.classList.add('fade-out');
 
@@ -1508,7 +1585,6 @@ function attachLeadInputListeners() {
     });
   }
 
-  /* inline submit button inside the lead form card */
   const submitBtn = document.getElementById('msf-lead-submit');
   if (submitBtn && !submitBtn._b) {
     submitBtn.addEventListener('click', () => {
@@ -1526,13 +1602,14 @@ function updateLeadSubmitBtn() {
   if (btn) btn.disabled = !isLeadValid();
 }
 
-/* ── RESULTS — NEW DESIGN ── */
+/* ══════════════════════════════════════════
+   RESULTS — 3-COLUMN LAYOUT
+   ══════════════════════════════════════════ */
 function renderResults() {
   const score = calcScore();
   const tier  = getTier(score);
   const pct   = Math.round(((score - 8) / 24) * 100);
   const opp   = 100 - pct;
-  const fillW = Math.max(pct, 15);
   const rec   = getRecommendedPathway(tier.type);
   const ctaC  = CONFIG.resultsCtas;
   const ps    = CONFIG.pathwaysSection;
@@ -1555,59 +1632,82 @@ function renderResults() {
   return `
     <div class="msf-res-page">
 
-      <!-- Top bar -->
-      <div class="msf-res-topbar">
-        <div class="msf-res-topbar-logo">${CONFIG.brand}</div>
-        <button class="msf-res-topbar-close" id="msf-res-close" aria-label="Close">×</button>
-      </div>
-
-      <!-- Section 1: bg image + result card -->
+      <!-- Section 1: gradient background -->
       <div class="msf-res-section1">
+
+        <!-- Topbar inside gradient -->
+        <div class="msf-res-section1-topbar-wrap">
+          <div class="msf-res-topbar-logo">${CONFIG.brand}</div>
+          <button class="msf-res-topbar-close" id="msf-res-close" aria-label="Close">×</button>
+        </div>
+
+        <!-- Centered title + subtitle -->
         <div class="msf-res-title-block">
           <h1 class="msf-res-title">Here is our initial conclusion</h1>
           <p class="msf-res-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</p>
         </div>
 
-        <div class="msf-res-card">
-          <div class="msf-res-profile-label">Your coachability profile</div>
-          <div class="msf-res-type-row">
-            <span class="msf-res-type-letter">${tier.type}</span>
-            <span class="msf-res-type-name">${tier.label}</span>
+        <!-- 3-column layout: left text | glass card | right text -->
+        <div class="msf-res-3col">
+
+          <!-- LEFT: tier response paragraph -->
+          <div class="msf-res-col-left">
+            <p class="msf-res-col-left-response">${tier.response}</p>
           </div>
-          <div class="msf-res-bar-wrap">
-            <div class="msf-res-bar-fill" id="msf-bar" style="width:0%" data-target="${fillW}%">${pct}%</div>
-            <div class="msf-res-bar-rest">${opp}%</div>
+
+          <!-- CENTER: glass profile card -->
+          <div class="msf-res-center-card">
+            <div class="msf-res-profile-label">Your coachability profile</div>
+            <div class="msf-res-type-row">
+              <span class="msf-res-type-letter">${tier.type}</span>
+              <span class="msf-res-type-name">${tier.label}</span>
+            </div>
+            <div class="msf-res-score-boxes">
+              <div class="msf-res-score-box">
+                <div class="msf-res-score-val" id="msf-pct-val">0%</div>
+                <div class="msf-res-score-bar">
+                  <div class="msf-res-score-bar-fill" id="msf-bar-left" data-target="${pct}"></div>
+                </div>
+                <div class="msf-res-score-lbl">Current Maturity</div>
+              </div>
+              <div class="msf-res-score-box">
+                <div class="msf-res-score-val" id="msf-opp-val">0%</div>
+                <div class="msf-res-score-bar">
+                  <div class="msf-res-score-bar-fill" id="msf-bar-right" data-target="${opp}"></div>
+                </div>
+                <div class="msf-res-score-lbl">Coachability opportunity</div>
+              </div>
+            </div>
           </div>
-          <div class="msf-res-bar-labels">
-            <span>Current maturity</span>
-            <span>Coachability opportunity</span>
+
+          <!-- RIGHT: detail + cta + recommendation -->
+          <div class="msf-res-col-right">
+            <p class="msf-res-col-right-detail">${tier.detail}</p>
+            <p class="msf-res-col-right-cta">${tier.cta}</p>
+            <p class="msf-res-col-right-rec">→ Recommended: ${tier.recommendation}</p>
+            <a class="msf-res-start-btn" href="${ctaC.primary.url}">Start now →</a>
+            <p class="msf-res-col-right-note">
+              Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.
+            </p>
           </div>
-          <div class="msf-res-divider"></div>
-          <div class="msf-res-response">${tier.response}</div>
-          <div class="msf-res-detail">${tier.detail}</div>
-          <div class="msf-res-cta">${tier.cta}</div>
-          <div class="msf-res-rec">→ Recommended: ${tier.recommendation}</div>
-          <div class="msf-res-divider" style="margin:20px 0 14px"></div>
-          <div class="msf-res-note">Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.</div>
+
         </div>
       </div>
 
-      <!-- Section 2: white bg, pathways -->
+      <!-- Section 2: pathways on light background -->
       <div class="msf-res-section2">
-           <div class="card-inner-results-top">
-           <div class="msf-res-pw-header">
-          <h2 class="msf-res-pw-title">${esc(ps.title)}</h2>
-          <p class="msf-res-pw-subtitle">${esc(ps.subtitle)}</p>
+        <div class="card-inner-results-top">
+          <div class="msf-res-pw-header">
+            <h2 class="msf-res-pw-title">${esc(ps.title)}</h2>
+            <p class="msf-res-pw-subtitle">${esc(ps.subtitle)}</p>
+          </div>
+          <div class="msf-res-pw-grid">${pathCards}</div>
+          <div class="msf-res-cta-row">
+            <a class="msf-res-cta-btn secondary" href="${ctaC.secondary.url}">${esc(ctaC.secondary.label)}</a>
+            <a class="msf-res-cta-btn primary" href="${ctaC.primary.url}">${esc(ctaC.primary.label)}</a>
+          </div>
         </div>
-        <div class="msf-res-pw-grid">${pathCards}</div>
-        <div class="msf-res-cta-row">
-          <a class="msf-res-cta-btn secondary" href="${ctaC.secondary.url}">${esc(ctaC.secondary.label)}</a>
-          <a class="msf-res-cta-btn primary" href="${ctaC.primary.url}">${esc(ctaC.primary.label)}</a>
-        </div>
-
-        </div>       
-             
-             </div>
+      </div>
 
     </div>`;
 }
@@ -1617,11 +1717,37 @@ function attachResultsListeners() {
   if (closeBtn && !closeBtn._b) { closeBtn.addEventListener('click', closeModal); closeBtn._b = true; }
 }
 
+/* Animate score bars + count-up numbers */
 function animateBar() {
   setTimeout(() => {
-    const bar = document.getElementById('msf-bar');
-    if (bar) bar.style.width = bar.dataset.target;
-  }, 80);
+    const barLeft  = document.getElementById('msf-bar-left');
+    const barRight = document.getElementById('msf-bar-right');
+    const pctEl    = document.getElementById('msf-pct-val');
+    const oppEl    = document.getElementById('msf-opp-val');
+
+    const pct = barLeft  ? parseInt(barLeft.dataset.target  || '0') : 0;
+    const opp = barRight ? parseInt(barRight.dataset.target || '0') : 0;
+
+    /* animate bar widths */
+    if (barLeft)  barLeft.style.width  = pct + '%';
+    if (barRight) barRight.style.width = opp + '%';
+
+    /* animate number count-up */
+    const duration = 70; // frames (~1.1s at 60fps)
+    let frame = 0;
+    const tick = setInterval(() => {
+      frame++;
+      const progress = frame / duration;
+      const ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      if (pctEl) pctEl.textContent = Math.round(ease * pct) + '%';
+      if (oppEl) oppEl.textContent = Math.round(ease * opp) + '%';
+      if (frame >= duration) {
+        clearInterval(tick);
+        if (pctEl) pctEl.textContent = pct + '%';
+        if (oppEl) oppEl.textContent = opp + '%';
+      }
+    }, 16);
+  }, 120);
 }
 
 /* ── SCORING ── */
@@ -1704,7 +1830,6 @@ function updateFooterForQ(s) {
   cont.style.display = 'none';
 }
 
-/* Full overlay fade transition */
 function doTransition(newStep) {
   const body = document.getElementById('msf-body');
   body.classList.remove('fade-in');
