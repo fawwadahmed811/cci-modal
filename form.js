@@ -461,7 +461,7 @@ const CSS = `
   border:1px solid #e8e8e8;
   border-radius:16px;
   padding:32px 32px 28px;
-  max-width:540px;
+  min-width:65% !important;
   width:100%;
   box-shadow:0 2px 16px rgba(0,0,0,.06);
 }
