@@ -348,7 +348,7 @@ const CSS = `
 .msf-intro-cta{
   display:inline-flex;align-items:center;gap:10px;
   padding:8px 16px;background:#0a0a0a;color:#fff;
-  font-size:.13px;font-weight:400;border-radius:999px;border:none;
+  font-size: 13px;font-weight:400;border-radius:999px;border:none;
   cursor:pointer;transition:background .18s ease,transform .18s ease;
   letter-spacing:-.01em;white-space:nowrap;
 }
