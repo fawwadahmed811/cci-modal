@@ -628,7 +628,7 @@ const CSS = `
   flex-direction: column;
   width: 100%;
   min-height: 100%;
-  background: #fff;
+  background-color: #F1F1F1;
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 
@@ -638,7 +638,7 @@ const CSS = `
   align-items: center;
   justify-content: space-between;
   padding: 14px 40px;
-  background: #F1F1F1;
+  background: transparent;
   flex-shrink: 0;
 }
 .msf-res-topbar-logo {}
@@ -660,7 +660,8 @@ const CSS = `
   background-image: url(''); /* placeholder — add bg url here */
   background-size: cover;
   background-position: center;
-  background-color: #f5f0fc;
+  background-color: #F1F1F1;
+  border-radius: 0px;
 }
 
 /* Centered title + subtitle */
@@ -669,9 +670,9 @@ const CSS = `
   margin-bottom: 40px;
 }
 .msf-res-title {
-  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-family: 'Bitter', system-ui, sans-serif !important;
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.03em;
   color: #1E1E1E;
   line-height: 1.15;
@@ -679,7 +680,7 @@ const CSS = `
 }
 .msf-res-subtitle {
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   color: #484848;
   line-height: 1.6;
@@ -692,13 +693,25 @@ const CSS = `
   background: rgba(255,255,255,0.82);
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
-  padding: 36px 40px;
-  max-width: 820px;
+  padding-top: 120px;
+  padding-right: 32px;
+  padding-left: 32px;
+  padding-bottom: 120px;
+  max-width: 100%;
   margin: 0 auto;
   width: 100%;
   box-shadow: 0 2px 24px rgba(0,0,0,0.07);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+.card-inner-results-top {
+    padding-top: 120px;
+    background-color: white;
+    padding-bottom: 120px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 12px;
 }
 .msf-res-profile-label {
   font-size: 11px;
@@ -777,7 +790,7 @@ const CSS = `
 /* Section 2 — white bg, pathways */
 .msf-res-section2 {
   padding: 52px 64px 60px;
-  background: rgba(255,255,255,0.80);
+  background: #f1f1f1;
 }
 
 /* Pathways header row */
@@ -810,7 +823,7 @@ const CSS = `
 /* Pathway cards grid */
 .msf-res-pw-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 14px;
   margin-bottom: 36px;
 }
@@ -828,61 +841,73 @@ const CSS = `
   box-shadow: 0 4px 16px rgba(0,0,0,0.07);
 }
 .msf-res-pw-card.best {
-  border: 2px solid #0a0a0a;
+  border: 1px solid #B46BF3;
+  border-radius: 24px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.08);
+  padding: 24px 16px;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 .msf-res-pw-img {
   width: 100%;
-  height: 140px;
+  height: 180px;
   object-fit: cover;
   display: block;
+  border-radius: 12px;
   background: #f0f0f0;
 }
 .msf-res-pw-body {
-  padding: 20px 22px 22px;
+  padding-top: 14px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  row-gap: 12px;
+  align-items: start;
+  justify-content: left;
 }
 .msf-res-pw-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 400; font-family: 'DM Sans';
   letter-spacing: .08em; text-transform: uppercase;
-  color: #fff; background: #0a0a0a;
-  padding: 5px 11px; border-radius: 999px;
+  color: #1E1E1E; background: #F9F9F9;
+  padding: 4px 8px; border-radius: 5px;
   margin-bottom: 12px; align-self: flex-start;
+  position: absolute;
+  top: 35px;
+  left: 30px;
 }
 .msf-res-pw-eyebrow {
   font-size: 13px; font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   color: #555; margin-bottom: 6px;
+  padding: 4px 8px;
+  border: 1px solid #8080802b;
 }
 .msf-res-pw-eyebrow strong { color: #0a0a0a; font-weight: 700; }
 .msf-res-pw-headline {
-  font-size: 1.05rem; font-weight: 700;
+  font-size: 13px; font-weight: 600;
   line-height: 1.25; letter-spacing: -0.01em;
   color: #0a0a0a; margin-bottom: 10px;
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-pw-desc {
   font-size: 13px; line-height: 1.55;
-  color: #555; margin-bottom: 18px; flex: 1;
+  color: #484848; margin-bottom: 18px; flex: 1;
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-pw-cta {
   align-self: flex-start;
-  padding: 8px 18px;
-  border: 1.5px solid #0a0a0a;
-  background: #fff; color: #0a0a0a;
-  font-size: 13px; font-weight: 600;
+  padding: 8px 16px;
+  border: 1.5px solid #1E1E1E;
+  background: #fff; color: #1E1E1E;
+  font-size: 13px; font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   border-radius: 999px; text-decoration: none;
   cursor: pointer; transition: all .18s ease;
   display: inline-block;
 }
-.msf-res-pw-cta:hover { background: #0a0a0a; color: #fff; }
-.msf-res-pw-card.best .msf-res-pw-cta { background: #0a0a0a; color: #fff; }
-.msf-res-pw-card.best .msf-res-pw-cta:hover { background: #333; border-color: #333; }
+.msf-res-pw-cta:hover { background: #8217CF; color: #fff; }
+.msf-res-pw-card.best .msf-res-pw-cta { background: #8217CF; color: #fff; }
+.msf-res-pw-card.best .msf-res-pw-cta:hover { background: #transparent; border-color: #1E1E1E; color: #1E1E1E; }
 
 /* Bottom CTAs — right-aligned */
 .msf-res-cta-row {
@@ -891,18 +916,18 @@ const CSS = `
   justify-content: flex-end;
 }
 .msf-res-cta-btn {
-  padding: 13px 26px;
-  border: 1.5px solid #0a0a0a;
-  font-size: 13px; font-weight: 500;
+  padding: 8px 16px;
+  border: 1.5px solid #1E1E1E;
+  font-size: 13px; font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   text-align: center; border-radius: 999px;
   cursor: pointer; transition: all .18s ease;
   text-decoration: none; display: inline-block;
 }
-.msf-res-cta-btn.primary { background: #0a0a0a; color: #fff; }
-.msf-res-cta-btn.primary:hover { background: #333; border-color: #333; }
-.msf-res-cta-btn.secondary { background: #fff; color: #0a0a0a; }
-.msf-res-cta-btn.secondary:hover { background: #f5f5f5; }
+.msf-res-cta-btn.primary { background: #1E1E1E; color: #fff; }
+.msf-res-cta-btn.primary:hover { background: transparent; border-color: #1E1E1E; }
+.msf-res-cta-btn.secondary { background: transparent; color: #1E1E1E; }
+.msf-res-cta-btn.secondary:hover { background: #1E1E1E; color: #fff; }
 
 /* ── RESPONSIVE — RESULTS ── */
 @media(max-width:768px){
