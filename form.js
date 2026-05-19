@@ -835,6 +835,7 @@ const CSS = `
   background: #fff;
   overflow: hidden;
   transition: border-color .18s ease, box-shadow .18s ease;
+  padding: 24px 16px;
 }
 .msf-res-pw-card:hover {
   border-color: #9a9a9a;
@@ -846,6 +847,7 @@ const CSS = `
   box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.08);
   padding: 24px 16px;
   background-color: rgba(0, 0, 0, 0.02);
+  position: relative;
 }
 .msf-res-pw-img {
   width: 100%;
@@ -881,6 +883,7 @@ const CSS = `
   color: #555; margin-bottom: 6px;
   padding: 4px 8px;
   border: 1px solid #8080802b;
+  border-radius: 5px;
 }
 .msf-res-pw-eyebrow strong { color: #0a0a0a; font-weight: 700; }
 .msf-res-pw-headline {
