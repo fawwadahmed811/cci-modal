@@ -491,7 +491,7 @@ const CSS = `
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;min-height:120px;padding:24px 16px;
+  display:block;width:100%;min-height:100px;padding:24px 16px;
   border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#484848;
   font-size:13px;font-weight:400;font-family: "DM Sans", sans-serif !important;line-height:1.45;text-align:left;
   border-radius:24px;transition:all .18s ease;cursor:pointer;
@@ -505,7 +505,7 @@ const CSS = `
   /* Linear Gradient Border Setup */
   border: 1.5px solid #8217cf; /* Sets the width and acts as a fallback */
 }
-.msf-option.selected:hover{background:#0a0a0a}
+.msf-option.selected:hover{background: rgba(21, 21, 21, 0.02)}
 /* multiple-choice checkmark */
 .msf-check{
   display:inline-flex;align-items:center;justify-content:center;
