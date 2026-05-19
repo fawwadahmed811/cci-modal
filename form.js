@@ -266,6 +266,9 @@ const CSS = `
   color:#0a0a0a;overflow:hidden;
   opacity:0;transform:translateY(18px);
   transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1);
+  background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png') center / cover no-repeat;
+
+  
 }
 #msf-overlay.msf-visible{opacity:1;transform:translateY(0)}
 #msf-overlay *{font-family:inherit}
@@ -327,7 +330,7 @@ const CSS = `
 }
 .msf-intro-bg{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;background-color:#f5f5f5;
+background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg') center / cover no-repeat;
 }
 .msf-intro-content{
   position:relative;z-index:1;
@@ -356,7 +359,7 @@ const CSS = `
 
 /* ── SIDEBAR ── */
 .msf-sidebar{
-  width:300px;min-width:180px;flex-shrink:0;
+  width:300px;min-width:300px;flex-shrink:0;
   display:flex;flex-direction:column;
   padding:32px 28px;background:transparent;overflow-y:auto;
 }
