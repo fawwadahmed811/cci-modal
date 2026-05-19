@@ -272,8 +272,9 @@ const CSS = `
 
 /* ── HEADER ── */
 .msf-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;flex-shrink:0;
+ /* display:flex;justify-content:space-between;align-items:center;
+  padding:22px 32px;flex-shrink:0; */
+  display: none !important;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -356,7 +357,7 @@ const CSS = `
 
 /* ── SIDEBAR ── */
 .msf-sidebar{
-  width:220px;min-width:180px;flex-shrink:0;
+  width:25%;min-width:180px;flex-shrink:0;
   display:flex;flex-direction:column;
   padding:32px 28px;background:transparent;overflow-y:auto;
 }
@@ -463,11 +464,14 @@ const CSS = `
   padding:32px 32px 28px;
   max-width:540px;
   width:100%;
-  box-shadow:0 2px 16px rgba(0,0,0,.06);
+  box-shadow:0 2px 16px rgba(0,0,0,.06)
+  display: flex; 
+  flex-direction: column; 
+  row-gap: 14px;;
 }
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
-.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#0a0a0a}
-.msf-subtitle{font-size:.93rem;font-weight:400;color:#555;margin-bottom:22px;line-height:1.6;max-width:600px}
+.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif; font-weight:600;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
+.msf-subtitle{font-size:.93rem;font-weight:400;font-family: "DM Sans", sans-serif;color:#484848;margin-bottom:22px;line-height:1.6;max-width:600px}
 .msf-options-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -493,16 +497,18 @@ const CSS = `
 
 /* Insight block */
 .msf-insight{
-  margin-top:20px;border-left:3px solid #0a0a0a;padding-left:18px;
+ /* margin-top:20px;border-left:3px solid #0a0a0a;padding-left:18px;  */
+ display: none ! important;
 }
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
 /* ── FOOTER ── */
 .msf-footer{
-  border-top:1px solid #e5e5e5;padding:18px 32px;
+/*  border-top:1px solid #e5e5e5;padding:18px 32px;
   display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;gap:12px;
+  flex-shrink:0;gap:12px; */
+  display:none !important;
 }
 .msf-btn-back{
   padding:13px 26px;border:1.5px solid #e5e5e5;background:transparent;
