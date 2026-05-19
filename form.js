@@ -261,6 +261,9 @@ const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 #msf-overlay{
   position:fixed;inset:0;background: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png');z-index:99999;
+  background-size: cover;      /* Acts like object-fit: cover */
+  background-position: center;  /* Keeps the image centered so it crops evenly */
+  background-repeat: no-repeat;
   display:flex;flex-direction:column;
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   color:#0a0a0a;overflow:hidden;
