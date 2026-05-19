@@ -431,7 +431,7 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
 /* ── START CARD ── */
 .msf-start-card{
   background:#fff;border:1px solid #e5e5e5;border-radius:16px;
-  overflow:hidden;max-width:520px;box-shadow:0 2px 12px rgba(0,0,0,.06);
+  overflow:hidden;max-width:65%;box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 .msf-start-card-top{padding:28px 28px 20px}
 .msf-start-card-heading{
@@ -439,8 +439,10 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
   letter-spacing:-.02em;color:#0a0a0a;
 }
 .msf-start-card-hero{
-  width:100%;height:220px;background-size:cover;
-  background-position:center top;background-color:#ece9f5;
+  /* width:100%;height:220px;background-size:cover;
+  background-position:center top;background-color:#ece9f5; */
+
+  display: none !important;
 }
 .msf-start-card-body{padding:22px 28px 26px}
 .msf-start-card-text{font-size:.93rem;line-height:1.65;color:#555;margin-bottom:22px}
