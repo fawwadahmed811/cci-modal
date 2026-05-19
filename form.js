@@ -266,18 +266,14 @@ const CSS = `
   color:#0a0a0a;overflow:hidden;
   opacity:0;transform:translateY(18px);
   transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1);
-  background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png') center / cover no-repeat;
-
-  
 }
 #msf-overlay.msf-visible{opacity:1;transform:translateY(0)}
 #msf-overlay *{font-family:inherit}
 
 /* ── HEADER ── */
 .msf-header{
-  /*display:flex;justify-content:space-between;align-items:center;
-  padding:22px 32px;flex-shrink:0;*/
-  display: none !important;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 32px;flex-shrink:0;
 }
 .msf-logo{font-size:.95rem;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
 .msf-close{
@@ -330,7 +326,8 @@ const CSS = `
 }
 .msf-intro-bg{
   position:absolute;inset:0;
-background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg') center / cover no-repeat;
+  background-image:url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b5e9b7779453863f4d3fb_Block%3DWelcome%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.jpg');
+  background-size:cover;background-position:center;background-color:#f5f5f5;
 }
 .msf-intro-content{
   position:relative;z-index:1;
@@ -359,7 +356,7 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
 
 /* ── SIDEBAR ── */
 .msf-sidebar{
-  width:300px;min-width:300px;flex-shrink:0;
+  width:220px;min-width:180px;flex-shrink:0;
   display:flex;flex-direction:column;
   padding:32px 28px;background:transparent;overflow-y:auto;
 }
@@ -431,7 +428,7 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
 /* ── START CARD ── */
 .msf-start-card{
   background:#fff;border:1px solid #e5e5e5;border-radius:16px;
-  overflow:hidden;max-width:65%;box-shadow:0 2px 12px rgba(0,0,0,.06);
+  overflow:hidden;max-width:520px;box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 .msf-start-card-top{padding:28px 28px 20px}
 .msf-start-card-heading{
@@ -439,10 +436,8 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
   letter-spacing:-.02em;color:#0a0a0a;
 }
 .msf-start-card-hero{
-  /* width:100%;height:220px;background-size:cover;
-  background-position:center top;background-color:#ece9f5; */
-
-  display: none !important;
+  width:100%;height:220px;background-size:cover;
+  background-position:center top;background-color:#ece9f5;
 }
 .msf-start-card-body{padding:22px 28px 26px}
 .msf-start-card-text{font-size:.93rem;line-height:1.65;color:#555;margin-bottom:22px}
@@ -498,20 +493,16 @@ background: #f5f5f5 url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f1
 
 /* Insight block */
 .msf-insight{
-  margin-top:28px;border-left:3px solid #0a0a0a;padding-left:18px;
-  animation:msfIn .3s ease;
+  margin-top:20px;border-left:3px solid #0a0a0a;padding-left:18px;
 }
-@keyframes msfIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .msf-insight-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px}
 .msf-insight-text{font-size:.93rem;line-height:1.6;color:#555}
 
 /* ── FOOTER ── */
 .msf-footer{
- /* border-top:1px solid #e5e5e5;padding:18px 32px;
+  border-top:1px solid #e5e5e5;padding:18px 32px;
   display:flex;justify-content:space-between;align-items:center;
-  // flex-shrink:0;gap:12px;
-  */
-  display: none !important; 
+  flex-shrink:0;gap:12px;
 }
 .msf-btn-back{
   padding:13px 26px;border:1.5px solid #e5e5e5;background:transparent;
@@ -828,11 +819,11 @@ function renderStart() {
   return `
     <div class="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
-      <div class="msf-sidebar-steps">${stepsHtml}</div>
+      <div class="msf-sidebar-steps" id="msf-sidebar-steps">${stepsHtml}</div>
     </div>
     <div class="msf-panel-right">
-      <div class="msf-panel-header">
-        <span class="msf-panel-counter">00 / ${totalSteps}</span>
+      <div class="msf-panel-header" id="msf-panel-header">
+        <span class="msf-panel-counter" id="msf-panel-counter">00 / ${totalSteps}</span>
         <span class="msf-panel-tagline">Unlock your potential</span>
         <button class="msf-panel-close" id="msf-panel-close" aria-label="Close">×</button>
       </div>
@@ -998,7 +989,7 @@ function questionHTML(s) {
   }).join('');
 
   const insightHTML = showInsight ? `
-    <div class="msf-insight" style="margin-top:20px;">
+    <div class="msf-insight">
       <div class="msf-insight-label">${q.insight.label}</div>
       <div class="msf-insight-text">${q.insight.text}</div>
     </div>` : '';
@@ -1072,7 +1063,7 @@ function revealInsight(s) {
   const c    = document.getElementById('msf-insight');
   if (!c || !show || c.querySelector('.msf-insight')) return;
   c.innerHTML = `
-    <div class="msf-insight" style="margin-top:20px;">
+    <div class="msf-insight">
       <div class="msf-insight-label">${q.insight.label}</div>
       <div class="msf-insight-text">${q.insight.text}</div>
     </div>`;
