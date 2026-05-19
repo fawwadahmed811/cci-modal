@@ -1549,7 +1549,8 @@ function renderResults() {
 
       <!-- Section 2: white bg, pathways -->
       <div class="msf-res-section2">
-        <div class="msf-res-pw-header">
+           <div class="card-inner-results-top">
+           <div class="msf-res-pw-header">
           <h2 class="msf-res-pw-title">${esc(ps.title)}</h2>
           <p class="msf-res-pw-subtitle">${esc(ps.subtitle)}</p>
         </div>
@@ -1558,7 +1559,10 @@ function renderResults() {
           <a class="msf-res-cta-btn secondary" href="${ctaC.secondary.url}">${esc(ctaC.secondary.label)}</a>
           <a class="msf-res-cta-btn primary" href="${ctaC.primary.url}">${esc(ctaC.primary.label)}</a>
         </div>
-      </div>
+
+        </div>       
+             
+             </div>
 
     </div>`;
 }
