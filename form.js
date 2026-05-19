@@ -359,7 +359,7 @@ const CSS = `
 .msf-sidebar{
   width:25%;min-width:180px;flex-shrink:0;
   display:flex;flex-direction:column;
-  padding:32px 28px;background:transparent;overflow-y:auto;
+  padding: 18px 32px 28px;background:transparent;overflow-y:auto;
 }
 .msf-sidebar-brand{
   font-size:1.4rem;font-weight:700;letter-spacing:-.03em;
@@ -409,8 +409,8 @@ const CSS = `
   transition:opacity .2s ease,transform .2s ease;
   width:100%;
 }
-.msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px)}
-.msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0)}
+.msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px); height: 100%; max-height:90%;}
+.msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0); max-height: 100%;}
 
 /* ── QUESTION IN-CARD CONTINUE ── */
 .msf-q-continue-row{
@@ -418,8 +418,8 @@ const CSS = `
 }
 .msf-q-continue-btn{
   display:inline-flex;align-items:center;gap:8px;
-  padding:12px 24px;background:#0a0a0a;color:#fff;
-  font-size:.9rem;font-weight:600;border-radius:999px;border:none;
+  padding:8px 16px;background:#0a0a0a;color:#fff;
+  font-size:.9rem;font-weight:400;border-radius:999px;border:none;
   cursor:pointer;transition:background .18s ease,transform .15s ease;
 }
 .msf-q-continue-btn:hover:not(:disabled){background:#333}
@@ -428,14 +428,23 @@ const CSS = `
 
 /* ── START CARD ── */
 .msf-start-card{
-  background:#fff;border:1px solid #e5e5e5;border-radius:16px;
+  background:#fff;border:1px solid transparent;border-radius:12px;
   overflow:hidden;max-width:70%;box-shadow:0 2px 12px rgba(0,0,0,.06);
-  min-height: 70%;
+  height: 100%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: space-between;
 }
 .msf-start-card-top{padding:28px 28px 20px}
-.msf-start-card-heading{
-  font-size:1.45rem;font-weight:600;font-family: 'DM Sans';line-height:1.2;
-  letter-spacing:-0.5px;color:#1E1E1E;
+.msf-start-card-heading {
+  font-size: 1.45rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif !important; /* Added a clean fallback */
+  line-height: 1.2;
+  letter-spacing: -0.02em; /* Optional: converted to a clean, relative tracking value */
+  color: #1E1E1E;
 }
 .msf-start-card-hero{
   /* width:100%;height:220px;background-size:cover;
@@ -443,11 +452,11 @@ const CSS = `
   display: none !important;
 }
 .msf-start-card-body{padding:22px 28px 26px}
-.msf-start-card-text{font-size:14px;font-family: 'DM Sans';line-height:18px;color:#484848;margin-bottom:18px;max-width: 380px;width: 100%;}
+.msf-start-card-text{font-size:14px;font-family: 'DM Sans' !important;line-height:18px;color:#484848;margin-bottom:18px;max-width: 65%;width: 100%;}
 .msf-start-card-btn{
   display:inline-flex;align-items:center;gap:8px;
   padding:8px 16px;background:#1E1E1E;color:#fff;
-  font-size:13px;font-weight:400;border-radius:999px;border:none;
+  font-size:13px;font-weight:400;border-radius:999px;font-family: 'DM Sans' !important;border:none;
   cursor:pointer;transition:background .18s ease,transform .15s ease;letter-spacing:-.01em;
 }
 .msf-start-card-btn:hover{background:#333;transform:translateY(-1px)}
@@ -463,18 +472,18 @@ const CSS = `
   display: flex; 
   flex-direction: column; 
   row-gap: 14px; /* Fixed double semicolon */
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 16px;
-  padding: 32px 32px 28px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #transparent;
+  border-radius: 12px;
+  padding: 32px 32px;
   max-width: 70%; /* Changed to a fixed max-width for better responsive scaling */
   width: 100%;
   box-shadow: 0 2px 16px rgba(0, 0, 0, .06); /* Added missing semicolon */
-  min-height: 70%;
+  min-height: 90%;
 }
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
-.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif; font-weight:600;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
-.msf-subtitle{font-size:.93rem;font-weight:400;font-family: "DM Sans", sans-serif;color:#484848;margin-bottom:22px;line-height:1.6;max-width:600px}
+.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif; font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
+.msf-subtitle{font-size:14px;font-weight:400;font-family: "DM Sans", sans-serif !important;color:#484848;margin-bottom:22px;line-height:1.6;max-width:500px}
 .msf-options-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -483,8 +492,8 @@ const CSS = `
 }
 .msf-option{
   display:block;width:100%;max-height:100%;padding:24px 16px;
-  border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#0a0a0a;
-  font-size:13px;font-weight:400;line-height:1.45;text-align:left;
+  border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#484848;
+  font-size:13px;font-weight:400;font-family: "DM Sans", sans-serif !important;line-height:1.45;text-align:left;
   border-radius:10px;transition:all .18s ease;cursor:pointer;
 }
 .msf-option:hover{border-color:#0a0a0a;background:#f5f5f5}
@@ -645,7 +654,7 @@ const CSS = `
   .msf-intro-heading{font-size:1.6rem}
   .msf-intro-spacer{height:40px}
   .msf-sidebar{display:none}
-  .msf-panel-content{padding:28px 20px 24px}
+  .msf-panel-content{padding: 28px 32px 24px;}
   .msf-results-wrap{padding:32px 18px 48px}
   .msf-cta-row{flex-direction:column}
 }
