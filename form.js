@@ -410,7 +410,7 @@ const CSS = `
   width:100%;
 }
 .msf-panel-content-inner.fade-out{opacity:0;transform:translateY(10px); height: 100%; min-height:90%;}
-.msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0); max-height: 100%;}
+.msf-panel-content-inner.fade-in{opacity:1;transform:translateY(0); min-height: 100%;}
 
 /* ── QUESTION IN-CARD CONTINUE ── */
 .msf-q-continue-row{
@@ -482,7 +482,7 @@ const CSS = `
   min-height: 90%;
 }
 .msf-step-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:16px}
-.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif; font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
+.msf-heading{font-size:clamp(1.25rem,2.8vw,1.65rem);font-family: "DM Sans", sans-serif !important; font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#1E1E1E}
 .msf-subtitle{font-size:14px;font-weight:400;font-family: "DM Sans", sans-serif !important;color:#484848;margin-bottom:22px;line-height:1.6;max-width:500px}
 .msf-options-grid{
   display:grid;
@@ -491,7 +491,7 @@ const CSS = `
   margin-bottom:0;
 }
 .msf-option{
-  display:block;width:100%;min-height:100px;padding:24px 16px;
+  display:block;width:100%;max-height:100%;padding:22px 18px;
   border:1.5px solid transparent;border-radius: 24px;background: rgba(21, 21, 21, 0.02);color:#484848;
   font-size:13px;font-weight:400;font-family: "DM Sans", sans-serif !important;line-height:1.45;text-align:left;
   border-radius:24px;transition:all .18s ease;cursor:pointer;
