@@ -260,7 +260,7 @@ const CONFIG = {
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 #msf-overlay{
-  position:fixed;inset:0;background:#F9F9F9;z-index:99999;
+  position:fixed;inset:0;background: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0b63162f0a05ed816fed16_Block%3D00-Step%2C%20Version%3DPrincipal%2C%20Viewport%3DDesktop%2C%20Status%3DDefault.png');z-index:99999;
   display:flex;flex-direction:column;
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   color:#0a0a0a;overflow:hidden;
@@ -429,7 +429,7 @@ const CSS = `
 /* ── START CARD ── */
 .msf-start-card{
   background:#fff;border:1px solid #e5e5e5;border-radius:16px;
-  overflow:hidden;max-width:520px;box-shadow:0 2px 12px rgba(0,0,0,.06);
+  overflow:hidden;max-width:70%;box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 .msf-start-card-top{padding:28px 28px 20px}
 .msf-start-card-heading{
@@ -437,8 +437,9 @@ const CSS = `
   letter-spacing:-.02em;color:#0a0a0a;
 }
 .msf-start-card-hero{
-  width:100%;height:220px;background-size:cover;
-  background-position:center top;background-color:#ece9f5;
+  /* width:100%;height:220px;background-size:cover;
+  background-position:center top;background-color:#ece9f5; */
+  display: none !important;
 }
 .msf-start-card-body{padding:22px 28px 26px}
 .msf-start-card-text{font-size:.93rem;line-height:1.65;color:#555;margin-bottom:22px}
@@ -462,7 +463,7 @@ const CSS = `
   border:1px solid #e8e8e8;
   border-radius:16px;
   padding:32px 32px 28px;
-  max-width:540px;
+  max-width:70%;
   width:100%;
   box-shadow:0 2px 16px rgba(0,0,0,.06)
   display: flex; 
