@@ -7,8 +7,8 @@ const CONFIG = {
   submitUrl: "",
 
   intro: {
-    heading: "Discover your coaching culture readiness",
-    body: "8 questions. 2 minutes. A data-informed snapshot of where coachability may be your biggest untapped performance lever.",
+    heading: "I am a title that will be modified by Iñaki.",
+    body: "I am a subtitle that will be modified by Iñaki.",
     insightLabel: "What you'll get",
     insightText: "A personalized assessment of your organization's coaching culture maturity — with a specific recommendation on where to start.",
     ctaLabel: "Start assessment",
