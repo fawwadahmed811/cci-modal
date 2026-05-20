@@ -759,7 +759,7 @@ const CSS = `
     align-items: center;
     justify-content: space-between;
     margin-bottom: 22px;
-    width: auto;
+    width: 20%;
 }
 .msf-res-type-letter {
   font-size: 48px;
@@ -833,7 +833,7 @@ const CSS = `
 .msf-res-col-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 .msf-res-col-right-detail {
   font-size: .93rem;
@@ -842,17 +842,20 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-col-right-cta {
-  font-size: .97rem;
-  font-weight: 700;
-  color: #fff;
-  font-family: 'DM Sans', system-ui, sans-serif !important;
-  line-height: 1.45;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Bitter', system-ui, sans-serif !important;
+    line-height: 1.45;
 }
 .msf-res-col-right-rec {
-  font-size: .83rem;
-  color: rgba(255,255,255,0.58);
-  font-style: italic;
-  font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: .83rem;
+    color: #fff;
+    font-style: normal;
+    font-family: 'Bitter', system-ui, sans-serif !important;
+}
+
+
 }
 .msf-res-col-right-note {
   font-size: .82rem;
