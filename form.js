@@ -655,16 +655,17 @@ const CSS = `
 .msf-res-topbar-logo {}
 .msf-res-topbar-close {
   width: 36px; height: 36px;
-  border: 1.5px solid rgba(255,255,255,0.35);
+  border: 1.5px solid #010101;
   background: transparent;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; font-weight: 400; color: #fff;
+  font-size: 1.2rem; font-weight: 400; color: #010101;
   border-radius: 50%; cursor: pointer;
   transition: all .2s ease; line-height: 1;
 }
 .msf-res-topbar-close:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.6);
+  background: #010101;
+  border-color: transparent;
+  color: #fff;
 }
 
 /* Centered title + subtitle */
@@ -862,6 +863,7 @@ const CSS = `
   color: rgba(255,255,255,0.5);
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.55;
+  display: none;
 }
 .msf-res-start-btn {
   align-self: flex-start;
@@ -1706,7 +1708,7 @@ function renderResults() {
           <div class="msf-res-col-right">
             <p class="msf-res-col-right-detail">${tier.detail}</p>
             <p class="msf-res-col-right-cta">${tier.cta}</p>
-            <p class="msf-res-col-right-rec">→ Recommended: ${tier.recommendation}</p>
+            <p class="msf-res-col-right-rec"> Recommended: ${tier.recommendation}</p>
             <a class="msf-res-start-btn" href="${ctaC.primary.url}">Start now →</a>
             <p class="msf-res-col-right-note">
               Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.
