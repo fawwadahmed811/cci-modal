@@ -639,7 +639,7 @@ const CSS = `
   background-size: cover;
   background-position: center;
   /* warm gradient fallback — replace with bg-image url via --res-bg-image CSS var or inline style */
-  background-color: ##f1f1f1;
+  background-color: #f1f1f1;
 }
 
 /* Topbar lives inside section1 to sit on the gradient */
