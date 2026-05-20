@@ -861,7 +861,7 @@ const CSS = `
 }
 .msf-res-col-right-note {
   font-size: .82rem;
-  color: rgba(255,255,255,0.5);
+  color: white;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.55;
   display: none !important;
