@@ -745,7 +745,7 @@ const CSS = `
 .msf-res-profile-label {
   font-size: 24px;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: normal;
   color: #fff;
   margin-bottom: 16px;
   font-family: 'DM Sans', system-ui, sans-serif !important;
