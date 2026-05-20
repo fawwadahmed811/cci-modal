@@ -863,7 +863,7 @@ const CSS = `
   color: rgba(255,255,255,0.5);
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.55;
-  display: none;
+  display: none !important;
 }
 .msf-res-start-btn {
   align-self: flex-start;
