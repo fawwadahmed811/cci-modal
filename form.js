@@ -697,18 +697,22 @@ const CSS = `
 /* ── 3-COLUMN GRID ── */
 .msf-res-3col {
   display: grid;
-  grid-template-columns: 1fr 420px 1fr;
+  /* Fixed: Swapped hard-coded 420px for a minmax to prevent browser overflow on laptops */
+  grid-template-columns: 1fr minmax(300px, 420px) 1fr;
   gap: 60px;
   align-items: center;
   max-width: 1300px;
   margin: 0 auto;
   padding: 120px 32px;
   width: 100%;
-  background: url(https://cdn.prod.website-files.com/65fdd9a…/6a0cf1f…_Hero%20(1).png);
+  
+  /* CRITICAL: Replace these dummy paths with your full, un-truncated image URLs */
+  background-image: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0cf1f8c9d484062a2cd6be_Hero%20(1).png');
   background-size: cover;
+  background-position: center; /* Keeps the asset centered when scaling */
+  
   border-radius: 12px;
 }
-
 /* Left column */
 .msf-res-col-left {
   display: flex;
