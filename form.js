@@ -775,6 +775,7 @@ const CSS = `
   font-weight: 400;
   color: #fff;
   font-family: 'Bitter', system-ui, sans-serif !important;
+  text-align: center;
 }
 
 /* Two score boxes side-by-side */
