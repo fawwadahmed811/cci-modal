@@ -639,7 +639,7 @@ const CSS = `
   background-size: cover;
   background-position: center;
   /* warm gradient fallback — replace with bg-image url via --res-bg-image CSS var or inline style */
-  background: linear-gradient(135deg, #d4622a 0%, #c45a3a 25%, #a04060 55%, #7030a0 100%);
+  background-color: ##f1f1f1;
 }
 
 /* Topbar lives inside section1 to sit on the gradient */
@@ -680,7 +680,7 @@ const CSS = `
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   font-weight: 400;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: #1E1E1E;
   line-height: 1.15;
   margin-bottom: 10px;
 }
@@ -688,7 +688,7 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
   font-size: 16px;
   font-weight: 400;
-  color: rgba(255,255,255,0.72);
+  color: #484848;
   line-height: 1.6;
   max-width: 480px;
   margin: 0 auto;
@@ -697,13 +697,16 @@ const CSS = `
 /* ── 3-COLUMN GRID ── */
 .msf-res-3col {
   display: grid;
-  grid-template-columns: 1fr 380px 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 420px 1fr;
+  gap: 60px;
   align-items: center;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 120px 32px;
   width: 100%;
+  background: url(https://cdn.prod.website-files.com/65fdd9a…/6a0cf1f…_Hero%20(1).png);
+  background-size: cover;
+  border-radius: 12px;
 }
 
 /* Left column */
@@ -731,37 +734,44 @@ const CSS = `
   box-shadow:
     0 8px 40px rgba(0,0,0,0.20),
     inset 0 1px 0 rgba(255,255,255,0.28);
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 
 .msf-res-profile-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 24px;
+  font-weight: 400;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.58);
+  color: #fff;
   margin-bottom: 16px;
   font-family: 'DM Sans', system-ui, sans-serif !important;
+  width: 80%;
+  flex-grow: 1;
 }
 
 .msf-res-type-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    width: auto;
 }
 .msf-res-type-letter {
-  font-size: 2.6rem;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 500;
   letter-spacing: -0.03em;
   color: #fff;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1;
 }
 .msf-res-type-name {
-  font-size: .9rem;
+  font-size: 13px;
   font-weight: 400;
-  color: rgba(255,255,255,0.62);
-  font-family: 'DM Sans', system-ui, sans-serif !important;
+  color: #fff;
+  font-family: 'Bitter', system-ui, sans-serif !important;
 }
 
 /* Two score boxes side-by-side */
@@ -771,19 +781,19 @@ const CSS = `
   gap: 10px;
 }
 .msf-res-score-box {
-  background: rgba(255,255,255,0.13);
-  border: 1px solid rgba(255,255,255,0.18);
+  background-color: rgba(0, 0, 0, 0.12);
+  border: 1px solid transparent;
   border-radius: 12px;
   padding: 16px 14px 14px;
 }
 .msf-res-score-val {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #fff;
-  line-height: 1;
-  margin-bottom: 10px;
-  font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-score-bar {
   width: 100%;
@@ -800,12 +810,19 @@ const CSS = `
   width: 0%;
   transition: width 1.2s cubic-bezier(.4,0,.2,1);
 }
+
+#msf-bar-left{
+      background: linear-gradient(to right, #D7A7FF 0%, #E3BFFC 55%, #F3DCF9 95%) !important;
+}
+#msf-bar-right {
+    background: linear-gradient(to right, #BCDD53 0%, #B8E559 29%, #B5EC5D 85%);
+}
 .msf-res-score-lbl {
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  text-transform: normal;
+  color: #fff;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.4;
 }
