@@ -705,12 +705,10 @@ const CSS = `
   margin: 0 auto;
   padding: 120px 32px;
   width: 100%;
-  
   /* CRITICAL: Replace these dummy paths with your full, un-truncated image URLs */
   background-image: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0cf1f8c9d484062a2cd6be_Hero%20(1).png');
   background-size: cover;
   background-position: center; /* Keeps the asset centered when scaling */
-  
   border-radius: 12px;
 }
 /* Left column */
