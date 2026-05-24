@@ -175,10 +175,12 @@ const CONFIG = {
     submitLabel: "Get my results",
   },
 
+  /* ── CHANGE 1: added maturityPct + opportunityPct to every tier ── */
   tiers: [
     {
       type: "A", label: "Foundational",
       scoreMin: 8, scoreMax: 13,
+      maturityPct: 35, opportunityPct: 65,
       response: "Your organization appears to invest in coaching, but adoption and behavior change may be inconsistent. In environments like this, the gap is rarely intent — it's usually application.",
       detail: "Coaching conversations may be happening, but without a deliberate focus on coachability, even the best coaching struggles to translate into lasting performance improvement. Organizations at this stage often see the fastest transformation once they address the receiving side of coaching.",
       cta: "Want to see where coachability may be limiting performance — and how to quantify it?",
@@ -187,6 +189,7 @@ const CONFIG = {
     {
       type: "B", label: "Emerging",
       scoreMin: 14, scoreMax: 19,
+      maturityPct: 45, opportunityPct: 60,
       response: "Your organization has begun building a coaching culture, and there are signs of progress — but the results are uneven. Coaching impact depends too heavily on individual receptivity rather than a systematic capability.",
       detail: "You're past the starting line, which matters. The next move is turning coachability from something that varies person-to-person into a measurable, trainable skill across your teams. That shift is what separates organizations that coach from organizations where coaching works.",
       cta: "Ready to make coachability a measurable skill?",
@@ -195,6 +198,7 @@ const CONFIG = {
     {
       type: "C", label: "Strategic",
       scoreMin: 20, scoreMax: 25,
+      maturityPct: 50, opportunityPct: 55,
       response: "Organizations operating at this level don't just coach more — they systematically elevate coachability across roles, levels, and regions. You've built real infrastructure. The foundation is strong.",
       detail: "At this stage, the opportunity isn't more coaching — it's making coachability a strategic competency. That means measurement, precision, and embedding coachability into how your organization develops talent, drives adoption, and sustains performance over time.",
       cta: "Ready to move from coaching culture to coachability culture?",
@@ -203,6 +207,7 @@ const CONFIG = {
     {
       type: "D", label: "Multiplier-Ready",
       scoreMin: 26, scoreMax: 32,
+      maturityPct: 65, opportunityPct: 75,
       response: "This is rare. Your organization has coaching embedded as a true performance lever — behavior change sticks, initiatives scale, and results are measurable. You've moved beyond building a coaching culture into operating one.",
       detail: "At the Multiplier-Ready level, the play is multiplication: certifying internal champions, embedding coachability into hiring and talent strategy, and using advanced behavioral measurement to stay ahead. This is where coaching becomes a compounding competitive advantage.",
       cta: "Ready to protect and multiply your advantage?",
@@ -638,7 +643,6 @@ const CSS = `
   background-image: var(--res-bg-image, none);
   background-size: cover;
   background-position: center;
-  /* warm gradient fallback — replace with bg-image url via --res-bg-image CSS var or inline style */
   background-color: #f1f1f1;
 }
 
@@ -698,7 +702,6 @@ const CSS = `
 /* ── 3-COLUMN GRID ── */
 .msf-res-3col {
   display: grid;
-  /* Fixed: Swapped hard-coded 420px for a minmax to prevent browser overflow on laptops */
   grid-template-columns: 1fr minmax(300px, 420px) 1fr;
   gap: 60px;
   align-items: center;
@@ -706,12 +709,12 @@ const CSS = `
   margin: 0 auto;
   padding: 120px 32px;
   width: 100%;
-  /* CRITICAL: Replace these dummy paths with your full, un-truncated image URLs */
   background-image: url('https://cdn.prod.website-files.com/65fdd9abdfe007f804f15369/6a0cf1f8c9d484062a2cd6be_Hero%20(1).png');
   background-size: cover;
-  background-position: center; /* Keeps the asset centered when scaling */
+  background-position: center;
   border-radius: 12px;
 }
+
 /* Left column */
 .msf-res-col-left {
   display: flex;
@@ -737,7 +740,6 @@ const CSS = `
   box-shadow:
     0 8px 40px rgba(0,0,0,0.20),
     inset 0 1px 0 rgba(255,255,255,0.28);
-
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
@@ -746,7 +748,6 @@ const CSS = `
 .msf-res-profile-label {
   font-size: 24px;
   font-weight: 400;
-  text-transform: normal;
   color: #fff;
   margin-bottom: 16px;
   font-family: 'DM Sans', system-ui, sans-serif !important;
@@ -755,12 +756,12 @@ const CSS = `
 }
 
 .msf-res-type-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-    width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  width: 20%;
 }
 .msf-res-type-letter {
   font-size: 48px;
@@ -791,13 +792,13 @@ const CSS = `
   padding: 16px 14px 14px;
 }
 .msf-res-score-val {
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 10px;
-    font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-score-bar {
   width: 100%;
@@ -814,18 +815,16 @@ const CSS = `
   width: 0%;
   transition: width 1.2s cubic-bezier(.4,0,.2,1);
 }
-
-#msf-bar-left{
-      background: linear-gradient(to right, #D7A7FF 0%, #E3BFFC 55%, #F3DCF9 95%) !important;
+#msf-bar-left {
+  background: linear-gradient(to right, #D7A7FF 0%, #E3BFFC 55%, #F3DCF9 95%) !important;
 }
 #msf-bar-right {
-    background: linear-gradient(to right, #BCDD53 0%, #B8E559 29%, #B5EC5D 85%);
+  background: linear-gradient(to right, #BCDD53 0%, #B8E559 29%, #B5EC5D 85%);
 }
 .msf-res-score-lbl {
   font-size: 10px;
   font-weight: 400;
   letter-spacing: .06em;
-  text-transform: normal;
   color: #fff;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.4;
@@ -844,45 +843,42 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 .msf-res-col-right-cta {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    font-family: 'Bitter', system-ui, sans-serif !important;
-    line-height: 1.45;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Bitter', system-ui, sans-serif !important;
+  line-height: 1.45;
 }
 .msf-res-col-right-rec {
-    font-size: .83rem;
-    color: #fff;
-    font-style: normal;
-    font-family: 'Bitter', system-ui, sans-serif !important;
-}
-
-
-}
-.msf-res-col-right-note {
-  font-size: .82rem;
-  color: white;
+  font-size: .83rem;
+  color: rgba(255,255,255,0.85);
+  font-style: normal;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   line-height: 1.55;
-  display: none !important;
 }
+
+/* ── CHANGE 2: "Start now" button styled to match reference design ── */
 .msf-res-start-btn {
   align-self: flex-start;
-  padding: 9px 20px;
-  background: #1E1E1E;
+  padding: 9px 22px;
+  background: transparent;
   color: #fff;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  border: none;
+  border: 1.5px solid rgba(255,255,255,0.7);
   border-radius: 999px;
   cursor: pointer;
-  transition: background .18s ease, transform .15s ease;
+  transition: background .18s ease, border-color .18s ease, transform .15s ease;
   text-decoration: none;
   display: inline-block;
   letter-spacing: -.01em;
 }
-.msf-res-start-btn:hover { background: #383838; transform: translateY(-1px); }
+.msf-res-start-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
 .msf-res-start-btn:active { transform: scale(.97); }
 
 /* ── SECTION 2: pathways ── */
@@ -1043,14 +1039,14 @@ const CSS = `
   .msf-res-3col {
     grid-template-columns: 1fr 340px 1fr;
     gap: 28px;
-    padding: 0 40px;
+    padding: 80px 40px;
   }
 }
 @media(max-width:900px){
   .msf-res-3col {
     grid-template-columns: 1fr;
     gap: 24px;
-    padding: 0 32px;
+    padding: 48px 32px;
   }
   .msf-res-center-card { max-width: 440px; }
   .msf-res-section1 { padding: 0 0 48px; }
@@ -1058,8 +1054,9 @@ const CSS = `
   .msf-res-section1-topbar-wrap { padding: 14px 32px; }
   .msf-res-pw-grid { grid-template-columns: 1fr 1fr; }
 }
+/* ── CHANGE 4: mobile padding fix for .msf-res-3col ── */
 @media(max-width:640px){
-  .msf-res-3col { padding: 0 20px; gap: 20px; }
+  .msf-res-3col { padding: 40px 20px; gap: 20px; }
   .msf-res-section1-topbar-wrap { padding: 12px 20px; }
   .msf-res-title-block { padding: 24px 20px 24px; }
   .msf-res-section1 { padding: 0 0 36px; }
@@ -1109,9 +1106,9 @@ const CSS = `
 })();
 
 /* ── STEPS ──
-   0          = intro (white bg hero)
+   0          = intro
    1          = start card
-   2…(2+N-1)  = questions (N = CONFIG.questions.length)
+   2…(2+N-1)  = questions
    2+N        = lead form
    2+N+1      = results
 */
@@ -1185,7 +1182,7 @@ function bindModalEvents() {
   if (cont  && !cont._b)  { cont.addEventListener('click',  goForward);  cont._b=true; }
 }
 
-/* ─── PROGRESS BAR CALCULATION ─── */
+/* ─── PROGRESS BAR ─── */
 function calcProgress(s) {
   if (s <= STEP_START) return 0;
   if (s >= STEP_LEAD)  return 100;
@@ -1201,8 +1198,6 @@ function renderStep(s) {
   const prog     = document.getElementById('msf-prog');
   const body     = document.getElementById('msf-body');
   const footer   = document.getElementById('msf-footer');
-  const back     = document.getElementById('msf-back');
-  const cont     = document.getElementById('msf-continue');
 
   const isIntro   = s === 0;
   const isStart   = s === STEP_START;
@@ -1228,10 +1223,10 @@ function renderStep(s) {
 
   if (footer) footer.style.display = 'none';
 
-  if (isIntro)        { body.innerHTML = renderIntro();      attachIntroListeners(); }
-  else if (isStart)   { body.innerHTML = renderStart();      attachStartListeners(); }
-  else if (isQ)       { renderQuestionInPanel(s);  }
-  else if (isLead)    { renderLeadInPanel();        }
+  if (isIntro)        { body.innerHTML = renderIntro();   attachIntroListeners(); }
+  else if (isStart)   { body.innerHTML = renderStart();   attachStartListeners(); }
+  else if (isQ)       { renderQuestionInPanel(s); }
+  else if (isLead)    { renderLeadInPanel(); }
   else if (isResults) { body.innerHTML = renderResults(); attachResultsListeners(); animateBar(); }
 }
 
@@ -1299,11 +1294,10 @@ function attachStartListeners() {
   if (sb) sb.addEventListener('click', goForward);
 }
 
-/* ── QUESTION (renders inside existing panel shell if possible) ── */
+/* ── QUESTION ── */
 function renderQuestionInPanel(s) {
   const body = document.getElementById('msf-body');
   const existingPanel = document.getElementById('msf-panel-content');
-
   if (!existingPanel) {
     body.innerHTML = buildPanelScaffold(s);
     attachPanelClose();
@@ -1317,17 +1311,14 @@ function buildPanelScaffold(s) {
   const qIdx = s - STEP_Q0;
   const ss   = CONFIG.sidebarSteps;
   const qNum = qIdx + 1;
-
   const stepsHtml = ss.map((l,i) => {
     let cls = 'msf-sidebar-step';
-    if (i === qNum)     cls += ' active';
-    else if (i < qNum)  cls += ' done';
+    if (i === qNum)    cls += ' active';
+    else if (i < qNum) cls += ' done';
     return `<div class="${cls}">${esc(l)}</div>`;
   }).join('');
-
   const padNum   = String(qNum).padStart(2,'0');
   const padTotal = String(TOTAL + 1).padStart(2,'0');
-
   return `
     <div class="msf-sidebar" id="msf-sidebar">
       <div class="msf-sidebar-brand">${esc(CONFIG.brandShort)}</div>
@@ -1347,7 +1338,6 @@ function buildPanelScaffold(s) {
     </div>`;
 }
 
-/* Swap just the inner content */
 function swapPanelInner(s) {
   const inner   = document.getElementById('msf-panel-inner');
   const panel   = document.getElementById('msf-panel-content');
@@ -1355,8 +1345,8 @@ function swapPanelInner(s) {
   const sidebar = document.getElementById('msf-sidebar-steps');
   const prog    = document.getElementById('msf-prog');
 
-  const qIdx  = s - STEP_Q0;
-  const qNum  = qIdx + 1;
+  const qIdx   = s - STEP_Q0;
+  const qNum   = qIdx + 1;
   const isLead = s === STEP_LEAD;
 
   if (prog) prog.style.width = calcProgress(s) + '%';
@@ -1381,7 +1371,7 @@ function swapPanelInner(s) {
   }
 
   if (!inner) {
-    if (s === STEP_LEAD) renderLeadFull();
+    if (s === STEP_LEAD) renderLeadInPanel();
     else { const b = document.getElementById('msf-body'); b.innerHTML = buildPanelScaffold(s); attachPanelClose(); attachOptionListeners(s); }
     return;
   }
@@ -1391,18 +1381,15 @@ function swapPanelInner(s) {
 
   setTimeout(() => {
     if (panel) panel.scrollTop = 0;
-
     if (isLead) {
       inner.innerHTML = `<div class="lead-form-main-cont">${leadFormHTML()}</div>`;
     } else {
       inner.innerHTML = questionHTML(s);
     }
-
     inner.classList.remove('fade-out');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => inner.classList.add('fade-in'));
     });
-
     if (isLead) attachLeadInputListeners();
     else        attachOptionListeners(s);
   }, 200);
@@ -1418,16 +1405,12 @@ function questionHTML(s) {
   const qIdx = s - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
   const ans  = answers[qIdx];
-
   const canContinue = q.type === 'multiple' ? selectedMulti.size > 0 : ans !== null;
-
   const opts = q.answers.map((a,i) => {
     const sel = q.type === 'single' ? ans === a.weight : selectedMulti.has(i);
-    const chk = q.type === 'multiple'
-      ? `<span class="msf-check">${sel?'✓':''}</span>` : '';
+    const chk = q.type === 'multiple' ? `<span class="msf-check">${sel?'✓':''}</span>` : '';
     return `<button class="msf-option${sel?' selected':''}" data-idx="${i}" data-weight="${a.weight}">${chk}${esc(a.text)}</button>`;
   }).join('');
-
   return `
     <div class="msf-q-card">
       <div class="msf-heading">${q.heading}</div>
@@ -1481,7 +1464,6 @@ function attachOptionListeners(s) {
 
       const cb = document.getElementById('msf-q-cont-btn');
       if (cb) cb.disabled = false;
-
       updateContBtn();
       revealInsight(s);
     });
@@ -1520,7 +1502,6 @@ function leadFormHTML() {
   }
 
   const isValid = isLeadValid();
-
   return `
     <div class="msf-heading">${f.heading}</div>
     <div class="msf-subtitle">${f.subtitle}</div>
@@ -1628,19 +1609,23 @@ function updateLeadSubmitBtn() {
 }
 
 /* ══════════════════════════════════════════
-   RESULTS — 3-COLUMN LAYOUT
+   RESULTS
    ══════════════════════════════════════════ */
 function renderResults() {
   const score = calcScore();
   const tier  = getTier(score);
-  const pct   = Math.round(((score - 8) / 24) * 100);
-  const opp   = 100 - pct;
-  const rec   = getRecommendedPathway(tier.type);
-  const ctaC  = CONFIG.resultsCtas;
-  const ps    = CONFIG.pathwaysSection;
+
+  /* ── CHANGE 1: use fixed tier percentages ── */
+  const pct  = tier.maturityPct;
+  const opp  = tier.opportunityPct;
+
+  /* ── CHANGE 1: multi-pathway array ── */
+  const recs = getRecommendedPathways(tier.type);
+  const ctaC = CONFIG.resultsCtas;
+  const ps   = CONFIG.pathwaysSection;
 
   const pathCards = CONFIG.pathways.map(p => {
-    const best = p.id === rec;
+    const best = recs.includes(p.id);
     return `
       <article class="msf-res-pw-card${best?' best':''}">
         <img class="msf-res-pw-img" src="${p.image||''}" alt="${esc(p.headline)}" loading="lazy">
@@ -1657,30 +1642,24 @@ function renderResults() {
   return `
     <div class="msf-res-page">
 
-      <!-- Section 1: gradient background -->
       <div class="msf-res-section1">
 
-        <!-- Topbar inside gradient -->
         <div class="msf-res-section1-topbar-wrap">
           <div class="msf-res-topbar-logo">${CONFIG.brand}</div>
           <button class="msf-res-topbar-close" id="msf-res-close" aria-label="Close">×</button>
         </div>
 
-        <!-- Centered title + subtitle -->
         <div class="msf-res-title-block">
           <h1 class="msf-res-title">Here is our initial conclusion</h1>
           <p class="msf-res-subtitle">Based on your responses, here's a snapshot of your coaching culture — and where the opportunity lives.</p>
         </div>
 
-        <!-- 3-column layout: left text | glass card | right text -->
         <div class="msf-res-3col">
 
-          <!-- LEFT: tier response paragraph -->
           <div class="msf-res-col-left">
             <p class="msf-res-col-left-response">${tier.response}</p>
           </div>
 
-          <!-- CENTER: glass profile card -->
           <div class="msf-res-center-card">
             <div class="msf-res-profile-label">Your coachability profile</div>
             <div class="msf-res-type-row">
@@ -1705,21 +1684,17 @@ function renderResults() {
             </div>
           </div>
 
-          <!-- RIGHT: detail + cta + recommendation -->
+          <!-- CHANGE 2 + 3: transparent pill button, recommendation below it, no thanks note -->
           <div class="msf-res-col-right">
             <p class="msf-res-col-right-detail">${tier.detail}</p>
             <p class="msf-res-col-right-cta">${tier.cta}</p>
-            <p class="msf-res-col-right-rec"> Recommended: ${tier.recommendation}</p>
             <a class="msf-res-start-btn" href="${ctaC.primary.url}">Start now →</a>
-            <p class="msf-res-col-right-note">
-              Thanks ${escText(leadData.firstName)||'for sharing your details'}. Someone at Coachability Consultants will be in touch shortly.
-            </p>
+            <p class="msf-res-col-right-rec">Recommended: ${tier.recommendation}</p>
           </div>
 
         </div>
       </div>
 
-      <!-- Section 2: pathways on light background -->
       <div class="msf-res-section2">
         <div class="card-inner-results-top">
           <div class="msf-res-pw-header">
@@ -1742,7 +1717,6 @@ function attachResultsListeners() {
   if (closeBtn && !closeBtn._b) { closeBtn.addEventListener('click', closeModal); closeBtn._b = true; }
 }
 
-/* Animate score bars + count-up numbers */
 function animateBar() {
   setTimeout(() => {
     const barLeft  = document.getElementById('msf-bar-left');
@@ -1753,17 +1727,15 @@ function animateBar() {
     const pct = barLeft  ? parseInt(barLeft.dataset.target  || '0') : 0;
     const opp = barRight ? parseInt(barRight.dataset.target || '0') : 0;
 
-    /* animate bar widths */
     if (barLeft)  barLeft.style.width  = pct + '%';
     if (barRight) barRight.style.width = opp + '%';
 
-    /* animate number count-up */
-    const duration = 70; // frames (~1.1s at 60fps)
+    const duration = 70;
     let frame = 0;
     const tick = setInterval(() => {
       frame++;
       const progress = frame / duration;
-      const ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const ease = 1 - Math.pow(1 - progress, 3);
       if (pctEl) pctEl.textContent = Math.round(ease * pct) + '%';
       if (oppEl) oppEl.textContent = Math.round(ease * opp) + '%';
       if (frame >= duration) {
@@ -1794,17 +1766,14 @@ function calcScore() {
 function getTier(score) {
   return CONFIG.tiers.find(t => score >= t.scoreMin && score <= t.scoreMax) || CONFIG.tiers[0];
 }
-function getRecommendedPathway(tierType) {
-  if (tierType === 'D') return 'peer';
-  const q4 = answers[3], q6 = answers[5], q7 = answers[6];
-  if (q4 === 3) return 'coachees';
-  if (q4 === 1 || q4 === 2) return 'coaches';
-  if (q4 === 4) {
-    if (tierType === 'C' && (q6 === 1 || q7 === 1)) return 'elite';
-    if (tierType === 'A') return 'coachees';
-    if (tierType === 'B') return 'coaches';
-  }
-  return 'coachees';
+
+/* ── CHANGE 1: multi-pathway recommendation logic ── */
+function getRecommendedPathways(tierType) {
+  if (tierType === 'A') return ['coaches', 'coachees'];
+  if (tierType === 'B') return ['coaches', 'coachees'];
+  if (tierType === 'C') return ['coachees'];
+  if (tierType === 'D') return ['coachees', 'peer', 'elite'];
+  return ['coachees'];
 }
 
 /* ── NAVIGATION ── */
@@ -1916,7 +1885,7 @@ function updateContBtn() {
   const cont = document.getElementById('msf-continue');
   if (!cont) return;
   if (step === 0 || step === STEP_START) { cont.disabled = false; return; }
-  if (step >= STEP_RES)                 { cont.disabled = true; return; }
+  if (step >= STEP_RES)                 { cont.disabled = true;  return; }
   const qIdx = step - STEP_Q0;
   const q    = CONFIG.questions[qIdx];
   if (q) cont.disabled = q.type === 'multiple' ? selectedMulti.size === 0 : answers[qIdx] === null;
