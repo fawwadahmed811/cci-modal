@@ -7,8 +7,8 @@ const CONFIG = {
   submitUrl: "",
 
   intro: {
-    heading: "I am a title that will be modified by Iñaki.",
-    body: "I am a subtitle that will be modified by Iñaki.",
+    heading: "What type of coaching pathway is best for you?",
+    body: "Give us a few minutes and we’ll point you in the right direction.",
     insightLabel: "What you'll get",
     insightText: "A personalized assessment of your organization's coaching culture maturity — with a specific recommendation on where to start.",
     ctaLabel: "Start assessment",
