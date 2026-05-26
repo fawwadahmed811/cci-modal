@@ -786,6 +786,7 @@ const CSS = `
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  width: 100%;
 }
 .msf-res-score-box {
   background-color: rgba(0, 0, 0, 0.12);
