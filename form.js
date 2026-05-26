@@ -344,7 +344,7 @@ const CSS = `
 .msf-intro-content{
   position:relative;z-index:1;
   display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:40px 32px;max-width:560px;width:100%;
+  padding:40px 32px;max-width:635px;width:100%;
 }
 .msf-intro-heading{
   font-size: 48px;
@@ -748,11 +748,13 @@ const CSS = `
 .msf-res-profile-label {
   font-size: 24px;
   font-weight: 400;
+  line-height: 29px;
   color: #fff;
   margin-bottom: 16px;
   font-family: 'DM Sans', system-ui, sans-serif !important;
   width: 80%;
   flex-grow: 1;
+  padding-right: 30px;
 }
 
 .msf-res-type-row {
@@ -850,11 +852,12 @@ const CSS = `
   line-height: 1.45;
 }
 .msf-res-col-right-rec {
-  font-size: .83rem;
+  font-size: 13px;
   color: rgba(255,255,255,0.85);
   font-style: normal;
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  line-height: 1.55;
+  line-height: 128%;
+  max-width: 308px;
 }
 
 /* ── CHANGE 2: "Start now" button styled to match reference design ── */
@@ -905,12 +908,13 @@ const CSS = `
 }
 .msf-res-pw-title {
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
-  font-weight: 700;
+  font-size: clamp(1.35rem, 2.5vw, 3rem);
+  font-weight: 500;
   letter-spacing: -0.02em;
   color: #1E1E1E;
   line-height: 1.2;
   flex-shrink: 0;
+  max-width: 411px;
 }
 .msf-res-pw-subtitle {
   font-size: 14px;
@@ -918,8 +922,8 @@ const CSS = `
   font-family: 'DM Sans', system-ui, sans-serif !important;
   color: #484848;
   line-height: 1.65;
-  max-width: 340px;
-  text-align: right;
+  max-width: 295px;
+  text-align: left;
 }
 
 /* Pathway cards grid */
