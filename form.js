@@ -722,9 +722,9 @@ const CSS = `
   gap: 0;
 }
 .msf-res-col-left-response {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 21px;
   color: rgba(255,255,255,0.88);
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
@@ -840,8 +840,10 @@ const CSS = `
   gap: 20px;
 }
 .msf-res-col-right-detail {
-  font-size: .93rem;
-  line-height: 1.75;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400px;
+  letter-spacing: 0.2px;
   color: rgba(255,255,255,0.75);
   font-family: 'DM Sans', system-ui, sans-serif !important;
 }
@@ -864,7 +866,7 @@ const CSS = `
 /* ── CHANGE 2: "Start now" button styled to match reference design ── */
 .msf-res-start-btn {
   align-self: flex-start;
-  padding: 9px 22px;
+  padding: 8px 16px;
   background: transparent;
   color: #fff;
   font-size: 13px;
@@ -1693,7 +1695,7 @@ function renderResults() {
           <div class="msf-res-col-right">
             <p class="msf-res-col-right-detail">${tier.detail}</p>
             <p class="msf-res-col-right-cta">${tier.cta}</p>
-            <a class="msf-res-start-btn" href="${ctaC.primary.url}">Start now →</a>
+            <a class="msf-res-start-btn" href="${ctaC.primary.url}">Start now</a>
             <p class="msf-res-col-right-rec">Recommended: ${tier.recommendation}</p>
           </div>
 
