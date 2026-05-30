@@ -1711,7 +1711,7 @@ function renderResults() {
           <div class="msf-res-pw-grid">${pathCards}</div>
           <div class="msf-res-cta-row">
             <a class="msf-res-cta-btn secondary" href="${ctaC.secondary.url}">${esc(ctaC.secondary.label)}</a>
-            <a class="msf-res-cta-btn primary" href="${ctaC.primary.url}">${esc(ctaC.primary.label)}</a>
+            <a class="msf-res-cta-btn primary" href="https://calendly.com/coachabilityheather/30min">${esc(ctaC.primary.label)}</a>
           </div>
         </div>
       </div>
